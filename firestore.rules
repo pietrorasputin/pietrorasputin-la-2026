@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    // Troque pelo e-mail do usuario criado em Authentication > Users.
+    function director() { return signedIn() && request.auth.token.email == 'SEU_EMAIL_AQUI'; }
+
+    // Trocas, plano B, checks, cenas e itens de lista: os dois leem e escrevem.
+    match /{col}/{id} {
+      allow read, write: if signedIn() && col in ['swaps', 'flags', 'checks', 'scenes', 'listitems'];
+    }
+    // Envelope (dia e hora): todos leem, so o diretor escreve.
+    match /letterMeta/{id} {
+      allow read: if signedIn();
+      allow write: if director();
+    }
+    // Texto da carta: o servidor so entrega depois do horario marcado.
+    match /letterBody/{id} {
+      allow read: if director() || (signedIn() && request.time >= resource.data.unlockAt);
+      allow write: if director();
+    }
+  }
+}

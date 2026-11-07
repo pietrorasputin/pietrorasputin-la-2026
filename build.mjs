@@ -1,0 +1,16 @@
+import { build } from "esbuild";
+import { readFileSync, writeFileSync, mkdirSync, cpSync, readdirSync, statSync } from "fs";
+import { join } from "path";
+const OUT = process.argv[2] || "docs";
+const V = Date.now().toString(36);
+mkdirSync(OUT, { recursive: true });
+await build({ entryPoints: ["src/main.js"], bundle: true, minify: true, format: "esm", target: ["es2020", "safari15"], outfile: join(OUT, "app.js"), legalComments: "none" });
+await build({ entryPoints: ["src/app.css"], minify: true, outfile: join(OUT, "app.css") });
+cpSync("public", OUT, { recursive: true });
+writeFileSync(join(OUT, "index.html"), readFileSync("src/index.html", "utf8").replaceAll("__V__", V));
+writeFileSync(join(OUT, "manifest.webmanifest"), readFileSync("src/manifest.webmanifest", "utf8"));
+writeFileSync(join(OUT, ".nojekyll"), "");
+const walk = d => readdirSync(d).flatMap(f => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
+const assets = ["./", "./index.html"].concat(walk(OUT).map(p => "./" + p.slice(OUT.length + 1)).filter(p => !/sw\.js$|\.nojekyll$|index\.html$/.test(p)));
+writeFileSync(join(OUT, "sw.js"), readFileSync("src/sw.js", "utf8").replace("__V__", V).replace("__ASSETS__", JSON.stringify(assets)));
+console.log("built", V, assets.length, "assets");
