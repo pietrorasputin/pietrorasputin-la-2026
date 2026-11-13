@@ -7,7 +7,7 @@
 - [x] T5. Reordenar brinquedos (u1 e u2)
 - [x] T2-UI. Curiosidades na aba Cenas
 - [x] T6-UI. Comparador de restaurantes
-- [ ] Ciclo de atualização de conteúdo (pull, build e deploy a cada ~60 min)
+- [ ] (em andamento) Ciclo de atualização de conteúdo (pull, build e deploy a cada ~60 min)
 
 ## Decisões
 - T4: Citadel Outlets, 100 Citadel Dr, Commerce, CA 90040. Horário confirmado por busca na web (13/11/2026, 01h de LA): todos os dias das 10h às 21h. Sexta 13/11 não tem horário especial publicado.
@@ -37,3 +37,4 @@
 - T6-UI: com entrada em `MEALS`, o item passa a usar nome, porquê (`why`), Maps e rota da opção. Os links extras do item original (ex.: Bradbury no Grand Central Market) só aparecem quando a opção em cartaz é a recomendada. O alerta de alergia e o horário da opção aparecem no item aberto.
 - T6-UI: a recomendação da sessão Restaurantes muda alguns lugares do roteiro (ex.: jantar de 14/11 passa do Bob's Big Boy para o Musso & Frank). O Bob's continua no comparador.
 - T6-UI: ordenações empatadas mantêm a ordem do arquivo. Opções sem nota ficam por último em "Melhor avaliado". O critério escolhido fica destacado em cada card.
+- Ciclo de conteúdo: o build usa o `src/content` do momento. Cada ciclo faz pull, rebuild e teste de fumaça só quando houve commit novo em `src/content`. Fim do ciclo após 2 horas sem mudança.
