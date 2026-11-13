@@ -307,3 +307,59 @@ Parada anterior: Estação Hollywood/Highland (B Line). Critério: padrão.
 Fechados na segunda: Musso & Frank, Horses e, provavelmente, Grandmaster Recorders.
 
 Fontes: [1](https://locations.in-n-out.com/102) [2](https://www.sluurpy.at/west-hollywood/restaurant/3724353/in-n-out-burger) [3](https://www.discoverlosangeles.com/eat-drink/mels-drive-in-hollywood) [4](https://www.timeout.com/los-angeles/restaurants/joes-pizza-hollywood) [5](https://www.motherwolfla.com) [6](https://www.theinfatuation.com/los-angeles/reviews/mother-wolf) [7](https://theinfatuation.com/los-angeles/reviews/stout) [8](https://joinpearl.co/restaurants/los-angeles/pink-s-hot-dogs) [9](https://www.timeout.com/los-angeles/restaurants/pinks-hot-dogs) [10](https://hollywoodpartnership.com/go/shake-shack) [11](https://theinfatuation.com/los-angeles/reviews/mirate)
+
+## Terça 17/11, 12:00: almoço na Universal (experiência)
+
+Parada anterior: Wizarding World of Harry Potter. Critério: experiência.
+
+**Recomendação: Three Broomsticks.** Mantida a escolha atual. É o restaurante mais bem avaliado do parque (4,2 no Google), preferido por Mashed, Undercover Tourist e Famvia, e fica ao lado de Hogwarts, onde termina a manhã. Complementa o Toadstool Cafe do dia anterior. Por causa da alergia, evitar fritos (o fish and chips divide a fritadeira) e falar com o chef. Uma Butterbeer no Hog's Head fecha a experiência.
+
+| Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
+|---|---|---|---|---|---|---|---|
+| **Three Broomsticks** | Pub britânico de Hogsmeade | 4.2 (Google (via agregador pos.do), 688) | 3 min a pé | $$$ | intermediário | especial | Fish and chips no cardápio, com risco de fritadeira compartilhada. Evitar fritos, preferir frango assado ou costela e falar com o chef. |
+| Hog's Head e Butterbeer | Pub britânico e bebidas | 4.2 (Yelp (contagem não encontrada)) | 2 min a pé | $$ | menos saudável | especial | baixo |
+| Minion Cafe | Temática Minions (americana e italiana) | 3.6 (Google (via agregador pos.do), 104) | 10 min a pé | $$ | intermediário | intermediário | Confirmar o caldo do ramen, que pode ter peixe ou dashi. |
+| Krusty Burger | Hambúrguer temático dos Simpsons | não encontrada (Nota não encontrada) | 8 min a pé | $$ | menos saudável | intermediário | Confirmar se a fritadeira é compartilhada com peixe. |
+| Mel's Diner (no parque) | Diner retrô anos 50 | 3.1 (Google (via agregador pos.do), 500) | 8 min a pé | $$ | menos saudável | intermediário | Confirmar ausência de peixe na fritadeira. |
+| Luigi's Pizza | Pizza | 3.2 (Google (via agregador pos.do), 88) | 10 min a pé | $$ | menos saudável | intermediário | Evitar pizza com anchova. |
+
+- **Three Broomsticks**: Restaurante mais bem avaliado do parque, em salão de Hogsmeade, logo depois de Hogwarts. Horário: Horário do parque.
+- **Hog's Head e Butterbeer**: Butterbeer gelada ou frozen e cerveja britânica, complemento do almoço. Horário: Horário do parque.
+- **Minion Cafe**: Temático e bem-humorado, com massas melhores que o esperado segundo os guias. Horário: Horário do parque.
+- **Krusty Burger**: Almoço dos Simpsons com Duff no mesmo bloco, caso não tenham ido na segunda. Horário: Horário do parque.
+- **Mel's Diner (no parque)**: Hambúrguer e milkshake no cenário de American Graffiti. Horário: Horário do parque.
+- **Luigi's Pizza**: Fatias grandes perto de Springfield, combináveis com Duff no Moe's. Horário: Horário do parque.
+
+Horário do parque em 17/11 não encontrado. Conferir no app oficial.
+
+Fontes: [1](https://www.mashed.com/663353/the-best-restaurants-at-universal-studios-hollywood) [2](https://www.undercovertourist.com/blog/universal-studios-hollywood-restaurants/) [3](https://pos.do/en/universal-city/restaurant/three-broomsticks-2) [4](https://blog.discoveruniversal.com/dining/food-and-drink-guide-to-the-wizarding-world-of-harry-potter-at-universal-studios-hollywood/) [5](https://pos.do/en/universal-city/restaurant/minion-cafe) [6](https://wdwnt.com/2021/04/review-felonious-float-savory-pork-ramen-bowl-and-pulled-pork-grilled-cheese-from-minion-cafe-at-universal-studios-hollywood) [7](https://www.universalstudioshollywood.com/things-to-do/dining/krusty-burger/) [8](https://pos.do/en/universal-city/restaurant/mels-diner-4) [9](https://www.themeparktourist.com/guides/universal-studios-hollywood/mels-diner) [10](https://pos.do/en/universal-city/restaurant/luigis-pizza-4)
+
+## Terça 17/11, 17:30: Downtown, saindo da Pershing Square
+
+Parada anterior: Estação Pershing Square (B Line). Critério: padrão.
+
+**Recomendação: Grand Central Market.** Mantida a escolha atual. O mercado fica aberto até 21:00 e é o mais prático saindo do metrô, em frente ao Bradbury Building e ao Angels Flight. O Eggslut já estará fechado (fecha às 14:00): o foco fica em Tacos Tumbras a Tomas (carnitas, resenha do The Infatuation), Sarita's Pupuseria e Wexler's Deli, evitando o Sticky Rice. Para o melhor taco da região, o Sonoratown fica a 15 minutos a pé. Para o pôr do sol, o Perch fica ao lado da estação.
+
+| Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
+|---|---|---|---|---|---|---|---|
+| **Grand Central Market** | Mercado gastronômico variado | 4 (Yelp, 3.223) | 5 min a pé | $ | intermediário | intermediário | Evitar Sticky Rice (molho de peixe), Oyster Gourmet e bancas de frutos do mar. Perguntar sobre fritadeira em cada banca. |
+| Sonoratown | Tacos de Sonora | 4.5 (Google (via agregador pos.do), 3.222) | 15 min a pé | $ | intermediário | simples | baixo |
+| Philippe the Original | Sanduíche French dip (1908) | 4.6 (Google (via agregador), 11.967) | 30 min a pé | $ | menos saudável | intermediário | baixo |
+| Perch | Francesa em rooftop | 4.5 (OpenTable (Google e Yelp não encontrados), 12.458) | 2 min a pé | $$$ | intermediário | especial | Cozinha francesa pode usar anchova (niçoise, molhos). Perguntar. |
+| Bottega Louie | Italiana e confeitaria | 4.5 (Birdeye (Google e Yelp não encontrados), 8.497) | 10 min a pé | $$ | intermediário | especial | Possível anchova em Caesar e molhos. Confirmar com o garçom. |
+| Badmaash | Indiana moderna | 4 (Yelp (via MapQuest), 2.151) | 10 min a pé | $$ | intermediário | intermediário | Pode haver prato de peixe e fritadeira compartilhada. Avisar a alergia. |
+| Redbird | Americana contemporânea | 4.7 (OpenTable (Google e Yelp não encontrados), 3.000) | 13 min a pé | $$$$ | intermediário | especial | Pratos de peixe e frutos do mar e molhos com anchova. Avisar a alergia na reserva. |
+| Bavel | Oriente Médio | 4.8 (OpenTable (Google e Yelp não encontrados)) | 10 min carro | $$$$ | mais saudável | especial | Há pratos de peixe. Avisar a alergia. |
+
+- **Grand Central Market**: Mercado de 1917 com muitas opções, a 5 minutos do metrô e em frente ao Bradbury Building. Horário: Mercado 08:00 às 21:00, com horário próprio por banca. Eggslut fecha às 14:00.
+- **Sonoratown**: Tortilla de farinha artesanal e carne na brasa, com Bib Gourmand do Michelin. Horário: Ter 11:00 às 21:00 ou 22:00.
+- **Philippe the Original**: Casa que disputa a invenção do French dip. Melhor ir de B Line até Union Station e andar 5 minutos. Horário: Todos os dias 06:00 às 22:00.
+- **Perch**: Rooftop com vista do skyline ao pôr do sol, ao lado da estação. Horário: Abre às 16:00. Happy hour em dias úteis até 18:00.
+- **Bottega Louie**: Salão grandioso de pé-direito alto, com massas, pizzas e macarons famosos. Horário: Ter 07:00 às 22:00.
+- **Badmaash**: Indiano descontraído com Bib Gourmand, famoso pela poutine de chicken tikka. Horário: Ter jantar 17:00 às 22:00.
+- **Redbird**: Jantar especial na antiga reitoria da catedral de Vibiana, citado pelo Guia Michelin. Horário: Ter 17:00 às 22:00.
+- **Bavel**: Um dos jantares mais disputados de LA, a cerca de 10 minutos de Uber. Horário: Ter 17:00 às 23:00. Reserva recomendada.
+
+Descartados: Cole's French Dip (fechado em março de 2026), Woodspoon (fechado), Original Pantry (reabre em 19/11/2026) e Langer's (fecha às 16:00).
+
+Fontes: [1](https://grandcentralmarket.com/?p=14) [2](https://www.tripexpert.com/los-angeles/attractions/grand-central-market) [3](https://eggslut.com/) [4](https://www.theinfatuation.com/los-angeles/reviews/tacos-tumbras-a-tomas) [5](https://downtownla.com/go/sonoratown-1) [6](https://www.enprimeurclub.com/restaurants/sonoratown-los-angeles) [7](https://www.enprimeurclub.com/restaurants/philippe-the-original-los-angeles-restaurant) [8](https://www.timeout.com/los-angeles/restaurants/philippe-the-original) [9](https://www.opentable.com/perch-la?ref=16825) [10](https://www.timeout.com/los-angeles/restaurants/perch-la) [11](https://reviews.birdeye.com/bottega-louie-146752677308985?page=6) [12](https://www.opentable.com/r/badmaash-dt-la?lang=it) [13](https://guide.michelin.com/kr/ko/california/us-los-angeles/restaurant/badmaash) [14](https://opentable.ca/redbird) [15](https://guide.michelin.com/ca/fr/california/us-los-angeles/restaurant/redbird) [16](https://opentable.com/r/bavel-los-angeles) [17](https://guide.michelin.com/kr/ko/california/us-los-angeles/restaurant/bavel)
