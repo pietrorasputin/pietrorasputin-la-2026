@@ -120,7 +120,36 @@ function donut() {
     <path d="M4 86h152"/>`);
 }
 
-export const ART = { pier, sign, observatory, vegas, coaster, funicular, donut };
+// Stepped (Assyrian) crenellation along y, from x0 to x1.
+function merlons(x0, x1, y) {
+  let d = `M${x0} ${y}`;
+  for (let x = x0 + 1; x + 6 <= x1; x += 8) d += `H${x}V${y - 2}H${x + 1}V${y - 4}H${x + 4}V${y - 2}H${x + 5}V${y}`;
+  return d + `H${x1}`;
+}
+
+function citadel() {
+  const side = `
+    <path d="M9 86c1-12 3-25 1-38"/>
+    <path d="M10 48c-6-4-12-2-9 2M10 48c-2-7-8-9-13-6M10 48c3-7 9-8 14-5M10 48c6-2 11 1 12 5M10 48c0-6-2-10-5-12"/>
+    <rect x="30" y="58" width="24" height="23" rx="1" opacity=".45"/>
+    <path d="M34 74q9-4 17 0M34 74v-9h4v9M36 65v-2h2v2M37 77v4M40 77v4M47 77v4M50 77v4M34 74l3 3h14l-1-3"/>
+    <path d="M40 70l11-8M42 71l9-6M44 72l7-4" opacity=".75"/>`;
+  return wrap(`
+    ${stars([[24, 14, 2], [136, 12, 2], [116, 22, 1.3], [44, 24, 1.3]])}
+    <path d="${merlons(20, 62, 46)}"/><path d="${merlons(98, 140, 46)}"/><path d="${merlons(62, 98, 34)}"/>
+    <path d="M20 46v40M62 46V34M98 34v12M140 46v40"/>
+    <path d="M62 86V46M98 86V46" opacity=".55"/>
+    <path d="M24 52h34M102 52h34M66 40h28" opacity=".5"/>
+    <path d="M28 50.5h1M34 50.5h1M40 50.5h1M46 50.5h1M52 50.5h1M106 50.5h1M112 50.5h1M118 50.5h1M124 50.5h1M130 50.5h1M70 38.5h1M76 38.5h1M83 38.5h1M89 38.5h1" stroke-width="2" opacity=".7"/>
+    <path d="M71 86V61a9 9 0 0 1 18 0v25"/>
+    <path d="M75 86V62a5 5 0 0 1 10 0v24" opacity=".45"/>
+    <circle cx="80" cy="46" r="2.2" class="fillc"/>
+    ${side}<g transform="translate(160 0) scale(-1 1)">${side}</g>
+    <path d="M2 86h156"/>
+    <path d="M8 92c30-4 60-4 90-2s40 2 54 0" opacity=".45"/>`);
+}
+
+export const ART = { pier, sign, observatory, vegas, coaster, funicular, donut, citadel };
 
 const I = (d, sw = 1.7) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
 export const ICON = {

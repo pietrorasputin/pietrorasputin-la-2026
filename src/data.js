@@ -46,18 +46,18 @@ export const DAYS = [
         alts: [{ id: "cheesecake", title: "Cheesecake Factory", short: "Cheesecake", note: "Referência de The Big Bang Theory. Porções grandes.", q: "The Cheesecake Factory, The Grove, Los Angeles", scene: ["cheesecake"] }] },
       { id: "d1-target", t: "19:30", e: "20:15", k: "move", title: "Target", note: "A lista está na aba Listas.", q: "Target, 5520 W Sunset Blvd, Los Angeles", list: "target" }
     ] },
-  { n: 2, date: "2026-11-13", art: "sign", tint: "midnight", title: "Hollywood Sign e Camarillo",
-    planb: "Dormir mais e trocar a trilha por chegar ao outlet na abertura.",
-    notes: ["A trilha precisa combinar com o condicionamento e a previsão do tempo.", "Conferir o horário do outlet para 13/11.", "Sair depois das 19h tende a pegar a 101 menos travada."],
+  { n: 2, date: "2026-11-13", art: "citadel", tint: "midnight", title: "Hollywood Sign e Citadel",
+    planb: "Dormir mais e pular a trilha: chegar ao Citadel na abertura.",
+    notes: ["A trilha precisa combinar com o condicionamento e a previsão do tempo.", "Citadel Outlets: 100 Citadel Dr, Commerce. Aberto das 10h às 21h.", "Volta às 19h, com trânsito de sexta na I-5 e na 101. Conferir o Maps antes de sair."],
     items: [
-      { id: "d2-cafe", t: "06:30", k: "meal", title: "Café no hotel" },
-      { id: "d2-trilha", t: "07:00", e: "10:00", k: "visit", title: "Trilha do Hollywood Sign", note: "Escolher a rota e conferir estacionamento.", q: "Hollywood Sign, Los Angeles", extra: [{ l: "Lake Hollywood Park", q: "Lake Hollywood Park, Los Angeles" }], scene: ["sign"] },
-      { id: "d2-ida", t: "10:00", e: "11:15", k: "move", title: "Estrada até Camarillo", q: "Camarillo Premium Outlets, Camarillo, CA", core: 1 },
-      { id: "d2-c1", t: "11:15", e: "14:00", k: "visit", title: "Compras, parte 1", note: "Levar sacolas ao carro a cada etapa.", q: "Camarillo Premium Outlets, Camarillo, CA", core: 1 },
-      { id: "d2-almoco", t: "14:00", e: "14:45", k: "meal", title: "Almoço no outlet", note: "Proteína e vegetais. BiBro Grill é uma opção.", core: 1 },
-      { id: "d2-c2", t: "14:45", e: "18:30", k: "visit", title: "Compras, parte 2", note: "Lanche leve no meio da tarde.", core: 1 },
-      { id: "d2-volta", t: "18:30", e: "19:30", k: "move", title: "Volta para Hollywood", q: HOTEL, core: 1 },
-      { id: "d2-jantar", t: "19:30", e: "20:45", k: "meal", title: "Joe's Pizza", short: "Joe's Pizza", note: "Fatia estilo Nova York. Duas por pessoa resolvem.", q: "Joe's Pizza, 6504 Hollywood Blvd, Los Angeles", core: 1,
+      { id: "d2-cafe", t: "06:45", k: "meal", title: "Café no hotel" },
+      { id: "d2-trilha", t: "07:30", e: "10:00", k: "visit", title: "Trilha do Hollywood Sign", note: "Escolher a rota e conferir estacionamento.", q: "Hollywood Sign, Los Angeles", extra: [{ l: "Lake Hollywood Park", q: "Lake Hollywood Park, Los Angeles" }], scene: ["sign"] },
+      { id: "d2-ida", t: "10:00", e: "10:30", k: "move", title: "Estrada até o Citadel", note: "Cerca de 30 minutos pela 101 e pela I-5.", q: "Citadel Outlets, 100 Citadel Dr, Commerce, CA", core: 1 },
+      { id: "d2-c1", t: "10:30", e: "14:00", k: "visit", title: "Compras, parte 1", note: "Levar sacolas ao carro a cada etapa.", q: "Citadel Outlets, 100 Citadel Dr, Commerce, CA", core: 1 },
+      { id: "d2-almoco", t: "14:00", e: "14:45", k: "meal", title: "Almoço no Citadel", note: "Praça de alimentação do outlet. Proteína e vegetais.", q: "Citadel Outlets, 100 Citadel Dr, Commerce, CA", core: 1 },
+      { id: "d2-c2", t: "14:45", e: "19:00", k: "visit", title: "Compras, parte 2", note: "Lanche leve no meio da tarde.", core: 1 },
+      { id: "d2-volta", t: "19:00", e: "19:45", k: "move", title: "Volta para Hollywood", note: "Trânsito de sexta na I-5 e na 101.", q: HOTEL, core: 1 },
+      { id: "d2-jantar", t: "19:45", e: "21:00", k: "meal", title: "Joe's Pizza", short: "Joe's Pizza", note: "Fatia estilo Nova York. Duas por pessoa resolvem.", q: "Joe's Pizza, 6504 Hollywood Blvd, Los Angeles", core: 1,
         alts: [{ id: "innout", title: "In-N-Out", short: "In-N-Out", note: "A 10 minutos a pé do hotel.", q: INNOUT_SUNSET }] }
     ] },
   { n: 3, date: "2026-11-14", art: "observatory", tint: "forest", title: "Warner Bros. e Griffith",
@@ -131,7 +131,7 @@ export const DAYS = [
 
 export const LISTS = [
   { id: "prep", title: "Antes de ir", add: true, items: ["Ingresso e horário da Warner Bros.", "Calendário da Universal para 16 e 17/11", "Baixar o app da Universal", "Condições da trilha do Hollywood Sign", "Estacionamento do Griffith", "Café da manhã incluso no Loews?", "Retirada do carro no LAX às 8h", "Horário e terminal do voo de volta"] },
-  { id: "target", title: "Target", add: true, items: ["Água e bebidas sem açúcar", "Frutas e berries", "Iogurte grego", "Barrinhas de proteína", "Nuts e amêndoas", "Baby carrots e homus", "Crackers", "Snacks para o outlet e a estrada"] },
+  { id: "target", title: "Target", add: true, items: ["Água e bebidas sem açúcar", "Frutas e berries", "Iogurte grego", "Barrinhas de proteína", "Nuts e amêndoas", "Baby carrots e homus", "Crackers", "Snacks para a trilha e o outlet"] },
   { id: "vegas", title: "Estrada", add: true, items: ["Dormir cedo no dia 3", "Tanque cheio na véspera", "Água e snacks no carro", "Playlist e carregador", "Trânsito na I-15 antes de sair", "Combinar o revezamento", "Decidir até 17h se há pernoite"] },
   { id: "u1", title: "Universal 1", items: ["Mario Kart: Bowser's Challenge", "Revenge of the Mummy", "Transformers: The Ride 3D", "Yoshi's Adventure (fila < 20 min)", "Starway e almoço às 11h30", "Studio Tour, carro 3", "Simpsons Ride e Minion Mayhem", "Secret Life of Pets", "WaterWorld", "Hippogriff, Forbidden Journey e Ollivanders", "Hollywood Drift na última hora"] },
   { id: "u2", title: "Universal 2", items: ["Hollywood Drift na abertura", "Forbidden Journey com a área vazia", "Repetir no single rider", "Shows que ficaram de fora", "Mario Kart (fila < 45 min)", "Lojas, Butterbeer e fotos"] }
