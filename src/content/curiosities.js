@@ -12,9 +12,9 @@ export const CURIOSITIES = [
     "tag": "Filme",
     "title": "Forrest Gump",
     "year": 1994,
-    "text": "A corrida de Forrest atravessa o país e termina aqui, de frente para o Pacífico.",
+    "text": "Na corrida pelo país, Forrest chega ao Pacífico no Santa Monica Pier, passa sob o letreiro histórico, olha o mar e decide dar meia-volta.",
     "gen": false,
-    "source": ""
+    "source": "https://www.santamonica.com/experience-santa-monica/15-movies-to-satiate-your-santa-monica-wanderlust/"
   },
   {
     "id": "venice",
@@ -26,9 +26,9 @@ export const CURIOSITIES = [
     "tag": "Filme",
     "title": "Homens Brancos Não Sabem Enterrar",
     "year": 1992,
-    "text": "As quadras de basquete da orla de Venice são o palco de Wesley Snipes e Woody Harrelson.",
+    "text": "Os 15 minutos iniciais do filme se passam nas quadras de basquete da orla de Venice, referência nacional do basquete de rua, com Wesley Snipes e Woody Harrelson.",
     "gen": false,
-    "source": ""
+    "source": "https://thecinemaholic.com/where-was-white-men-cant-jump-filmed"
   },
   {
     "id": "pretty",
@@ -40,9 +40,9 @@ export const CURIOSITIES = [
     "tag": "Filme",
     "title": "Uma Linda Mulher",
     "year": 1990,
-    "text": "\"Grande erro. Enorme.\" A volta de Vivian às lojas que a esnobaram foi filmada nesta rua.",
+    "text": "\"Grande erro. Enorme.\" A volta de Vivian à loja que a esnobou foi filmada na Boulmiche, uma butique real da Rodeo Drive.",
     "gen": false,
-    "source": ""
+    "source": "https://www.today.com/style/pretty-woman-shopping-scene-store-boulmiche-still-business-t11011"
   },
   {
     "id": "urban",
@@ -54,9 +54,9 @@ export const CURIOSITIES = [
     "tag": "História",
     "title": "Urban Light",
     "year": 2008,
-    "text": "Chris Burden reuniu 202 postes antigos de Los Angeles. Eles acendem ao anoitecer.",
+    "text": "Chris Burden passou sete anos reunindo 202 postes das décadas de 1920 e 1930, vindos de várias cidades do sul da Califórnia. A obra foi instalada em 2008.",
     "gen": false,
-    "source": ""
+    "source": "https://en.wikipedia.org/wiki/Urban_Light"
   },
   {
     "id": "cheesecake",
@@ -68,9 +68,93 @@ export const CURIOSITIES = [
     "tag": "Série",
     "title": "The Big Bang Theory",
     "year": 2007,
-    "text": "O restaurante onde a Penny trabalha nas primeiras temporadas.",
+    "text": "A Penny trabalhou como garçonete na Cheesecake Factory até a sétima temporada. A série usou a rede sem pedir autorização antes.",
+    "gen": true,
+    "source": "https://slashfilm.com/1735927/the-big-bang-theory-penny-the-cheesecake-factory-job-permission"
+  },
+  {
+    "id": "pier-ironman",
+    "place": "Santa Monica Pier",
+    "day": 1,
+    "itemIds": [
+      "d1-pier"
+    ],
+    "tag": "Filme",
+    "title": "Homem de Ferro",
+    "year": 2008,
+    "text": "No primeiro voo de teste da armadura, Tony Stark passa pela roda-gigante do Pacific Park, e um garoto numa das cabines o vê de perto.",
+    "gen": true,
+    "source": "https://www.fairmont-miramar.com/blog/santa-monica-in-the-movies/"
+  },
+  {
+    "id": "venice-canais",
+    "place": "Venice Beach",
+    "day": 1,
+    "itemIds": [
+      "d1-venice"
+    ],
+    "tag": "História",
+    "title": "Venice of America",
+    "year": 1905,
+    "text": "Abbot Kinney abriu em 1905 a Venice of America, com canais e gondoleiros importados. Em 1929 vários canais viraram rua asfaltada, e restam seis.",
     "gen": false,
-    "source": ""
+    "source": "https://en.wikipedia.org/wiki/Venice_Canal_Historic_District"
+  },
+  {
+    "id": "bh-tworodeo",
+    "place": "Rodeo Drive",
+    "day": 1,
+    "itemIds": [
+      "d1-bh"
+    ],
+    "tag": "História",
+    "title": "Via Rodeo",
+    "year": 1990,
+    "text": "A Via Rodeo, rua inclinada com fachadas de ar europeu, foi construída por volta de 1990 com cerca de 100 mil paralelepípedos assentados à mão.",
+    "gen": false,
+    "source": "https://en.wikipedia.org/wiki/Rodeo_Drive"
+  },
+  {
+    "id": "farmers-1934",
+    "place": "Farmers Market",
+    "day": 1,
+    "itemIds": [
+      "d1-jantar"
+    ],
+    "tag": "História",
+    "title": "Farmers Market",
+    "year": 1934,
+    "text": "O mercado começou em julho de 1934, com agricultores vendendo direto dos caminhões num terreno da família Gilmore, antes ocupado por poços de petróleo.",
+    "gen": false,
+    "source": "https://farmersmarketla.com/history"
+  },
+  {
+    "id": "grove-fonte",
+    "place": "The Grove",
+    "day": 1,
+    "itemIds": [
+      "d1-jantar"
+    ],
+    "tag": "Bizarro",
+    "title": "Fonte do The Grove",
+    "year": 2002,
+    "text": "A fonte dançante do The Grove, aberto em 2002, foi feita pela WET, a mesma empresa das fontes do Bellagio, que estão no roteiro de Las Vegas.",
+    "gen": false,
+    "source": "https://en.wikipedia.org/wiki/WET_(company)"
+  },
+  {
+    "id": "checkin-dolby",
+    "place": "Hollywood & Highland",
+    "day": 1,
+    "itemIds": [
+      "d1-checkin"
+    ],
+    "tag": "História",
+    "title": "Dolby Theatre",
+    "year": 2002,
+    "text": "O teatro ao lado do hotel abriu em 2001 como Kodak Theatre e recebe o Oscar desde a cerimônia de 2002. Ganhou o nome Dolby em 2012, após a falência da Kodak.",
+    "gen": false,
+    "source": "https://www.academymuseum.org/en/hollywood-past-and-present/dolby-theatre"
   },
   {
     "id": "sign",
@@ -442,20 +526,6 @@ export const CURIOSITIES = [
     "source": "https://lasvegassun.com/news/2016/apr/17/a-day-in-the-life-of-a-movie-extra/"
   },
   {
-    "id": "venetian-sands",
-    "place": "Venetian",
-    "day": 4,
-    "itemIds": [
-      "d4-caesars"
-    ],
-    "tag": "História",
-    "title": "Hotel Sands",
-    "year": 1999,
-    "text": "O Venetian abriu em maio de 1999 no terreno do antigo Hotel Sands, demolido em 1996 para dar lugar ao novo resort.",
-    "gen": false,
-    "source": "https://www.sands.com/news/the-venetian-las-vegas-the-first-integrated-resort/"
-  },
-  {
     "id": "cosmo-secret",
     "place": "Cosmopolitan",
     "day": 4,
@@ -510,20 +580,6 @@ export const CURIOSITIES = [
     "text": "A área abriu em 17 de fevereiro de 2023. O Mario Kart daqui se chama Bowser's Challenge, no Japão é Koopa's Challenge, e a pontuação da pulseira não passa de um parque para o outro.",
     "gen": true,
     "source": "https://www.travelpulse.com/news/entertainment/universal-studios-hollywood-reveals-details-of-mario-kart-bowsers-challenge"
-  },
-  {
-    "id": "lower-starway",
-    "place": "Universal Lower Lot",
-    "day": 5,
-    "itemIds": [
-      "d5-lower"
-    ],
-    "tag": "Bizarro",
-    "title": "Starway",
-    "year": 1991,
-    "text": "As escadas rolantes que descem a encosta do Upper Lot até o Lower Lot funcionam desde 1991. A viagem completa leva de 7 a 8 minutos.",
-    "gen": false,
-    "source": "https://www.thestudiotour.com/ush/attractions/starway.shtml"
   },
   {
     "id": "upper-wisteria",
@@ -692,20 +748,6 @@ export const CURIOSITIES = [
     "text": "O teto da estação é coberto por mais de 20 mil rolos de filme, comprados a 25 centavos cada. No mezanino ficam dois projetores da Paramount dos anos 1930.",
     "gen": false,
     "source": "https://lamag.com/urbandevelopment/ask-chris-waiting-subway-hollywood-vine-metro-station-noticed-ceiling-decorated-thousands-old-film-reels-come/"
-  },
-  {
-    "id": "bline-tunel",
-    "place": "Metrô B Line",
-    "day": 6,
-    "itemIds": [
-      "d6-bline"
-    ],
-    "tag": "História",
-    "title": "Túnel sob as montanhas",
-    "year": 2000,
-    "text": "Entre Hollywood/Highland e Universal City, o metrô passa em túnel por baixo das Santa Monica Mountains. O trecho foi aberto em 2000.",
-    "gen": false,
-    "source": "https://en.wikipedia.org/wiki/B_Line_(Los_Angeles_Metro)"
   },
   {
     "id": "randys",
