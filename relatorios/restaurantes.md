@@ -249,3 +249,61 @@ Parada anterior: Bellagio e Caesars Palace. Critério: padrão.
 Descartados: Eggslut do Cosmopolitan (fecha às 15:00 no domingo) e In-N-Out da Linq (mais de 20 minutos a pé).
 
 Fontes: [1](https://theinfatuation.com/las-vegas/reviews/secret-pizza) [2](https://www.lasvegasadvisor.com/restaurants/secret-pizza/) [3](https://happycow.net/reviews/din-tai-fung-las-vegas-235292) [4](https://www.smartervegas.com/dining/restaurant/din_tai_fung.aspx) [5](https://www.cosmopolitanlasvegas.com/block16) [6](https://www.frommers.com/destinations/las-vegas/restaurants/block-16-urban-food-hall) [7](https://www.smartervegas.com/dining/restaurant/javiers.aspx) [8](https://neon.reviewjournal.com/?p=494942) [9](https://www.gordonramsayrestaurants.com/hells-kitchen-las-vegas/) [10](https://www.opentable.com/r/hells-kitchen-caesars-palace-las-vegas?lang=en) [11](https://www.timeout.com/las-vegas/restaurants/lago-bellagio) [12](https://www.theinfatuation.com/las-vegas/reviews/lago-by-julian-serrano) [13](https://www.lasvegasadvisor.com/blog/buffet-update-april-2026/)
+
+## Segunda 16/11, 11:30: almoço na Universal (experiência)
+
+Parada anterior: Lower Lot (Super Nintendo World). Critério: experiência.
+
+**Recomendação: Toadstool Cafe.** Troca da escolha atual (Krusty Burger). Os guias de parque (Undercover Tourist, Traveling Ears) apontam o Toadstool Cafe como a refeição mais imersiva da Universal, e ele fica no Super Nintendo World, onde termina a manhã. A nota da comida é mediana (3,2 no Google), mas o critério desta refeição é a experiência. O Krusty Burger, a Duff no Moe's e o donut do Lard Lad ficam para a tarde no Upper Lot.
+
+| Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
+|---|---|---|---|---|---|---|---|
+| **Toadstool Cafe** | Temática Nintendo (americana e italiana) | 3.2 (Google (via agregador pos.do), 1.193) | 3 min a pé | $$$ | intermediário | especial | Nenhum peixe encontrado no cardápio e sem Caesar. Confirmar com o atendente. |
+| Krusty Burger | Hambúrguer temático dos Simpsons | não encontrada (Nota não encontrada) | 15 min a pé | $$ | menos saudável | intermediário | Confirmar se a fritadeira é compartilhada com itens de peixe de Springfield. |
+| Moe's Tavern e Lard Lad Donuts | Bar temático (Duff e Flaming Moe) e donuts | não encontrada (Nota da unidade de Hollywood não encontrada) | 15 min a pé | $$ | menos saudável | especial | baixo |
+| Jurassic Cafe | Costa-riquenha e americana | 3 (Google (via agregador pos.do), 295) | 3 min a pé | $$ | intermediário | intermediário | Cardápio atual não verificado. Perguntar sobre peixe e fritadeira. |
+| Cletus' Chicken Shack | Frango frito temático | não encontrada (Nota não encontrada) | 15 min a pé | $$ | menos saudável | intermediário | Fritura. Confirmar se o óleo é compartilhado com peixe. |
+| Bumblebee Man's Taco Truck | Tacos mexicanos | não encontrada (Nota não encontrada) | 15 min a pé | $ | intermediário | intermediário | Perguntar se há taco de peixe no dia. |
+| Three Broomsticks | Pub britânico de Hogsmeade | 4.2 (Google (via agregador pos.do), 688) | 20 min a pé | $$$ | intermediário | especial | Fish and chips no cardápio. Evitar fritos e preferir frango assado ou costela. |
+
+- **Toadstool Cafe**: Refeição mais imersiva do parque segundo os guias, no Lower Lot onde terminam a manhã. Horário: Horário do parque. Entrada por fila virtual ou QR code no app no próprio dia.
+- **Krusty Burger**: Clássico de Springfield no Upper Lot, combinável com Duff no Moe's e donut do Lard Lad. Horário: Horário do parque.
+- **Moe's Tavern e Lard Lad Donuts**: Duff e o Flaming Moe, vendido só dentro do Moe's, mais o donut gigante como complemento. Horário: Horário do parque.
+- **Jurassic Cafe**: Opção rápida com toque latino, sem fila virtual, no próprio Lower Lot. Horário: Horário do parque.
+- **Cletus' Chicken Shack**: Tiras de frango com batata ondulada, simples e temático. Horário: Horário do parque.
+- **Bumblebee Man's Taco Truck**: Opção mais leve e barata, com tacos de frango, carnitas ou carne asada. Horário: Horário do parque.
+- **Three Broomsticks**: Melhor comida do parque, mas está reservado para o almoço de terça, depois de Hogwarts. Horário: Horário do parque.
+
+Contexto 2026: o Fast & Furious Hollywood Drift abriu no Upper Lot em setembro de 2026. Há um Dining Pass a partir de US$ 64,75 (2 pratos e 4 lanches ou bebidas), que vale comparar para os dois dias. O horário do parque em 16/11 diverge entre fontes (10:00 às 18:00 ou 11:00 às 21:00): conferir no app oficial. Na CityWalk, o Bubba Gump é de frutos do mar e deve ser evitado.
+
+Fontes: [1](https://www.undercovertourist.com/blog/universal-studios-hollywood-restaurants/) [2](https://travelingears.com/universal-studios-hollywood-dining-guide/) [3](https://wdwnt.com/2024/06/best-and-worst-from-toadstool-cafe-in-super-nintendo-world-at-universal-studios-hollywood) [4](https://ca.news.yahoo.com/tried-buzzy-menu-toadstool-cafe-203254840.html) [5](https://www.universalstudioshollywood.com/things-to-do/dining/krusty-burger/) [6](https://www.happycow.net/reviews/krusty-burger-universal-city-420249) [7](https://www.universalstudioshollywood.com/web/en/us/things-to-do/dining/moes-tavern) [8](https://insideuniversal.net/2015/05/springfield-food-report-universal-studios-hollywood/) [9](https://www.timeout.com/los-angeles/blog/we-ate-all-the-food-in-springfield-at-universal-studios-hollywood) [10](https://pos.do/en/universal-city/restaurant/jurassic-cafe) [11](https://famvia.com/go/universal-hollywood/guides/dining-guide-to-universal-studios-hollywood) [12](https://blog.discoveruniversal.com/dining/food-drink-guide-springfield-universal-studios-hollywood) [13](https://universalstudioshollywood.com/things-to-do/dining/bumblebee-mans-taco-truck) [14](https://www.mashed.com/663353/the-best-restaurants-at-universal-studios-hollywood)
+
+## Segunda 16/11, 20:00: jantar perto do hotel depois do parque
+
+Parada anterior: Estação Hollywood/Highland (B Line). Critério: padrão.
+
+**Recomendação: In-N-Out Burger Sunset.** Mantida a escolha atual. Tem 4,5 no Google com mais de 17 mil avaliações, abre até 01:00, é barato e o cardápio não tem peixe, o que é a opção mais segura para a Lorena. Se o cansaço pesar, o Mel's Drive-In fica a 2 minutos do hotel. Para um jantar especial, o Mother Wolf pede reserva e cuidado com anchova.
+
+| Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
+|---|---|---|---|---|---|---|---|
+| **In-N-Out Burger Sunset** | Hambúrguer californiano | 4.5 (Google (via agregador Sluurpy), 17.118) | 13 min a pé | $ | menos saudável | simples | baixo |
+| Mel's Drive-In Hollywood | Diner retrô anos 50 | 4.2 (Google (via agregador naboo.app), 4.207) | 2 min a pé | $$ | menos saudável | intermediário | Confirmar se há peixe na fritadeira. |
+| Joe's Pizza Hollywood | Pizza estilo Nova York (fatia) | 4.2 (Birdeye (Google e Yelp não encontrados), 1.358) | 10 min a pé | $ | menos saudável | simples | Evitar fatias com anchova. |
+| Mother Wolf | Italiana romana (massa fresca) | 4 (Yelp, 1.310) | 13 min a pé | $$$$ | intermediário | especial | Cozinha romana usa anchova e colatura em molhos e saladas. Avisar o garçom. |
+| Stout Burgers & Beers | Hambúrguer artesanal e cerveja | 4.4 (Spinach.guide (Google não encontrado)) | 15 min a pé | $$ | menos saudável | intermediário | Confirmar se a fritadeira é compartilhada com peixe. |
+| Pink's Hot Dogs | Cachorro-quente | 4.5 (Google (via agregador Pearl), 13.016) | 10 min carro | $ | menos saudável | intermediário | baixo |
+| Shake Shack Hollywood | Hambúrguer | não encontrada (Nota da unidade não encontrada) | 20 min a pé | $ | menos saudável | simples | baixo |
+| Mírate | Mexicana contemporânea e coquetéis | 4.4 (Google (via agregador pos.do), 708) | 15 min carro | $$$ | intermediário | especial | Ceviches e frutos do mar no cardápio. Avisar a alergia. |
+
+- **In-N-Out Burger Sunset**: Maior volume de avaliações da lista, barato, aberto até 01:00 e sem peixe no cardápio. Horário: Seg 10:30 às 01:00.
+- **Mel's Drive-In Hollywood**: Praticamente em frente ao hotel, para quando o cansaço pesar. Horário: Seg 07:00 às 23:00.
+- **Joe's Pizza Hollywood**: Fatia rápida e barata no caminho, caso não tenham ido na sexta. Horário: Seg 11:00 às 02:00.
+- **Mother Wolf**: Jantar especial e cenográfico de massa fresca romana, com reserva. Horário: Seg 17:30 às 22:30. Reserva recomendada.
+- **Stout Burgers & Beers**: Hambúrguer artesanal melhor que fast food, com boa carta de cervejas. Horário: Seg 12:00 às 22:00.
+- **Pink's Hot Dogs**: Ícone de Hollywood desde 1939, aberto até meia-noite. Horário: Seg 09:30 às 00:00.
+- **Shake Shack Hollywood**: Alternativa conhecida ao In-N-Out, a uma estação de metrô (Hollywood/Vine). Horário: Seg 11:00 às 22:00 ou 23:00.
+- **Mírate**: Bar de coquetéis premiado com tacos, para uma noite especial. Horário: Seg 17:00 às 23:00.
+
+Fechados na segunda: Musso & Frank, Horses e, provavelmente, Grandmaster Recorders.
+
+Fontes: [1](https://locations.in-n-out.com/102) [2](https://www.sluurpy.at/west-hollywood/restaurant/3724353/in-n-out-burger) [3](https://www.discoverlosangeles.com/eat-drink/mels-drive-in-hollywood) [4](https://www.timeout.com/los-angeles/restaurants/joes-pizza-hollywood) [5](https://www.motherwolfla.com) [6](https://www.theinfatuation.com/los-angeles/reviews/mother-wolf) [7](https://theinfatuation.com/los-angeles/reviews/stout) [8](https://joinpearl.co/restaurants/los-angeles/pink-s-hot-dogs) [9](https://www.timeout.com/los-angeles/restaurants/pinks-hot-dogs) [10](https://hollywoodpartnership.com/go/shake-shack) [11](https://theinfatuation.com/los-angeles/reviews/mirate)
