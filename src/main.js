@@ -1,4 +1,5 @@
-import { TRIP, WD, SCENES, DAYS, LISTS, LETTER_PRESETS } from "./data.js";
+import { TRIP, WD, DAYS, LISTS, LETTER_PRESETS } from "./data.js";
+import { CURIOSITIES } from "./content/curiosities.js";
 import { ART, ICON } from "./art.js";
 import { S, onChange, put, saveLetter, deleteLetter, refreshBodies, directorLogin, directorLogout, start, laEpoch } from "./store.js";
 import { wheelHTML, spinWheel } from "./wheel.js";
@@ -73,7 +74,7 @@ function dur(ms) {
 function effective(it) {
   const c = S.swaps[it.id] && S.swaps[it.id].choice;
   const a = c && it.alts && it.alts.find(x => x.id === c);
-  return a ? { ...it, title: a.title, note: a.note, q: a.q, scene: a.scene || null, extra: null, _alt: a } : it;
+  return a ? { ...it, title: a.title, note: a.note, q: a.q, extra: null, _alt: a } : it;
 }
 const late = n => !!(S.flags["late-d" + n] && S.flags["late-d" + n].on);
 const done = key => !!(S.checks[key] && S.checks[key].done);
@@ -173,7 +174,8 @@ function itemHTML(day, raw, i, idx) {
   const nn = nowNext(day), isNow = nn && nn.cur && nn.cur.it.id === raw.id;
   const open = ui.open.has(raw.id);
   const time = raw.lbl ? `<span class="lbl">${esc(raw.lbl)}</span>` : `<span>${esc(raw.t)}</span>`;
-  const flags = (raw.alts ? `<i class="fl ${it._alt ? "on" : ""}">${ICON.swap}</i>` : "") + ((it.scene || []).length ? `<i class="fl ${(it.scene || []).every(x => S.scenes[x]) ? "on" : ""}">${ICON.clap}</i>` : "");
+  const curs = cursFor(raw.id);
+  const flags = (raw.alts ? `<i class="fl ${it._alt ? "on" : ""}">${ICON.swap}</i>` : "") + (curs.length ? `<i class="fl ${curs.every(c => S.scenes[c.id]) ? "on" : ""}">${ICON.clap}</i>` : "");
   let more = "";
   if (it.note) more += `<p class="note">${esc(it.note)}</p>`;
   if (it._alt) more += `<p class="was">Trocado. Original: ${esc(raw.title)} <button type="button" data-unswap="${raw.id}">desfazer</button></p>`;
@@ -186,7 +188,7 @@ function itemHTML(day, raw, i, idx) {
   if (it.q) chips += `<a class="chip" href="${mapsQ(it.q)}" target="_blank" rel="noopener">${ICON.pin}Maps</a>`;
   (it.extra || []).forEach(x => chips += `<a class="chip" href="${mapsQ(x.q)}" target="_blank" rel="noopener">${ICON.pin}${esc(x.l)}</a>`);
   if (raw.alts) chips += `<button type="button" class="chip gold" data-swap="${raw.id}">${ICON.swap}Trocar</button>`;
-  (it.scene || []).forEach(id => { const sc = SCENES[id]; if (sc) chips += `<a class="chip film ${S.scenes[id] ? "on" : ""}" href="#cenas" data-scene-link="${id}">${ICON.clap}${esc(sc.film)}</a>`; });
+  curs.forEach(c => { chips += `<a class="chip film ${S.scenes[c.id] ? "on" : ""}" href="#cenas" data-scene-link="${c.id}">${ICON.clap}${esc(c.title)}</a>`; });
   if (chips) more += `<div class="chips">${chips}</div>`;
   return `<li class="it k-${raw.k} ${ok ? "ok" : ""} ${isNow ? "now" : ""} ${cut ? "cut" : ""} ${open ? "open" : ""}" id="it-${raw.id}" style="--i:${idx}">
     <span class="tm">${time}</span>
@@ -301,26 +303,47 @@ function ring(p, label, sub) {
   return `<div class="ring"><svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="${r}" class="r-bg"/><circle cx="40" cy="40" r="${r}" class="r-fg" stroke-dasharray="${c}" stroke-dashoffset="${c * (1 - p)}"/>
 </svg><div class="r-txt"><b>${label}</b><small>${sub}</small></div></div>`;
 }
+// Curiosities come from src/content/curiosities.js (owned by the Curiosidades session).
+const CUR = Array.isArray(CURIOSITIES) ? CURIOSITIES.filter(c => c && c.id) : [];
+const cursFor = itemId => CUR.filter(c => (c.itemIds || []).includes(itemId));
+const TAGS = { "Filme": "filme", "Série": "serie", "História": "historia", "Bizarro": "bizarro", "Música": "musica" };
+const itemPos = id => { for (const d of DAYS) { const i = d.items.findIndex(x => x.id === id); if (i >= 0) return i; } return 999; };
+function sceneCard(c) {
+  const ok = !!S.scenes[c.id], fl = ui.flipped.has(c.id), tg = TAGS[c.tag] || "outro";
+  return `<div class="sc ${ok ? "ok" : ""} ${fl ? "flip" : ""}" id="sc-${c.id}">
+    <div class="sc-in">
+      <button type="button" class="sc-face front" data-flip="${c.id}" aria-label="${esc(c.title)}">
+        <span class="sc-top"><span class="tag t-${tg}">${esc(c.tag || "Curiosidade")}</span><span class="clap">${ICON.clap}</span></span>
+        ${c.gen ? `<span class="gen">${ICON.star}Nossa geração</span>` : ""}
+        ${c.year ? `<span class="yr">${esc(c.year)}</span>` : ""}
+        <span class="fm">${esc(c.title)}</span>
+        ${ok ? `<span class="take">Take ok</span>` : ""}
+      </button>
+      <div class="sc-face back">
+        <p>${esc(c.text)}</p>
+        <div class="sc-b"><button type="button" class="btn ${ok ? "ghost" : ""}" data-scene="${c.id}">${ok ? "Desfazer" : "Gravar"}</button><button type="button" class="ibtn sm" data-flip="${c.id}" aria-label="Virar">${ICON.swap}</button></div>
+      </div>
+    </div></div>`;
+}
 function renderCenas() {
-  const ids = Object.keys(SCENES), got = ids.filter(id => S.scenes[id]).length;
+  const got = CUR.filter(c => S.scenes[c.id]).length, ti = todayIdx();
+  const days = DAYS.map(d => {
+    const list = CUR.filter(c => Number(c.day) === d.n);
+    const places = [];
+    for (const c of list) { let p = places.find(x => x.name === c.place); if (!p) places.push(p = { name: c.place || "Outros", pos: Math.min(...(c.itemIds || []).map(itemPos), 999), items: [] }); p.items.push(c); p.pos = Math.min(p.pos, ...(c.itemIds || []).map(itemPos)); }
+    places.sort((a, b) => a.pos - b.pos);
+    return { d, places, n: list.length, got: list.filter(c => S.scenes[c.id]).length };
+  }).filter(x => x.n);
   return `<header class="pagehead"><p class="kicker">Locações</p><h1 class="gold">Cenas na lata</h1></header>
-  <div class="scenes">
-    <div class="sc-count">${ring(got / ids.length, `${got}/${ids.length}`, "gravadas")}</div>
-    ${ids.map((id, i) => { const s = SCENES[id], ok = !!S.scenes[id], fl = ui.flipped.has(id); return `<div class="sc ${ok ? "ok" : ""} ${fl ? "flip" : ""}" style="--i:${i}" id="sc-${id}">
-      <div class="sc-in">
-        <button type="button" class="sc-face front" data-flip="${id}" aria-label="${esc(s.film)}">
-          <span class="sc-n">Cena ${String(i + 1).padStart(2, "0")}</span><span class="clap">${ICON.clap}</span>
-          <span class="yr">${s.year}</span>
-          <span class="fm">${esc(s.film)}</span>
-          <span class="wh">Rolo ${s.day} · ${esc(s.where)}</span>
-          ${ok ? `<span class="take">Take ok</span>` : ""}
-        </button>
-        <div class="sc-face back">
-          <p>${esc(s.text)}</p>
-          <div class="sc-b"><button type="button" class="btn ${ok ? "ghost" : ""}" data-scene="${id}">${ok ? "Desfazer" : "Gravar"}</button><button type="button" class="ibtn sm" data-flip="${id}" aria-label="Virar">${ICON.swap}</button></div>
-        </div>
-      </div></div>`; }).join("")}
-  </div>`;
+  <div class="sc-head">
+    ${ring(CUR.length ? got / CUR.length : 0, `${got}/${CUR.length}`, "gravadas")}
+    <nav class="sc-jump" aria-label="Dias">${days.map(x => `<a href="#cenas" data-jump-day="${x.d.n}" class="${DAYS.indexOf(x.d) === ti ? "today" : ""}"><b>${x.d.n}</b><small>${x.got}/${x.n}</small></a>`).join("")}</nav>
+  </div>
+  ${days.map(x => `<section class="sc-day" id="scd-${x.d.n}">
+    <h2 class="sc-dh"><span class="kicker">Rolo ${x.d.n} · ${wd(x.d.date).slice(0, 3)} ${dnum(x.d.date)}</span><span class="gold">${esc(x.d.title)}</span></h2>
+    ${x.places.map(p => `<div class="sc-place" data-key="scp-${x.d.n}-${esc(p.name)}"><h3>${ICON.pin}${esc(p.name)}</h3><div class="scenes">${p.items.map(sceneCard).join("")}</div></div>`).join("")}
+  </section>`).join("")}
+  ${CUR.length ? "" : `<div class="empty">${ICON.clap}<p>As curiosidades chegam em breve.</p></div>`}`;
 }
 
 /* ============ LISTAS ============ */
@@ -803,6 +826,7 @@ document.addEventListener("click", e => {
   if (d.swap) return openSwap(d.swap);
   if (d.unswap) return setSwap(d.unswap, null);
   if (d.jump) { const el = document.getElementById("it-" + d.jump); if (el) { el.scrollIntoView({ behavior: reduce() ? "auto" : "smooth", block: "center" }); el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash"); } return; }
+  if (d.jumpDay) { e.preventDefault(); const el = document.getElementById("scd-" + d.jumpDay); if (el) el.scrollIntoView({ behavior: reduce() ? "auto" : "smooth", block: "start" }); return; }
   if (d.sceneLink) { e.preventDefault(); ui.flipped.add(d.sceneLink); location.hash = "cenas"; setTimeout(() => { const el = document.getElementById("sc-" + d.sceneLink); if (el) el.scrollIntoView({ block: "center" }); }, 80); return; }
   if (d.flip) { const id = d.flip; ui.flipped.has(id) ? ui.flipped.delete(id) : ui.flipped.add(id); document.getElementById("sc-" + id).classList.toggle("flip"); return; }
   if (d.scene) { const id = d.scene; const v = !S.scenes[id]; if (v) { ui.flipped.delete(id); } put("scenes", id, v ? { seen: true, at: Date.now() } : null); if (v) setTimeout(() => { const el = document.getElementById("sc-" + id); if (el) el.classList.add("clapped"); }, 30); return; }

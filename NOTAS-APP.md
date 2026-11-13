@@ -5,7 +5,7 @@
 - [x] T3. Fim das "piscadas" (redesenho só com mudança de dado)
 - [x] T7. Aba Contas (controle de gastos)
 - [x] T5. Reordenar brinquedos (u1 e u2)
-- [ ] T2-UI. Curiosidades na aba Cenas
+- [x] T2-UI. Curiosidades na aba Cenas
 - [ ] T6-UI. Comparador de restaurantes
 - [ ] Ciclo de atualização de conteúdo (pull, build e deploy a cada ~60 min)
 
@@ -31,3 +31,5 @@
 - T5: "Mario Kart (fila < 45 min)" da u2 é Lower Lot. Os demais itens da u2 são Upper Lot.
 - T5: a ordem salva só guarda `ids` quando difere da original. "Voltar à ordem original" apaga `flags/order-<lista>`. Ids desconhecidos são ignorados e itens faltantes vão para o fim.
 - T5: durante o arraste, redesenhos vindos do Firestore ficam suspensos e rodam ao soltar.
+- T2-UI: `SCENES` e os campos `scene` dos itens saíram de `data.js`. A aba Cenas e os chips dos itens leem `CURIOSITIES`. Lugares ordenados pela posição do primeiro item do roteiro a que se referem. Atalhos no topo levam a cada dia e mostram gravadas/total.
+- T2-UI: alternativas de restaurante deixam de ter cena própria. Uma curiosidade aparece no item quando `itemIds` inclui o id do item (vale para qualquer opção escolhida).
