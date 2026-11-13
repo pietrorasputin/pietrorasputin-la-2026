@@ -333,16 +333,16 @@ export const CURIOSITIES = [
     "itemIds": [
       "d4-cafe"
     ],
-    "tag": "Filme",
-    "title": "Hulk",
-    "year": 2003,
-    "text": "Diner de estrada de 1954 usado como locação. Nos fundos há um jardim de dinossauros de metal.",
+    "tag": "História",
+    "title": "Peggy Sue's",
+    "year": 1954,
+    "text": "O diner foi erguido em 1954 com dormentes e argamassa do pátio ferroviário da Union Pacific ao lado. Nos fundos fica o Diner-saur Park, com dinossauros de metal de cerca de 3 metros.",
     "gen": false,
-    "source": ""
+    "source": "https://www.californiacuriosities.com/peggy-sues-50s-diner-diner-saur-park/"
   },
   {
     "id": "vegassign",
-    "place": "Las Vegas Blvd",
+    "place": "Welcome to Las Vegas",
     "day": 4,
     "itemIds": [
       "d4-sign"
@@ -350,9 +350,9 @@ export const CURIOSITIES = [
     "tag": "História",
     "title": "Welcome to Las Vegas",
     "year": 1959,
-    "text": "Criado por Betty Willis, que nunca registrou o desenho. Por isso ele aparece em todo lugar.",
+    "text": "Criado por Betty Willis, que nunca registrou o desenho, por isso ele aparece em todo lugar. Os círculos atrás das letras representam dólares de prata do Silver State.",
     "gen": false,
-    "source": ""
+    "source": "https://www.visitlasvegas.com/experience/post/a-brief-history-of-the-welcome-to-fabulous-las-vegas-sign/"
   },
   {
     "id": "oceans",
@@ -364,9 +364,9 @@ export const CURIOSITIES = [
     "tag": "Filme",
     "title": "Onze Homens e um Segredo",
     "year": 2001,
-    "text": "O bando assiste às fontes em silêncio e, um a um, vai embora.",
-    "gen": false,
-    "source": ""
+    "text": "Na cena final, o bando de Danny Ocean assiste às fontes do Bellagio em silêncio e, um a um, vai embora.",
+    "gen": true,
+    "source": "https://en.wikipedia.org/wiki/Fountains_of_Bellagio"
   },
   {
     "id": "hangover",
@@ -378,9 +378,110 @@ export const CURIOSITIES = [
     "tag": "Filme",
     "title": "Se Beber, Não Case!",
     "year": 2009,
-    "text": "A suíte destruída, o tigre e o colchão. Tudo começou aqui.",
+    "text": "A suíte destruída foi um cenário montado num estúdio da Warner em Burbank. O terraço é real, no topo da Forum Tower, e o quarto 2452 existe no hotel.",
+    "gen": true,
+    "source": "https://neon.reviewjournal.com/entertainment/movies/hangover-movies-have-been-a-pr-bonanza-for-caesars-vegas/"
+  },
+  {
+    "id": "mojave-termometro",
+    "place": "I-15 e Mojave",
+    "day": 4,
+    "itemIds": [
+      "d4-cafe",
+      "d4-retorno"
+    ],
+    "tag": "Bizarro",
+    "title": "Maior termômetro do mundo",
+    "year": 1991,
+    "text": "Em Baker, na I-15, um termômetro de 134 pés lembra os 134 °F (56,7 °C) do Vale da Morte em 1913, ainda o recorde oficial de calor do planeta.",
     "gen": false,
-    "source": ""
+    "source": "https://en.wikipedia.org/wiki/World%27s_Tallest_Thermometer"
+  },
+  {
+    "id": "mojave-zzyzx",
+    "place": "I-15 e Mojave",
+    "day": 4,
+    "itemIds": [
+      "d4-cafe",
+      "d4-retorno"
+    ],
+    "tag": "Bizarro",
+    "title": "Zzyzx Road",
+    "year": 1944,
+    "text": "A saída da I-15 leva um nome inventado em 1944 por Curtis Springer, que o anunciava como a última palavra da língua inglesa para promover seu spa no deserto.",
+    "gen": false,
+    "source": "https://en.wikipedia.org/wiki/Zzyzx,_California"
+  },
+  {
+    "id": "bellagio-fontes",
+    "place": "Fontes do Bellagio",
+    "day": 4,
+    "itemIds": [
+      "d4-bellagio"
+    ],
+    "tag": "História",
+    "title": "1.214 bicos",
+    "year": 1998,
+    "text": "As fontes estrearam com o hotel em 1998 e hoje somam 1.214 bicos. Os jatos mais fortes, acrescentados depois, chegam a cerca de 140 metros de altura.",
+    "gen": false,
+    "source": "https://en.wikipedia.org/wiki/Fountains_of_Bellagio"
+  },
+  {
+    "id": "strip-bourne",
+    "place": "Strip",
+    "day": 4,
+    "itemIds": [
+      "d4-bellagio",
+      "d4-caesars"
+    ],
+    "tag": "Filme",
+    "title": "Jason Bourne",
+    "year": 2016,
+    "text": "Para a perseguição final, a produção fechou o Strip de madrugada entre a Harmon e a Flamingo por quase duas semanas. Carros voaram em frente ao Bellagio.",
+    "gen": true,
+    "source": "https://lasvegassun.com/news/2016/apr/17/a-day-in-the-life-of-a-movie-extra/"
+  },
+  {
+    "id": "venetian-sands",
+    "place": "Venetian",
+    "day": 4,
+    "itemIds": [
+      "d4-caesars"
+    ],
+    "tag": "História",
+    "title": "Hotel Sands",
+    "year": 1999,
+    "text": "O Venetian abriu em maio de 1999 no terreno do antigo Hotel Sands, demolido em 1996 para dar lugar ao novo resort.",
+    "gen": false,
+    "source": "https://www.sands.com/news/the-venetian-las-vegas-the-first-integrated-resort/"
+  },
+  {
+    "id": "cosmo-secret",
+    "place": "Cosmopolitan",
+    "day": 4,
+    "itemIds": [
+      "d4-jantar"
+    ],
+    "tag": "Bizarro",
+    "title": "Secret Pizza",
+    "year": 2010,
+    "text": "A pizzaria não tem placa nem aparece no mapa do hotel. A entrada é um corredor sem identificação, no terceiro andar, forrado de capas de discos.",
+    "gen": false,
+    "source": "https://www.atlasobscura.com/places/secret-pizza-las-vegas"
+  },
+  {
+    "id": "cosmo-chandelier",
+    "place": "Cosmopolitan",
+    "day": 4,
+    "itemIds": [
+      "d4-jantar"
+    ],
+    "tag": "História",
+    "title": "The Chandelier",
+    "year": 2010,
+    "text": "O bar central do Cosmopolitan ocupa três andares dentro de um lustre de cerca de 2 milhões de cristais, em fios que descem do teto quase até o chão.",
+    "gen": false,
+    "source": "https://vegasinc.com/places/chandelier-bar"
   },
   {
     "id": "bttf",
