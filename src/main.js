@@ -325,7 +325,7 @@ function renderCenas() {
 /* ============ LISTAS ============ */
 function listItems(L) {
   const base = L.items.map((t, i) => ({ key: `l-${L.id}-${i}`, t }));
-  const extra = Object.entries(S.listitems).filter(([, v]) => v.list === L.id).sort((a, b) => (a[1].at || 0) - (b[1].at || 0)).map(([id, v]) => ({ key: "x-" + id, t: v.text, cid: id }));
+  const extra = Object.entries(S.listitems).filter(([id, v]) => v.list === L.id && !id.startsWith("exp-")).sort((a, b) => (a[1].at || 0) - (b[1].at || 0)).map(([id, v]) => ({ key: "x-" + id, t: v.text, cid: id }));
   return base.concat(extra);
 }
 function renderListas() {
@@ -340,6 +340,184 @@ function renderListas() {
   </section>`;
 }
 
+/* ============ CONTAS ============ */
+// Expenses live in listitems/exp-<id> (no rule change). type "expense" | "settle".
+// Balance per person = paid - share. Negative balance = next to pay.
+const WHO = { pedro: "Pedro", lorena: "Lorena" };
+const TO = { pedro: "ao Pedro", lorena: "à Lorena" };
+const other = w => w === "pedro" ? "lorena" : "pedro";
+const CATS = [["comida", "Comida", "meal"], ["compras", "Compras", "bag"], ["transporte", "Transporte", "move"], ["ingressos", "Ingressos", "visit"], ["hospedagem", "Hospedagem", "bed"], ["outros", "Outros", "dots"]];
+const nf = new Intl.NumberFormat("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const usd = v => "US$ " + nf.format(Math.abs(v) < .005 ? 0 : v);
+const cents = v => Math.round(Number(v) * 100);
+function parseMoney(str) {
+  let t = String(str || "").trim().replace(/[^\d.,]/g, "");
+  if (!t) return NaN;
+  const lc = t.lastIndexOf(","), ld = t.lastIndexOf(".");
+  const dec = Math.max(lc, ld);
+  // the last separator is decimal only when followed by 1 or 2 digits
+  if (dec >= 0 && t.length - dec - 1 <= 2) t = t.slice(0, dec).replace(/[.,]/g, "") + "." + t.slice(dec + 1);
+  else t = t.replace(/[.,]/g, "");
+  return Math.round(Number(t) * 100); // cents
+}
+const moneyIn = c => c ? (c / 100).toFixed(2).replace(".", ",") : "";
+function expenses() {
+  return Object.entries(S.listitems).filter(([id, v]) => id.startsWith("exp-") && v && (v.type === "expense" || v.type === "settle"))
+    .map(([id, v]) => ({ id, ...v })).sort((a, b) => b.date.localeCompare(a.date) || (b.at || 0) - (a.at || 0));
+}
+function balances(list) {
+  const b = { pedro: 0, lorena: 0 }, paid = { pedro: 0, lorena: 0 };
+  let spent = 0;
+  for (const x of list) {
+    const sh = x.shares || {};
+    b[x.payer] += cents(x.total);
+    b.pedro -= cents(sh.pedro || 0); b.lorena -= cents(sh.lorena || 0);
+    if (x.type === "expense") { paid[x.payer] += cents(x.total); spent += cents(x.total); }
+  }
+  return { b, paid, spent };
+}
+function todayTrip() { const d = nowLA().date; return d < TRIP.start ? TRIP.start : d; }
+const catOf = id => CATS.find(c => c[0] === id);
+
+function renderContas() {
+  const list = expenses(), { b, paid, spent } = balances(list);
+  const debtor = b.pedro < 0 ? "pedro" : b.lorena < 0 ? "lorena" : null;
+  const owe = debtor ? -b[debtor] / 100 : 0;
+  const groups = [];
+  for (const x of list) { let g = groups[groups.length - 1]; if (!g || g.date !== x.date) groups.push(g = { date: x.date, items: [] }); g.items.push(x); }
+  const row = x => {
+    const sh = x.shares || {}, half = cents(sh.pedro || 0) === cents(sh.lorena || 0);
+    if (x.type === "settle") {
+      const to = other(x.payer);
+      return `<li class="ex settle" data-key="${x.id}"><button type="button" class="ex-b" data-exp="${x.id}"><span class="ex-i">${ICON.swap}</span>
+        <span class="ex-t"><b>Acerto</b><small>${WHO[x.payer]} pagou ${TO[to]}</small></span><span class="ex-v">${usd(x.total)}</span></button></li>`;
+    }
+    const c = catOf(x.cat);
+    const split = half ? "50/50" : `Pedro ${usd(sh.pedro || 0)}, Lorena ${usd(sh.lorena || 0)}`;
+    return `<li class="ex" data-key="${x.id}"><button type="button" class="ex-b" data-exp="${x.id}"><span class="ex-i">${c ? ICON[c[2]] : ICON.coin}</span>
+      <span class="ex-t"><b>${esc(x.desc || (c ? c[1] : "Gasto"))}</b><small>${WHO[x.payer]} pagou · ${split}</small></span><span class="ex-v">${usd(x.total)}</span></button></li>`;
+  };
+  return `<section class="hero marquee bill" id="hero">
+      <div class="bulbs" aria-hidden="true" data-own="1"></div>
+      ${debtor ? `<p class="kicker">Próximo a pagar</p><h1 class="title gold bill-n">${WHO[debtor]}</h1>
+        <p class="sub bill-s">${WHO[debtor]} deve ${usd(owe)} ${TO[other(debtor)]}</p>`
+      : `<p class="kicker">Contas</p><h1 class="title gold bill-n">Tudo certo</h1><p class="sub bill-s">${list.length ? "Ninguém deve nada" : "Nenhum gasto lançado"}</p>`}
+    </section>
+    <div class="bill-act">
+      <button type="button" class="btn" data-act="exp-new">${ICON.plus}Lançar gasto</button>
+      <button type="button" class="btn ghost" data-act="settle"${debtor ? "" : " disabled"}>${ICON.swap}Registrar acerto</button>
+    </div>
+    <div class="bill-sum">
+      <div><small>Total</small><b>${usd(spent / 100)}</b></div>
+      <div><small>Pedro pagou</small><b>${usd(paid.pedro / 100)}</b></div>
+      <div><small>Lorena pagou</small><b>${usd(paid.lorena / 100)}</b></div>
+    </div>
+    ${groups.length ? groups.map(g => {
+      const tot = g.items.filter(x => x.type === "expense").reduce((a, x) => a + cents(x.total), 0);
+      return `<section class="ex-day" data-key="exd-${g.date}"><header><span>${wd(g.date)}, ${dnum(g.date)} ${MON}</span><span>${usd(tot / 100)}</span></header><ul>${g.items.map(row).join("")}</ul></section>`;
+    }).join("") : `<div class="empty">${ICON.coin}<p>Os gastos lançados aparecem aqui, agrupados por dia.</p></div>`}`;
+}
+
+function expenseForm(x) {
+  const e = x || { type: "expense", desc: "", total: 0, payer: "pedro", shares: null, date: todayTrip(), cat: "" };
+  const tc = cents(e.total);
+  const sh = e.shares || {};
+  const custom = !!x && cents(sh.pedro || 0) !== cents(sh.lorena || 0);
+  sheet(`<div class="grab"></div><h3 class="gold sh-t">${x ? "Editar gasto" : "Lançar gasto"}</h3>
+    <form id="expF" class="form" data-id="${x ? x.id : ""}" novalidate>
+      <label class="fld"><span>Descrição</span><input id="ex-desc" maxlength="60" value="${esc(e.desc)}" placeholder="Almoço no Citadel" autocomplete="off"></label>
+      <div class="row2">
+        <label class="fld"><span>Valor total (US$)</span><input id="ex-total" inputmode="decimal" value="${moneyIn(tc)}" placeholder="0,00" autocomplete="off"></label>
+        <label class="fld"><span>Data</span><input id="ex-date" type="date" min="${TRIP.start}" max="2026-11-30" value="${e.date}" required></label>
+      </div>
+      <div class="fld"><span>Quem pagou</span><div class="pills" data-group="payer">${["pedro", "lorena"].map(w => `<button type="button" class="pill" data-pv="${w}" aria-pressed="${e.payer === w}">${WHO[w]}</button>`).join("")}</div></div>
+      <div class="fld"><span>Categoria</span><div class="pills wrap" data-group="cat">${CATS.map(c => `<button type="button" class="pill" data-pv="${c[0]}" aria-pressed="${e.cat === c[0]}">${ICON[c[2]]}${c[1]}</button>`).join("")}</div></div>
+      <div class="fld"><span>Divisão</span><div class="pills" data-group="split"><button type="button" class="pill" data-pv="half" aria-pressed="${!custom}">50/50</button><button type="button" class="pill" data-pv="custom" aria-pressed="${custom}">Divisão diferente</button></div></div>
+      <div class="split" id="ex-split" ${custom ? "" : "hidden"}>
+        <div class="pills sm" data-group="who">${["pedro", "lorena"].map(w => `<button type="button" class="pill" data-pv="${w}" aria-pressed="${w === "pedro"}">Parte de ${WHO[w]}</button>`).join("")}</div>
+        <div class="split-row"><input id="ex-part" inputmode="decimal" value="${custom ? moneyIn(cents(sh.pedro || 0)) : ""}" placeholder="0,00" autocomplete="off" aria-label="Valor da parte"><p class="split-o" id="ex-other" aria-live="polite"></p></div>
+      </div>
+      <p class="err" id="ex-err" hidden></p>
+      <button class="btn wide" type="submit">${x ? "Salvar" : "Lançar"}</button>
+      ${x ? `<button type="button" class="btn ghost wide danger" id="ex-del">Excluir gasto</button>` : ""}
+    </form>`, "tall");
+  splitPreview();
+}
+function pillVal(g) { const b = overlay.querySelector(`[data-group="${g}"] [aria-pressed="true"]`); return b ? b.dataset.pv : ""; }
+function splitPreview() {
+  const o = $("#ex-other", overlay); if (!o) return;
+  const tot = parseMoney($("#ex-total", overlay).value), part = parseMoney($("#ex-part", overlay).value), who = pillVal("who");
+  if (!(tot > 0) || isNaN(part)) { o.textContent = `${WHO[other(who)]}: digite o total e a parte`; o.classList.remove("bad"); return; }
+  const rest = tot - part;
+  o.textContent = rest < 0 ? "A parte passa do total" : `${WHO[other(who)]} fica com ${usd(rest / 100)}`;
+  o.classList.toggle("bad", rest < 0);
+}
+function saveExpense(f) {
+  const err = m => { const el = $("#ex-err", overlay); el.hidden = false; el.textContent = m; };
+  const tot = parseMoney($("#ex-total", overlay).value);
+  if (!(tot > 0)) return err("Informe um valor maior que zero.");
+  const date = $("#ex-date", overlay).value || todayTrip();
+  if (date < TRIP.start) return err("A data começa em 12/11.");
+  const payer = pillVal("payer") || "pedro";
+  let shares;
+  if (pillVal("split") === "custom") {
+    const part = parseMoney($("#ex-part", overlay).value), who = pillVal("who");
+    if (isNaN(part) || part < 0) return err("Informe o valor da parte.");
+    if (part > tot) return err("A parte não pode passar do total.");
+    shares = { [who]: part / 100, [other(who)]: (tot - part) / 100 };
+  } else {
+    // odd cent goes to whoever paid
+    const lo = Math.floor(tot / 2);
+    shares = { [other(payer)]: lo / 100, [payer]: (tot - lo) / 100 };
+  }
+  const id = f.dataset.id || "exp-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+  const prev = S.listitems[id];
+  put("listitems", id, { type: "expense", desc: $("#ex-desc", overlay).value.trim(), total: tot / 100, payer, shares: { pedro: shares.pedro, lorena: shares.lorena }, date, cat: pillVal("cat"), at: prev && prev.at || Date.now() });
+  closeSheet(); toast(f.dataset.id ? "Gasto atualizado" : `Lançado: ${usd(tot / 100)}`);
+}
+function settleForm(x) {
+  const { b } = balances(expenses());
+  const debtor = x ? x.payer : b.pedro < 0 ? "pedro" : "lorena";
+  const amt = x ? cents(x.total) : -b[debtor];
+  sheet(`<div class="grab"></div><h3 class="gold sh-t">${x ? "Editar acerto" : "Registrar acerto"}</h3>
+    <form id="setF" class="form" data-id="${x ? x.id : ""}" novalidate>
+      <div class="fld"><span>Quem transferiu</span><div class="pills" data-group="payer">${["pedro", "lorena"].map(w => `<button type="button" class="pill" data-pv="${w}" aria-pressed="${debtor === w}">${WHO[w]} pagou ${TO[other(w)]}</button>`).join("")}</div></div>
+      <div class="row2">
+        <label class="fld"><span>Valor (US$)</span><input id="st-total" inputmode="decimal" value="${moneyIn(Math.max(0, amt))}" autocomplete="off"></label>
+        <label class="fld"><span>Data</span><input id="st-date" type="date" min="${TRIP.start}" max="2026-11-30" value="${x ? x.date : todayTrip()}"></label>
+      </div>
+      <p class="err" id="st-err" hidden></p>
+      <button class="btn wide" type="submit">${x ? "Salvar" : "Registrar"}</button>
+      ${x ? `<button type="button" class="btn ghost wide danger" id="ex-del">Excluir acerto</button>` : ""}
+    </form>`);
+}
+function saveSettle(f) {
+  const tot = parseMoney($("#st-total", overlay).value);
+  if (!(tot > 0)) { const el = $("#st-err", overlay); el.hidden = false; el.textContent = "Informe um valor maior que zero."; return; }
+  const payer = pillVal("payer") || "pedro";
+  const id = f.dataset.id || "exp-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+  const prev = S.listitems[id];
+  put("listitems", id, { type: "settle", desc: "Acerto", total: tot / 100, payer, shares: { [payer]: 0, [other(payer)]: tot / 100 }, date: $("#st-date", overlay).value || todayTrip(), cat: "", at: prev && prev.at || Date.now() });
+  closeSheet(); toast("Acerto registrado");
+}
+overlay.addEventListener("click", e => {
+  const p = e.target.closest(".pill"); if (!p) return;
+  const g = p.parentElement, grp = g.dataset.group;
+  const wasOn = p.getAttribute("aria-pressed") === "true";
+  g.querySelectorAll(".pill").forEach(x => x.setAttribute("aria-pressed", "false"));
+  if (!(grp === "cat" && wasOn)) p.setAttribute("aria-pressed", "true"); // category can be cleared
+  if (grp === "split") { $("#ex-split", overlay).hidden = p.dataset.pv !== "custom"; if (p.dataset.pv === "custom") setTimeout(() => $("#ex-part", overlay).focus(), 50); }
+  if (grp === "who" || grp === "split") splitPreview();
+  const del = $("#ex-del", overlay); if (del && del.dataset.armed) { del.dataset.armed = ""; del.classList.remove("armed"); }
+});
+overlay.addEventListener("input", e => { overlay.querySelectorAll(".err").forEach(x => x.hidden = true); if (e.target.id === "ex-total" || e.target.id === "ex-part") splitPreview(); });
+overlay.addEventListener("click", e => {
+  const del = e.target.closest("#ex-del"); if (!del) return;
+  const f = del.closest("form");
+  if (del.dataset.armed !== "1") { del.dataset.armed = "1"; del.classList.add("armed"); del.textContent = "Toque de novo para excluir"; return; }
+  put("listitems", f.dataset.id, null); closeSheet(); toast("Excluído");
+});
+
 /* ============ render loop ============ */
 // fresh: navigation (new view, day or list). Rebuilds the page and plays the entrance.
 // Otherwise the page is patched in place, and only when the markup actually changed.
@@ -348,6 +526,7 @@ function viewHTML() {
   if (ui.view === "roteiro") return renderRoteiro();
   if (ui.view === "cenas") return renderCenas();
   if (ui.view === "listas") return renderListas();
+  if (ui.view === "contas") return renderContas();
   return renderHoje();
 }
 function render(fresh, vt = fresh) {
@@ -381,7 +560,7 @@ function route() {
   const h = location.hash.slice(1), m = h.match(/^dia-(\d)$/);
   const prev = ui.view + ui.day;
   if (m) { ui.view = "hoje"; ui.day = Math.min(6, Math.max(0, Number(m[1]) - 1)); }
-  else if (["roteiro", "cenas", "listas", "hoje"].includes(h)) ui.view = h;
+  else if (["roteiro", "cenas", "listas", "contas", "hoje"].includes(h)) ui.view = h;
   else ui.view = "hoje";
   const changed = prev !== ui.view + ui.day;
   const first = !main.firstChild;
@@ -544,6 +723,9 @@ document.addEventListener("click", e => {
   const t = e.target.closest("button,a"); if (!t) return;
   const d = t.dataset;
   if (d.act === "titles") return playTitles();
+  if (d.act === "exp-new") return expenseForm(null);
+  if (d.act === "settle") return settleForm(null);
+  if (d.exp) { const x = S.listitems[d.exp]; if (!x) return; const v = { id: d.exp, ...x }; return x.type === "settle" ? settleForm(v) : expenseForm(v); }
   if (t.id === "mailBtn") return openMail();
   if (t.id === "installBtn") return install();
   if (t.id === "syncDot") return toast({ ok: "Tudo sincronizado", syncing: "Sincronizando", offline: "Sem sinal. As mudanças sobem quando a conexão voltar.", local: "Modo local: ainda sem banco de dados configurado." }[t.dataset.s] || "");
@@ -570,6 +752,8 @@ document.addEventListener("click", e => {
 });
 document.addEventListener("submit", async e => {
   e.preventDefault(); const f = e.target;
+  if (f.id === "expF") return saveExpense(f);
+  if (f.id === "setF") return saveSettle(f);
   if (f.dataset.add) { const inp = f.querySelector("input"), txt = inp.value.trim(); if (!txt) return; put("listitems", "c" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), { list: f.dataset.add, text: txt, at: Date.now() }); inp.value = ""; setTimeout(() => { const i2 = document.getElementById("add-" + f.dataset.add); if (i2) i2.focus(); }, 30); return; }
   if (f.id === "loginF") {
     try { await directorLogin(S.mode === "cloud" ? $("#lg-e").value : "", S.mode === "cloud" ? $("#lg-p").value : ""); closeSheet(); toast("Ação! Modo diretor ativo"); }
