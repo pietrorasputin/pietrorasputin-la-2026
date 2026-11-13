@@ -578,8 +578,8 @@ export const CURIOSITIES = [
     "title": "La La Land",
     "year": 2016,
     "text": "Mia e Sebastian passam pelo mercado e sobem o Angels Flight, o bondinho em frente.",
-    "gen": false,
-    "source": ""
+    "gen": true,
+    "source": "https://movie-locations.com/movies/l/La-La-Land.php"
   },
   {
     "id": "bradbury",
@@ -591,9 +591,121 @@ export const CURIOSITIES = [
     "tag": "Filme",
     "title": "Blade Runner",
     "year": 1982,
-    "text": "O prédio de 1893 é a casa de J.F. Sebastian. Também aparece em (500) Dias com Ela.",
+    "text": "O prédio de 1893 é a casa de J.F. Sebastian em Blade Runner. Também aparece em (500) Dias com Ela.",
     "gen": false,
-    "source": ""
+    "source": "https://en.wikipedia.org/wiki/Bradbury_Building"
+  },
+  {
+    "id": "hp-hollywood",
+    "place": "Hogwarts",
+    "day": 6,
+    "itemIds": [
+      "d6-park"
+    ],
+    "tag": "Filme",
+    "title": "Harry Potter",
+    "year": 2016,
+    "text": "O Wizarding World de Hollywood abriu em 7 de abril de 2016 com projeções no castelo de Hogwarts. Ao lado, o Flight of the Hippogriff foi a primeira montanha-russa ao ar livre do parque.",
+    "gen": true,
+    "source": "https://www.thestudiotour.com/wp/studios/universal-studios-hollywood/theme-park/attractions/the-wizarding-world-of-harry-potter/press-releases-photographs/"
+  },
+  {
+    "id": "hollywood-drift",
+    "place": "Hollywood Drift",
+    "day": 6,
+    "itemIds": [
+      "d6-park"
+    ],
+    "tag": "Filme",
+    "title": "Velozes e Furiosos",
+    "year": 2026,
+    "text": "A montanha-russa da franquia, com abertura marcada para 16 de setembro de 2026, chega a cerca de 116 km/h e é anunciada como a mais rápida da Universal no mundo.",
+    "gen": true,
+    "source": "https://www.themeparkinsider.com/flume/202608/12638/"
+  },
+  {
+    "id": "three-broomsticks",
+    "place": "Three Broomsticks",
+    "day": 6,
+    "itemIds": [
+      "d6-almoco"
+    ],
+    "tag": "Filme",
+    "title": "Cerveja Amanteigada",
+    "year": 2016,
+    "text": "O Três Vassouras serve as bebidas dos livros, Cerveja Amanteigada e Suco de Abóbora. A cerveja também sai no Hog's Head, o pub ao lado.",
+    "gen": true,
+    "source": "https://blog.discoveruniversal.com/guides-and-tips/guide-to-the-wizarding-world-of-harry-potter-at-universal-studios-hollywood"
+  },
+  {
+    "id": "gcm-1917",
+    "place": "Grand Central Market",
+    "day": 6,
+    "itemIds": [
+      "d6-gcm"
+    ],
+    "tag": "História",
+    "title": "Homer Laughlin Building",
+    "year": 1917,
+    "text": "O mercado abriu em 1917 no térreo do Homer Laughlin Building. Na década de 1920, Frank Lloyd Wright teve escritório no prédio.",
+    "gen": false,
+    "source": "https://laconservancy.org/learn/historic-places/grand-central-market"
+  },
+  {
+    "id": "angels-flight",
+    "place": "Angels Flight",
+    "day": 6,
+    "itemIds": [
+      "d6-gcm"
+    ],
+    "tag": "História",
+    "title": "Angels Flight",
+    "year": 1901,
+    "text": "Inaugurado em 1901, o bondinho é chamado de ferrovia mais curta do mundo. Desmontado em 1969, voltou em 1996 com um trilho de cerca de 91 metros.",
+    "gen": false,
+    "source": "https://en.wikipedia.org/wiki/Angels_Flight"
+  },
+  {
+    "id": "bradbury-ouija",
+    "place": "Bradbury Building",
+    "day": 6,
+    "itemIds": [
+      "d6-gcm"
+    ],
+    "tag": "Bizarro",
+    "title": "Tabuleiro Ouija",
+    "year": 1893,
+    "text": "Segundo a lenda, o projetista George Wyman só aceitou a obra depois que o irmão morto, por um tabuleiro Ouija, disse que o prédio o deixaria famoso.",
+    "gen": false,
+    "source": "https://www.atlasobscura.com/places/bradbury-building"
+  },
+  {
+    "id": "bline-vine",
+    "place": "Metrô B Line",
+    "day": 6,
+    "itemIds": [
+      "d6-bline"
+    ],
+    "tag": "História",
+    "title": "Estação Hollywood/Vine",
+    "year": 1999,
+    "text": "O teto da estação é coberto por mais de 20 mil rolos de filme, comprados a 25 centavos cada. No mezanino ficam dois projetores da Paramount dos anos 1930.",
+    "gen": false,
+    "source": "https://lamag.com/urbandevelopment/ask-chris-waiting-subway-hollywood-vine-metro-station-noticed-ceiling-decorated-thousands-old-film-reels-come/"
+  },
+  {
+    "id": "bline-tunel",
+    "place": "Metrô B Line",
+    "day": 6,
+    "itemIds": [
+      "d6-bline"
+    ],
+    "tag": "História",
+    "title": "Túnel sob as montanhas",
+    "year": 2000,
+    "text": "Entre Hollywood/Highland e Universal City, o metrô passa em túnel por baixo das Santa Monica Mountains. O trecho foi aberto em 2000.",
+    "gen": false,
+    "source": "https://en.wikipedia.org/wiki/B_Line_(Los_Angeles_Metro)"
   },
   {
     "id": "randys",
