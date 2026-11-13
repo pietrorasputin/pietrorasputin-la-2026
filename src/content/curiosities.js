@@ -493,9 +493,79 @@ export const CURIOSITIES = [
     "tag": "Filme",
     "title": "De Volta para o Futuro",
     "year": 1985,
-    "text": "O tour passa pela praça do relógio de Hill Valley e pela casa de Psicose.",
+    "text": "O tram passa pela Courthouse Square, a praça do relógio de Hill Valley. No alto do morro fica a casa de Psicose, que já mudou de lugar várias vezes.",
     "gen": false,
-    "source": ""
+    "source": "https://www.seeing-stars.com/studiotours/UniversalStudiosHollywood.shtml"
+  },
+  {
+    "id": "nintendo-world",
+    "place": "Super Nintendo World",
+    "day": 5,
+    "itemIds": [
+      "d5-lower"
+    ],
+    "tag": "História",
+    "title": "Super Nintendo World",
+    "year": 2023,
+    "text": "A área abriu em 17 de fevereiro de 2023. O Mario Kart daqui se chama Bowser's Challenge, no Japão é Koopa's Challenge, e a pontuação da pulseira não passa de um parque para o outro.",
+    "gen": true,
+    "source": "https://www.travelpulse.com/news/entertainment/universal-studios-hollywood-reveals-details-of-mario-kart-bowsers-challenge"
+  },
+  {
+    "id": "lower-starway",
+    "place": "Universal Lower Lot",
+    "day": 5,
+    "itemIds": [
+      "d5-lower"
+    ],
+    "tag": "Bizarro",
+    "title": "Starway",
+    "year": 1991,
+    "text": "As escadas rolantes que descem a encosta do Upper Lot até o Lower Lot funcionam desde 1991. A viagem completa leva de 7 a 8 minutos.",
+    "gen": false,
+    "source": "https://www.thestudiotour.com/ush/attractions/starway.shtml"
+  },
+  {
+    "id": "upper-wisteria",
+    "place": "Universal Studio Tour",
+    "day": 5,
+    "itemIds": [
+      "d5-upper"
+    ],
+    "tag": "Série",
+    "title": "Desperate Housewives",
+    "year": 2004,
+    "text": "A Wisteria Lane da série é uma rua do backlot da Universal, e o tram passa entre as casas das vizinhas.",
+    "gen": true,
+    "source": "https://www.seeing-stars.com/studiotours/UniversalStudiosHollywood.shtml"
+  },
+  {
+    "id": "upper-1915",
+    "place": "Universal Studio Tour",
+    "day": 5,
+    "itemIds": [
+      "d5-upper"
+    ],
+    "tag": "História",
+    "title": "Carl Laemmle",
+    "year": 1915,
+    "text": "O fundador abriu o estúdio ao público em 1915. Por 25 centavos o visitante assistia às filmagens de uma arquibancada, e a marmita de frango custava mais 5.",
+    "gen": false,
+    "source": "https://pbssocal.org/shows/lost-la/the-birth-of-the-universal-studios-tour"
+  },
+  {
+    "id": "upper-kong",
+    "place": "Universal Studio Tour",
+    "day": 5,
+    "itemIds": [
+      "d5-upper"
+    ],
+    "tag": "Bizarro",
+    "title": "Incêndio de 2008",
+    "year": 2008,
+    "text": "Um maçarico usado num telhado começou o incêndio que destruiu a New York Street e o King Kong do tour em 2008. O gorila voltou em 2010, em 3D.",
+    "gen": false,
+    "source": "https://www.thestudiotour.com/wp/studios/universal-studios-hollywood/backlot/fires-and-storms/2008-fire/"
   },
   {
     "id": "gcm",
