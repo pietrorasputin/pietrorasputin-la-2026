@@ -178,8 +178,9 @@ function itemHTML(day, raw, i, idx) {
   if (it.note) more += `<p class="note">${esc(it.note)}</p>`;
   if (it._alt) more += `<p class="was">Trocado. Original: ${esc(raw.title)} <button type="button" data-unswap="${raw.id}">desfazer</button></p>`;
   if (raw.list) {
-    const L = LISTS.find(x => x.id === raw.list), [a, b] = raw.range || [0, L.items.length];
-    more += `<ul class="mini">${L.items.slice(a, b).map((t, j) => { const k = `l-${L.id}-${a + j}`; return `<li class="${done(k) ? "ok" : ""}"><button type="button" class="cb" data-check="${k}" aria-pressed="${done(k)}">${ICON.check}</button><span>${esc(t)}</span></li>`; }).join("")}</ul>`;
+    const L = LISTS.find(x => x.id === raw.list);
+    const rows = ordered(L).filter(x => !raw.area || x.area === raw.area);
+    more += `<ul class="mini">${rows.map(({ key: k, t }) => `<li class="${done(k) ? "ok" : ""}" data-key="m-${k}"><button type="button" class="cb" data-check="${k}" aria-pressed="${done(k)}">${ICON.check}</button><span>${esc(t)}</span></li>`).join("")}</ul>`;
   }
   let chips = "";
   if (it.q) chips += `<a class="chip" href="${mapsQ(it.q)}" target="_blank" rel="noopener">${ICON.pin}Maps</a>`;
@@ -323,8 +324,20 @@ function renderCenas() {
 }
 
 /* ============ LISTAS ============ */
+// Fixed list items in the order saved at flags/order-<list> ({ids: [...keys]}).
+// Keys never change (l-<list>-<n>), so checks survive any reorder.
+function ordered(L) {
+  const base = L.items.map((t, i) => ({ key: `l-${L.id}-${i}`, t, area: L.areas ? L.areas[i] : null }));
+  const o = S.flags["order-" + L.id];
+  if (!o || !Array.isArray(o.ids)) return base;
+  const by = new Map(base.map(x => [x.key, x])), out = [];
+  for (const k of o.ids) if (by.has(k)) { out.push(by.get(k)); by.delete(k); }
+  return out.concat([...by.values()]);
+}
+const customOrder = L => { const o = S.flags["order-" + L.id]; return !!(o && Array.isArray(o.ids) && ordered(L).some((x, i) => x.key !== `l-${L.id}-${i}`)); };
+function saveOrder(L, keys) { put("flags", "order-" + L.id, keys.every((k, i) => k === `l-${L.id}-${i}`) ? null : { ids: keys }); }
 function listItems(L) {
-  const base = L.items.map((t, i) => ({ key: `l-${L.id}-${i}`, t }));
+  const base = ordered(L);
   const extra = Object.entries(S.listitems).filter(([id, v]) => v.list === L.id && !id.startsWith("exp-")).sort((a, b) => (a[1].at || 0) - (b[1].at || 0)).map(([id, v]) => ({ key: "x-" + id, t: v.text, cid: id }));
   return base.concat(extra);
 }
@@ -335,7 +348,8 @@ function renderListas() {
   <div class="seg-ctl" role="tablist">${LISTS.map(x => { const a = listItems(x); const g = a.filter(y => done(y.key)).length; return `<button type="button" role="tab" aria-selected="${x.id === L.id}" data-list="${x.id}">${esc(x.title)}<small>${g}/${a.length}</small></button>`; }).join("")}</div>
   <section class="checklist">
     <div class="cl-head">${ring(all.length ? got / all.length : 0, `${got}/${all.length}`, "feitos")}<h2 class="gold">${esc(L.title)}</h2></div>
-    <ul>${all.map((x, i) => `<li class="${done(x.key) ? "ok" : ""}" data-key="${x.key}" style="--i:${i}"><button type="button" class="cb" data-check="${x.key}" aria-pressed="${done(x.key)}" aria-label="${esc(x.t)}">${ICON.check}</button><span class="cl-t">${esc(x.t)}</span>${x.cid ? `<button type="button" class="rm" data-rm="${x.cid}" aria-label="Remover">${ICON.x}</button>` : ""}</li>`).join("")}</ul>
+    <ul class="${L.reorder ? "sortable" : ""}" data-sort="${L.reorder ? L.id : ""}">${all.map((x, i) => `<li class="${done(x.key) ? "ok" : ""}" data-key="${x.key}" style="--i:${i}"><button type="button" class="cb" data-check="${x.key}" aria-pressed="${done(x.key)}" aria-label="${esc(x.t)}">${ICON.check}</button><span class="cl-t">${esc(x.t)}${x.area ? `<small class="area">${esc(x.area)}</small>` : ""}</span>${x.cid ? `<button type="button" class="rm" data-rm="${x.cid}" aria-label="Remover">${ICON.x}</button>` : ""}${L.reorder ? `<span class="mv"><button type="button" class="mvb" data-mv="-1" aria-label="Subir ${esc(x.t)}" ${i === 0 ? "disabled" : ""}>${ICON.up}</button><button type="button" class="mvb dn" data-mv="1" aria-label="Descer ${esc(x.t)}" ${i === all.length - 1 ? "disabled" : ""}>${ICON.up}</button></span><span class="grip" aria-hidden="true">${ICON.grip}</span>` : ""}</li>`).join("")}</ul>
+    ${L.reorder && customOrder(L) ? `<button type="button" class="linkbtn" data-reset-order="${L.id}">Voltar à ordem original</button>` : ""}
     ${L.add ? `<form class="addf" data-add="${L.id}"><input id="add-${L.id}" placeholder="Novo item" maxlength="100" autocomplete="off"><button type="submit" class="ibtn" aria-label="Adicionar">${ICON.plus}</button></form>` : ""}
   </section>`;
 }
@@ -553,7 +567,7 @@ function render(fresh, vt = fresh) {
   } else run();
 }
 let pend = 0;
-function soft() { cancelAnimationFrame(pend); pend = requestAnimationFrame(() => render(false)); }
+function soft() { cancelAnimationFrame(pend); pend = requestAnimationFrame(() => { if (drag) { drag.pending = true; return; } render(false); }); }
 onChange(() => { soft(); toastLetters(); });
 
 function route() {
@@ -568,6 +582,59 @@ function route() {
   if (changed) window.scrollTo(0, m ? Math.max(0, ($(".tickets") || main).offsetTop - 70) : 0);
 }
 window.addEventListener("hashchange", route);
+
+/* ============ drag to reorder (pointer events) ============ */
+let drag = null;
+document.addEventListener("pointerdown", e => {
+  const g = e.target.closest(".grip"); if (!g || drag) return;
+  const li = g.closest("li"), ul = li.parentElement, items = [...ul.children];
+  if (items.length < 2) return;
+  e.preventDefault();
+  const rects = items.map(x => x.getBoundingClientRect()), from = items.indexOf(li);
+  drag = { li, ul, items, from, to: from, y0: e.clientY, s0: window.scrollY, y: e.clientY, h: rects[from].height, mids: rects.map(r => r.top + window.scrollY + r.height / 2), pending: false };
+  try { g.setPointerCapture(e.pointerId); } catch (err) { }
+  ul.classList.add("sorting"); li.classList.add("dragging");
+  if (navigator.vibrate) try { navigator.vibrate(10); } catch (err) { }
+  requestAnimationFrame(autoScroll);
+});
+function dragUpdate() {
+  const { li, items, from, mids, h } = drag;
+  const dy = drag.y - drag.y0 + (window.scrollY - drag.s0);
+  li.style.transform = `translateY(${dy}px)`;
+  const c = mids[from] + dy;
+  let to = from;
+  items.forEach((x, i) => { if (i < from && c < mids[i]) to = Math.min(to, i); if (i > from && c > mids[i]) to = Math.max(to, i); });
+  drag.to = to;
+  items.forEach((x, i) => {
+    if (i === from) return;
+    const sh = from < to && i > from && i <= to ? -h : to < from && i >= to && i < from ? h : 0;
+    x.style.transform = sh ? `translateY(${sh}px)` : "";
+  });
+}
+function autoScroll() {
+  if (!drag) return;
+  const top = 96, bot = window.innerHeight - 130, y = drag.y;
+  const v = y < top ? -Math.min(16, (top - y) / 4) : y > bot ? Math.min(16, (y - bot) / 4) : 0;
+  if (v) { window.scrollBy(0, v); dragUpdate(); }
+  requestAnimationFrame(autoScroll);
+}
+document.addEventListener("pointermove", e => { if (!drag) return; drag.y = e.clientY; dragUpdate(); });
+function dragEnd(cancel) {
+  if (!drag) return;
+  const { li, ul, items, from, to } = drag;
+  ul.classList.remove("sorting");
+  items.forEach(x => x.style.transform = "");
+  li.classList.remove("dragging");
+  const pending = drag.pending; drag = null;
+  if (!cancel && to !== from) {
+    const ref = to > from ? items[to].nextSibling : items[to];
+    ul.insertBefore(li, ref); // move now so nothing jumps back while the write lands
+    const L = LISTS.find(x => x.id === ul.dataset.sort);
+    saveOrder(L, [...ul.children].map(x => x.dataset.key));
+  } else if (pending) soft();
+}
+document.addEventListener("pointerup", () => dragEnd(false));
+document.addEventListener("pointercancel", () => dragEnd(true));
 
 /* ============ overlays ============ */
 function sheet(html, cls = "") {
@@ -740,6 +807,16 @@ document.addEventListener("click", e => {
   if (d.flip) { const id = d.flip; ui.flipped.has(id) ? ui.flipped.delete(id) : ui.flipped.add(id); document.getElementById("sc-" + id).classList.toggle("flip"); return; }
   if (d.scene) { const id = d.scene; const v = !S.scenes[id]; if (v) { ui.flipped.delete(id); } put("scenes", id, v ? { seen: true, at: Date.now() } : null); if (v) setTimeout(() => { const el = document.getElementById("sc-" + id); if (el) el.classList.add("clapped"); }, 30); return; }
   if (d.list) { ui.list = d.list; render(true, false); return; }
+  if (d.mv) {
+    const ul = t.closest("[data-sort]"), L = LISTS.find(x => x.id === ul.dataset.sort), li = t.closest("li");
+    const keys = [...ul.children].map(x => x.dataset.key), i = keys.indexOf(li.dataset.key), j = i + Number(d.mv);
+    if (j < 0 || j >= keys.length) return;
+    keys.splice(j, 0, keys.splice(i, 1)[0]);
+    saveOrder(L, keys);
+    requestAnimationFrame(() => requestAnimationFrame(() => { const b = document.querySelector(`[data-key="${li.dataset.key}"] [data-mv="${d.mv}"]`); const f = b && !b.disabled ? b : document.querySelector(`[data-key="${li.dataset.key}"] [data-mv="${-d.mv}"]`); if (f) f.focus(); }));
+    return;
+  }
+  if (d.resetOrder) { put("flags", "order-" + d.resetOrder, null); toast("Ordem original de volta"); return; }
   if (d.rm) { put("listitems", d.rm, null); put("checks", "x-" + d.rm, null); return; }
   if (d.letter) return openLetter(d.letter);
   if (d.preset != null && t.closest("#letterF")) { const p = LETTER_PRESETS[Number(d.preset)]; $("#lf-d").value = p.d; $("#lf-t").value = p.t; if (!$("#lf-ti").value) $("#lf-ti").value = p.l; return; }

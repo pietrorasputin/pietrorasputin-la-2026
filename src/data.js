@@ -98,17 +98,17 @@ export const DAYS = [
     notes: ["Jurassic World: The Ride fechada até 21/11.", "Hollywood Drift: melhores chances na abertura ou na última hora.", "Express completo provavelmente não vale para dois dias de baixo movimento.", "Horários estimados com abertura às 9h. Conferir no app da Universal."],
     items: [
       { id: "d5-antes", t: "08:00", lbl: "Antes", k: "move", title: "B Line até a Universal", note: "Chegar 1 hora antes da abertura.", q: "Universal Studios Hollywood", extra: [{ l: "Hollywood/Highland", q: "Hollywood/Highland Station, Los Angeles" }], core: 1 },
-      { id: "d5-lower", t: "09:00", e: "11:30", lbl: "Abertura", k: "visit", title: "Lower Lot", note: "Direto ao Mario Kart.", list: "u1", range: [0, 4], q: "Super Nintendo World, Universal Studios Hollywood", core: 1 },
+      { id: "d5-lower", t: "09:00", e: "11:30", lbl: "Abertura", k: "visit", title: "Lower Lot", note: "Direto ao Mario Kart.", list: "u1", area: "Lower Lot", q: "Super Nintendo World, Universal Studios Hollywood", core: 1 },
       { id: "d5-almoco", t: "11:30", e: "12:30", k: "meal", title: "Krusty Burger", short: "Krusty", note: "Almoço cedo, antes do pico.", q: "Krusty Burger, Universal Studios Hollywood", core: 1,
         alts: [{ id: "mels", title: "Mel's Diner", short: "Mel's", note: "Diner retrô dentro do parque.", q: "Mel's Diner, Universal Studios Hollywood" }] },
-      { id: "d5-upper", t: "12:30", e: "20:00", k: "visit", title: "Upper Lot até o fechamento", list: "u1", range: [5, 11], q: "Universal Studios Hollywood", scene: ["bttf"], core: 1 },
+      { id: "d5-upper", t: "12:30", e: "20:00", k: "visit", title: "Upper Lot até o fechamento", list: "u1", area: "Upper Lot", q: "Universal Studios Hollywood", scene: ["bttf"], core: 1 },
       { id: "d5-jantar", t: "20:00", e: "21:00", lbl: "Depois", k: "meal", title: "In-N-Out da Sunset", note: "Pedir protein style.", q: INNOUT_SUNSET, core: 1 }
     ] },
   { n: 6, date: "2026-11-17", art: "funicular", tint: "midnight", title: "Universal e Downtown",
     planb: "Cansados? CityWalk no lugar de Downtown e jantar perto do hotel.",
     notes: ["Algumas barracas do Grand Central Market fecham antes das 21h.", "Evitar barracas de peixe e pratos com molho de peixe."],
     items: [
-      { id: "d6-park", t: "09:00", e: "12:00", lbl: "Abertura", k: "visit", title: "Hollywood Drift e Hogwarts", list: "u2", range: [0, 6], q: "Universal Studios Hollywood", core: 1 },
+      { id: "d6-park", t: "09:00", e: "12:00", lbl: "Abertura", k: "visit", title: "Hollywood Drift e Hogwarts", list: "u2", q: "Universal Studios Hollywood", core: 1 },
       { id: "d6-almoco", t: "12:00", e: "13:00", k: "meal", title: "Three Broomsticks", note: "Procurar pratos com frango.", q: "Three Broomsticks, Universal Studios Hollywood", core: 1 },
       { id: "d6-tarde", t: "13:00", e: "17:00", k: "visit", title: "Repetecos, Butterbeer e fotos", core: 1 },
       { id: "d6-bline", t: "17:00", e: "17:30", k: "move", title: "B Line até Pershing Square", q: "Pershing Square Station, Los Angeles" },
@@ -133,8 +133,10 @@ export const LISTS = [
   { id: "prep", title: "Antes de ir", add: true, items: ["Ingresso e horário da Warner Bros.", "Calendário da Universal para 16 e 17/11", "Baixar o app da Universal", "Condições da trilha do Hollywood Sign", "Estacionamento do Griffith", "Café da manhã incluso no Loews?", "Retirada do carro no LAX às 8h", "Horário e terminal do voo de volta"] },
   { id: "target", title: "Target", add: true, items: ["Água e bebidas sem açúcar", "Frutas e berries", "Iogurte grego", "Barrinhas de proteína", "Nuts e amêndoas", "Baby carrots e homus", "Crackers", "Snacks para a trilha e o outlet"] },
   { id: "vegas", title: "Estrada", add: true, items: ["Dormir cedo no dia 3", "Tanque cheio na véspera", "Água e snacks no carro", "Playlist e carregador", "Trânsito na I-15 antes de sair", "Combinar o revezamento", "Decidir até 17h se há pernoite"] },
-  { id: "u1", title: "Universal 1", items: ["Mario Kart: Bowser's Challenge", "Revenge of the Mummy", "Transformers: The Ride 3D", "Yoshi's Adventure (fila < 20 min)", "Starway e almoço às 11h30", "Studio Tour, carro 3", "Simpsons Ride e Minion Mayhem", "Secret Life of Pets", "WaterWorld", "Hippogriff, Forbidden Journey e Ollivanders", "Hollywood Drift na última hora"] },
-  { id: "u2", title: "Universal 2", items: ["Hollywood Drift na abertura", "Forbidden Journey com a área vazia", "Repetir no single rider", "Shows que ficaram de fora", "Mario Kart (fila < 45 min)", "Lojas, Butterbeer e fotos"] }
+  { id: "u1", title: "Universal 1", items: ["Mario Kart: Bowser's Challenge", "Revenge of the Mummy", "Transformers: The Ride 3D", "Yoshi's Adventure (fila < 20 min)", "Starway e almoço às 11h30", "Studio Tour, carro 3", "Simpsons Ride e Minion Mayhem", "Secret Life of Pets", "WaterWorld", "Hippogriff, Forbidden Journey e Ollivanders", "Hollywood Drift na última hora"],
+    reorder: true, areas: ["Lower Lot", "Lower Lot", "Lower Lot", "Lower Lot", "Upper Lot", "Upper Lot", "Upper Lot", "Upper Lot", "Upper Lot", "Upper Lot", "Upper Lot"] },
+  { id: "u2", title: "Universal 2", items: ["Hollywood Drift na abertura", "Forbidden Journey com a área vazia", "Repetir no single rider", "Shows que ficaram de fora", "Mario Kart (fila < 45 min)", "Lojas, Butterbeer e fotos"],
+    reorder: true, areas: ["Upper Lot", "Upper Lot", "Upper Lot", "Upper Lot", "Lower Lot", "Upper Lot"] }
 ];
 
 export const LETTER_PRESETS = [

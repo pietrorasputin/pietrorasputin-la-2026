@@ -4,7 +4,7 @@
 - [x] T4. Camarillo trocado pelo Citadel Outlets (dia 2), ilustração `citadel`
 - [x] T3. Fim das "piscadas" (redesenho só com mudança de dado)
 - [x] T7. Aba Contas (controle de gastos)
-- [ ] T5. Reordenar brinquedos (u1 e u2)
+- [x] T5. Reordenar brinquedos (u1 e u2)
 - [ ] T2-UI. Curiosidades na aba Cenas
 - [ ] T6-UI. Comparador de restaurantes
 - [ ] Ciclo de atualização de conteúdo (pull, build e deploy a cada ~60 min)
@@ -26,3 +26,8 @@
 - T7: excluir pede um segundo toque no próprio botão ("Toque de novo para excluir").
 - T7: categorias gravadas em minúsculas sem acento (comida, compras, transporte, ingressos, hospedagem, outros). Categoria vazia é permitida.
 - Teste T7: feito com o Firebase bloqueado no navegador de teste. Nenhum gasto chegou ao Firestore.
+- T5: `LISTS` u1 e u2 ganharam `reorder: true` e `areas` (paralelo a `items`). Dia 5 filtra por `area` ("Lower Lot" e "Upper Lot"). Dia 6 mostra a u2 inteira na ordem escolhida.
+- T5: Hollywood Drift no Upper Lot (anúncio oficial da Universal, maio de 2024). "Starway e almoço às 11h30" ficou como Upper Lot (o Krusty Burger fica no Upper Lot) e por isso passou a aparecer na listinha do Upper Lot do Dia 5. Antes ficava de fora das duas.
+- T5: "Mario Kart (fila < 45 min)" da u2 é Lower Lot. Os demais itens da u2 são Upper Lot.
+- T5: a ordem salva só guarda `ids` quando difere da original. "Voltar à ordem original" apaga `flags/order-<lista>`. Ids desconhecidos são ignorados e itens faltantes vão para o fim.
+- T5: durante o arraste, redesenhos vindos do Firestore ficam suspensos e rodam ao soltar.

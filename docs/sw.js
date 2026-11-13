@@ -1,6 +1,6 @@
 // Offline-first service worker. Everything the app needs is precached;
 // Firebase traffic goes straight to the network (Firestore keeps its own offline cache).
-const VERSION = "mwerasoz";
+const VERSION = "mwerddld";
 const CACHE = "la26-" + VERSION;
 const ASSETS = ["./","./index.html","./app.css","./app.js","./fonts/CourierPrime-400.woff2","./fonts/CourierPrime-700.woff2","./fonts/Jost-400.woff2","./fonts/Limelight-400.woff2","./icons/apple-touch-icon.png","./icons/icon-192.png","./icons/icon-512.png","./icons/icon-maskable-512.png","./manifest.webmanifest"];
 
