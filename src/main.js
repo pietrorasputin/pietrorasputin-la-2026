@@ -16,6 +16,40 @@ const MON = "nov";
 function lsGet(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { } }
 
+/* DOM reconciliation: patch the live tree toward freshly rendered HTML so that
+   unchanged nodes survive (no replayed animations, scroll, focus or open state lost). */
+const TRANSIENT = ["flash", "clapped", "armed", "just"];
+const nkey = n => n.nodeType === 1 ? (n.id || n.getAttribute("data-key") || null) : null;
+function syncAttrs(a, b) {
+  for (const { name, value } of [...b.attributes]) {
+    let v = value;
+    if (name === "class") { const keep = TRANSIENT.filter(c => a.classList.contains(c) && !b.classList.contains(c)); if (keep.length) v = (value + " " + keep.join(" ")).trim(); }
+    if (a.getAttribute(name) !== v) a.setAttribute(name, v);
+  }
+  for (const { name } of [...a.attributes]) if (!b.hasAttribute(name) && !(name === "open" && a.tagName === "DETAILS") && !(name === "class" && TRANSIENT.some(c => a.classList.contains(c)))) a.removeAttribute(name);
+}
+function patchNode(a, b) {
+  if (a.nodeType !== 1) { if (a.nodeValue !== b.nodeValue) a.nodeValue = b.nodeValue; return; }
+  syncAttrs(a, b);
+  if (a.hasAttribute("data-own")) return; // children managed elsewhere (clock, bulbs)
+  morphKids(a, b);
+}
+function morphKids(from, to) {
+  const keyed = new Map();
+  for (const n of from.childNodes) { const k = nkey(n); if (k) keyed.set(k, n); }
+  let cur = from.firstChild;
+  for (const nt of [...to.childNodes]) {
+    const k = nkey(nt);
+    let m = null;
+    if (k) { m = keyed.get(k) || null; if (m && m.nodeName !== nt.nodeName) m = null; if (m) keyed.delete(k); }
+    else if (cur && !nkey(cur) && cur.nodeType === nt.nodeType && cur.nodeName === nt.nodeName) m = cur;
+    if (m) { if (m === cur) cur = cur.nextSibling; else from.insertBefore(m, cur); patchNode(m, nt); }
+    else from.insertBefore(nt, cur);
+  }
+  while (cur) { const nx = cur.nextSibling; from.removeChild(cur); cur = nx; }
+}
+function morph(el, html) { const t = document.createElement("template"); t.innerHTML = html; morphKids(el, t.content); }
+
 const ui = { view: "hoje", day: null, open: new Set(), list: "prep", sim: null, flipped: new Set() };
 const opened = new Set(lsGet("la26-opened", []));
 
@@ -88,17 +122,17 @@ function heroHTML(day) {
   const ph = phase();
   if (ph === "before") {
     return `<section class="hero marquee" id="hero">
-      <div class="bulbs" aria-hidden="true"></div>
+      <div class="bulbs" aria-hidden="true" data-own="1"></div>
       <div class="beam" aria-hidden="true"></div>
       <p class="kicker">Uma produção de Pedro</p>
       <h1 class="title gold">Pedro <span class="amp">&amp;</span> Lorena</h1>
       <p class="sub">em Los Angeles</p>
-      <div class="flipclock" id="clock" aria-label="Contagem para a estreia"></div>
+      <div class="flipclock" id="clock" aria-label="Contagem para a estreia" data-own="1"></div>
       <button class="play" type="button" data-act="titles">${ICON.play}<span>Abertura</span></button>
     </section>`;
   }
   if (ph === "after") {
-    return `<section class="hero marquee end" id="hero"><div class="bulbs" aria-hidden="true"></div>
+    return `<section class="hero marquee end" id="hero"><div class="bulbs" aria-hidden="true" data-own="1"></div>
       <h1 class="title gold">The End</h1><p class="sub">Pedro &amp; Lorena em Los Angeles</p>
       <button class="play" type="button" data-act="titles">${ICON.play}<span>Rever a abertura</span></button></section>`;
   }
@@ -167,7 +201,7 @@ function itemHTML(day, raw, i, idx) {
 function letterItemHTML(l, idx) {
   const open = unlocked(l) && l.hasBody;
   const ttl = S.director ? (l.title || "Carta") : open ? (l.title || "Uma carta para você") : "Uma carta chega aqui";
-  return `<li class="it k-letter ${open ? "" : "sealed"}" style="--i:${idx}">
+  return `<li class="it k-letter ${open ? "" : "sealed"}" id="lt-${l.id}" style="--i:${idx}">
     <span class="tm"><span>${esc(l.time)}</span></span>
     <span class="node wax">L</span>
     <div class="body"><button type="button" class="head" ${open || S.director ? `data-letter="${l.id}"` : "disabled"}><span class="ttl">${esc(ttl)}</span>${S.director && !open ? `<i class="fl">${l.teaser ? "visível" : "secreta"}</i>` : ""}</button></div><span></span>
@@ -189,10 +223,10 @@ function renderHoje() {
   const rows = day.items.map((raw, i) => ({ m: toMin(raw.t), h: idx => itemHTML(day, raw, i, idx) }));
   visibleLetters().filter(l => l.date === day.date).forEach(l => rows.push({ m: toMin(l.time) + .1, h: idx => letterItemHTML(l, idx) }));
   const n = nowLA();
-  if (n.date === day.date) rows.push({ m: n.mins + .05, h: () => `<li class="nowmark" aria-label="Agora"><span>${fmt(n.mins)}</span></li>` });
+  if (n.date === day.date) rows.push({ m: n.mins + .05, h: () => `<li class="nowmark" id="nowmark" aria-label="Agora"><span>${fmt(n.mins)}</span></li>` });
   rows.sort((a, b) => a.m - b.m);
   const route = dayRoute(day), lt = late(day.n);
-  main.innerHTML = `${heroHTML(day)}
+  return `${heroHTML(day)}
     ${ticketsHTML()}
     <section class="day tint-${day.tint}">
       <header class="dayhead">
@@ -206,17 +240,17 @@ function renderHoje() {
       ${lt ? `<div class="planb">${ICON.late}<p>${esc(day.planb)}</p></div>` : ""}
       ${stripHTML(day)}
       <ol class="tl">${rows.map((r, i) => r.h(i)).join("")}</ol>
-      <details class="notes"><summary>Notas</summary><ul>${day.notes.concat(lt ? [] : ["Plano B: " + day.planb]).map(x => `<li>${esc(x)}</li>`).join("")}</ul></details>
+      <details class="notes" id="notes-${day.n}"><summary>Notas</summary><ul>${day.notes.concat(lt ? [] : ["Plano B: " + day.planb]).map(x => `<li>${esc(x)}</li>`).join("")}</ul></details>
     </section>`;
-  bulbs();
-  clock(true);
+}
+function centerTicket() {
   const tk = $(".tickets"), act = tk && tk.querySelector('[aria-current="true"]');
   if (tk && act) tk.scrollLeft = act.offsetLeft - tk.clientWidth / 2 + act.clientWidth / 2;
 }
 
 /* marquee bulbs */
 function bulbs() {
-  const host = $("#hero .bulbs"); if (!host) return;
+  const host = $("#hero .bulbs"); if (!host || host.children.length) return;
   const top = 16, side = 6; let h = "", k = 0;
   const add = (x, y) => { h += `<i style="left:${x}%;top:${y}%;--i:${k++}"></i>`; };
   for (let i = 0; i < top; i++) add(i / (top - 1) * 100, 0);
@@ -251,7 +285,7 @@ function clock(fresh) {
 function renderRoteiro() {
   const ti = todayIdx(), feat = ti >= 0 ? ti : phase() === "after" ? -1 : 0;
   const { date } = nowLA();
-  main.innerHTML = `<header class="pagehead"><p class="kicker">Programação</p><h1 class="gold">Sete rolos</h1></header>
+  return `<header class="pagehead"><p class="kicker">Programação</p><h1 class="gold">Sete rolos</h1></header>
   <div class="posters">${DAYS.map((d, i) => `<a class="poster tint-${d.tint} ${i === feat ? "feat" : ""}" href="#dia-${d.n}" style="--i:${i}">
       <span class="p-top"><span>Rolo ${d.n}</span><span>${wd(d.date).slice(0, 3)} ${dnum(d.date)}</span></span>
       <span class="p-art">${ART[d.art]()}</span>
@@ -268,7 +302,7 @@ function ring(p, label, sub) {
 }
 function renderCenas() {
   const ids = Object.keys(SCENES), got = ids.filter(id => S.scenes[id]).length;
-  main.innerHTML = `<header class="pagehead"><p class="kicker">Locações</p><h1 class="gold">Cenas na lata</h1></header>
+  return `<header class="pagehead"><p class="kicker">Locações</p><h1 class="gold">Cenas na lata</h1></header>
   <div class="scenes">
     <div class="sc-count">${ring(got / ids.length, `${got}/${ids.length}`, "gravadas")}</div>
     ${ids.map((id, i) => { const s = SCENES[id], ok = !!S.scenes[id], fl = ui.flipped.has(id); return `<div class="sc ${ok ? "ok" : ""} ${fl ? "flip" : ""}" style="--i:${i}" id="sc-${id}">
@@ -297,29 +331,50 @@ function listItems(L) {
 function renderListas() {
   const L = LISTS.find(x => x.id === ui.list) || LISTS[0];
   const all = listItems(L), got = all.filter(x => done(x.key)).length;
-  main.innerHTML = `<header class="pagehead"><p class="kicker">Produção</p><h1 class="gold">Listas</h1></header>
+  return `<header class="pagehead"><p class="kicker">Produção</p><h1 class="gold">Listas</h1></header>
   <div class="seg-ctl" role="tablist">${LISTS.map(x => { const a = listItems(x); const g = a.filter(y => done(y.key)).length; return `<button type="button" role="tab" aria-selected="${x.id === L.id}" data-list="${x.id}">${esc(x.title)}<small>${g}/${a.length}</small></button>`; }).join("")}</div>
   <section class="checklist">
     <div class="cl-head">${ring(all.length ? got / all.length : 0, `${got}/${all.length}`, "feitos")}<h2 class="gold">${esc(L.title)}</h2></div>
-    <ul>${all.map((x, i) => `<li class="${done(x.key) ? "ok" : ""}" style="--i:${i}"><button type="button" class="cb" data-check="${x.key}" aria-pressed="${done(x.key)}" aria-label="${esc(x.t)}">${ICON.check}</button><span class="cl-t">${esc(x.t)}</span>${x.cid ? `<button type="button" class="rm" data-rm="${x.cid}" aria-label="Remover">${ICON.x}</button>` : ""}</li>`).join("")}</ul>
+    <ul>${all.map((x, i) => `<li class="${done(x.key) ? "ok" : ""}" data-key="${x.key}" style="--i:${i}"><button type="button" class="cb" data-check="${x.key}" aria-pressed="${done(x.key)}" aria-label="${esc(x.t)}">${ICON.check}</button><span class="cl-t">${esc(x.t)}</span>${x.cid ? `<button type="button" class="rm" data-rm="${x.cid}" aria-label="Remover">${ICON.x}</button>` : ""}</li>`).join("")}</ul>
     ${L.add ? `<form class="addf" data-add="${L.id}"><input id="add-${L.id}" placeholder="Novo item" maxlength="100" autocomplete="off"><button type="submit" class="ibtn" aria-label="Adicionar">${ICON.plus}</button></form>` : ""}
   </section>`;
 }
 
 /* ============ render loop ============ */
-function render(nav) {
+// fresh: navigation (new view, day or list). Rebuilds the page and plays the entrance.
+// Otherwise the page is patched in place, and only when the markup actually changed.
+let lastHTML = "", enterT = 0;
+function viewHTML() {
+  if (ui.view === "roteiro") return renderRoteiro();
+  if (ui.view === "cenas") return renderCenas();
+  if (ui.view === "listas") return renderListas();
+  return renderHoje();
+}
+function render(fresh, vt = fresh) {
   const run = () => {
     shell();
-    const y = window.scrollY;
-    if (ui.view === "roteiro") renderRoteiro(); else if (ui.view === "cenas") renderCenas(); else if (ui.view === "listas") renderListas(); else renderHoje();
-    main.dataset.view = ui.view;
-    if (!nav) window.scrollTo(0, y);
+    const html = viewHTML();
+    if (fresh) {
+      main.innerHTML = html;
+      main.dataset.view = ui.view;
+      clearTimeout(enterT);
+      main.classList.remove("enter"); void main.offsetWidth; main.classList.add("enter");
+      enterT = setTimeout(() => main.classList.remove("enter"), 2600);
+      if (ui.view === "hoje") centerTicket();
+    } else if (html !== lastHTML) {
+      morph(main, html);
+    }
+    lastHTML = html;
+    bulbs();
+    clock(false);
   };
-  if (nav && document.startViewTransition && !reduce()) document.startViewTransition(run); else run();
-  if (nav) { main.classList.remove("enter"); void main.offsetWidth; main.classList.add("enter"); }
+  if (fresh && vt && document.startViewTransition && !reduce() && document.visibilityState === "visible") {
+    const tr = document.startViewTransition(run);
+    tr.ready.catch(() => { }); tr.finished.catch(() => { });
+  } else run();
 }
 let pend = 0;
-function soft() { cancelAnimationFrame(pend); pend = requestAnimationFrame(() => { const a = document.activeElement; if (a && main.contains(a) && a.tagName === "INPUT") { shell(); return; } render(false); }); }
+function soft() { cancelAnimationFrame(pend); pend = requestAnimationFrame(() => render(false)); }
 onChange(() => { soft(); toastLetters(); });
 
 function route() {
@@ -329,7 +384,8 @@ function route() {
   else if (["roteiro", "cenas", "listas", "hoje"].includes(h)) ui.view = h;
   else ui.view = "hoje";
   const changed = prev !== ui.view + ui.day;
-  render(changed);
+  const first = !main.firstChild;
+  render(changed || first, changed && !first);
   if (changed) window.scrollTo(0, m ? Math.max(0, ($(".tickets") || main).offsetTop - 70) : 0);
 }
 window.addEventListener("hashchange", route);
@@ -492,7 +548,7 @@ document.addEventListener("click", e => {
   if (t.id === "installBtn") return install();
   if (t.id === "syncDot") return toast({ ok: "Tudo sincronizado", syncing: "Sincronizando", offline: "Sem sinal. As mudanças sobem quando a conexão voltar.", local: "Modo local: ainda sem banco de dados configurado." }[t.dataset.s] || "");
   if (d.toggle) { const id = d.toggle; ui.open.has(id) ? ui.open.delete(id) : ui.open.add(id); const li = t.closest(".it"); li.classList.toggle("open"); t.setAttribute("aria-expanded", li.classList.contains("open")); return; }
-  if (d.done) { const k = "item-" + d.done; put("checks", k, done(k) ? null : { done: true, at: Date.now() }); return; }
+  if (d.done) { const k = "item-" + d.done, v = !done(k), li = t.closest(".it"); if (v && li) { li.classList.add("just"); setTimeout(() => li.classList.remove("just"), 800); } put("checks", k, v ? { done: true, at: Date.now() } : null); return; }
   if (d.check) { const k = d.check; put("checks", k, done(k) ? null : { done: true, at: Date.now() }); return; }
   if (d.late) { const k = "late-d" + d.late; put("flags", k, late(Number(d.late)) ? null : { on: true }); return; }
   if (d.swap) return openSwap(d.swap);
@@ -501,7 +557,7 @@ document.addEventListener("click", e => {
   if (d.sceneLink) { e.preventDefault(); ui.flipped.add(d.sceneLink); location.hash = "cenas"; setTimeout(() => { const el = document.getElementById("sc-" + d.sceneLink); if (el) el.scrollIntoView({ block: "center" }); }, 80); return; }
   if (d.flip) { const id = d.flip; ui.flipped.has(id) ? ui.flipped.delete(id) : ui.flipped.add(id); document.getElementById("sc-" + id).classList.toggle("flip"); return; }
   if (d.scene) { const id = d.scene; const v = !S.scenes[id]; if (v) { ui.flipped.delete(id); } put("scenes", id, v ? { seen: true, at: Date.now() } : null); if (v) setTimeout(() => { const el = document.getElementById("sc-" + id); if (el) el.classList.add("clapped"); }, 30); return; }
-  if (d.list) { ui.list = d.list; render(false); return; }
+  if (d.list) { ui.list = d.list; render(true, false); return; }
   if (d.rm) { put("listitems", d.rm, null); put("checks", "x-" + d.rm, null); return; }
   if (d.letter) return openLetter(d.letter);
   if (d.preset != null && t.closest("#letterF")) { const p = LETTER_PRESETS[Number(d.preset)]; $("#lf-d").value = p.d; $("#lf-t").value = p.t; if (!$("#lf-ti").value) $("#lf-ti").value = p.l; return; }
@@ -542,11 +598,18 @@ if ("serviceWorker" in navigator && (location.protocol === "https:" || location.
   navigator.serviceWorker.register("./sw.js").then(reg => {
     reg.addEventListener("updatefound", () => {
       const w = reg.installing; if (!w) return;
-      w.addEventListener("statechange", () => { if (w.state === "installed" && navigator.serviceWorker.controller) toast("Nova versão do app", "Atualizar", () => { w.postMessage("skip"); }, 30000); });
+      w.addEventListener("statechange", () => { if (w.state === "installed" && navigator.serviceWorker.controller) toast("Nova versão do app", "Atualizar", () => { askedUpdate = true; w.postMessage("skip"); }, 30000); });
     });
   }).catch(() => { });
-  let reloaded = false;
-  navigator.serviceWorker.addEventListener("controllerchange", () => { if (!reloaded) { reloaded = true; location.reload(); } });
+  // Reload only when this tab asked for the update. The first install (clients.claim)
+  // and updates accepted in another tab must not reload the page by surprise.
+  let askedUpdate = false, reloaded = false;
+  const hadController = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (reloaded) return;
+    if (askedUpdate) { reloaded = true; location.reload(); return; }
+    if (hadController) toast("App atualizado", "Recarregar", () => { reloaded = true; location.reload(); }, 30000);
+  });
 }
 
 /* ============ boot ============ */
