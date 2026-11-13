@@ -6,7 +6,7 @@
 - [x] T7. Aba Contas (controle de gastos)
 - [x] T5. Reordenar brinquedos (u1 e u2)
 - [x] T2-UI. Curiosidades na aba Cenas
-- [ ] T6-UI. Comparador de restaurantes
+- [x] T6-UI. Comparador de restaurantes
 - [ ] Ciclo de atualização de conteúdo (pull, build e deploy a cada ~60 min)
 
 ## Decisões
@@ -33,3 +33,7 @@
 - T5: durante o arraste, redesenhos vindos do Firestore ficam suspensos e rodam ao soltar.
 - T2-UI: `SCENES` e os campos `scene` dos itens saíram de `data.js`. A aba Cenas e os chips dos itens leem `CURIOSITIES`. Lugares ordenados pela posição do primeiro item do roteiro a que se referem. Atalhos no topo levam a cada dia e mostram gravadas/total.
 - T2-UI: alternativas de restaurante deixam de ter cena própria. Uma curiosidade aparece no item quando `itemIds` inclui o id do item (vale para qualquer opção escolhida).
+- T6-UI: escolha gravada como `swaps/{itemId} = {choice: idDaOpção}`, no mesmo formato que já existia. Escolher a opção recomendada apaga o documento (volta ao padrão). Uma troca antiga para uma alternativa de `alts` que não está em `MEALS` continua valendo até ser desfeita.
+- T6-UI: com entrada em `MEALS`, o item passa a usar nome, porquê (`why`), Maps e rota da opção. Os links extras do item original (ex.: Bradbury no Grand Central Market) só aparecem quando a opção em cartaz é a recomendada. O alerta de alergia e o horário da opção aparecem no item aberto.
+- T6-UI: a recomendação da sessão Restaurantes muda alguns lugares do roteiro (ex.: jantar de 14/11 passa do Bob's Big Boy para o Musso & Frank). O Bob's continua no comparador.
+- T6-UI: ordenações empatadas mantêm a ordem do arquivo. Opções sem nota ficam por último em "Melhor avaliado". O critério escolhido fica destacado em cada card.

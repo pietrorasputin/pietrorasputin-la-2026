@@ -1,5 +1,6 @@
 import { TRIP, WD, DAYS, LISTS, LETTER_PRESETS } from "./data.js";
 import { CURIOSITIES } from "./content/curiosities.js";
+import { MEALS as MEALS_RAW } from "./content/restaurants.js";
 import { ART, ICON } from "./art.js";
 import { S, onChange, put, saveLetter, deleteLetter, refreshBodies, directorLogin, directorLogout, start, laEpoch } from "./store.js";
 import { wheelHTML, spinWheel } from "./wheel.js";
@@ -71,8 +72,22 @@ function dur(ms) {
   return d ? `${d}d ${h}h` : h ? `${h}h${String(mi).padStart(2, "0")}` : `${mi} min`;
 }
 
+// Meals with an entry in MEALS (src/content/restaurants.js, owned by the Restaurantes session):
+// the recommended option drives the itinerary unless swaps/{itemId} = {choice: optionId}.
+const MEALS = MEALS_RAW && typeof MEALS_RAW === "object" ? MEALS_RAW : {};
+function meal(id) {
+  const M = MEALS[id]; if (!M || !Array.isArray(M.options) || !M.options.length) return null;
+  return { M, rec: M.options.find(o => o.id === M.recommended) || M.options[0] };
+}
 function effective(it) {
-  const c = S.swaps[it.id] && S.swaps[it.id].choice;
+  const m = meal(it.id), c = S.swaps[it.id] && S.swaps[it.id].choice;
+  if (m) {
+    const ch = c && m.M.options.find(o => o.id === c);
+    const legacy = !ch && c && it.alts && it.alts.find(x => x.id === c); // swap saved before the comparator existed
+    if (legacy) return { ...it, title: legacy.title, note: legacy.note, q: legacy.q, extra: null, _alt: legacy, _rec: m.rec };
+    const o = ch || m.rec, isRec = o.id === m.rec.id;
+    return { ...it, title: o.name, short: o.name, note: o.why, q: o.q || o.address || o.name, extra: isRec ? it.extra : null, _meal: o, _alt: isRec ? null : o, _rec: m.rec };
+  }
   const a = c && it.alts && it.alts.find(x => x.id === c);
   return a ? { ...it, title: a.title, note: a.note, q: a.q, extra: null, _alt: a } : it;
 }
@@ -175,10 +190,15 @@ function itemHTML(day, raw, i, idx) {
   const open = ui.open.has(raw.id);
   const time = raw.lbl ? `<span class="lbl">${esc(raw.lbl)}</span>` : `<span>${esc(raw.t)}</span>`;
   const curs = cursFor(raw.id);
-  const flags = (raw.alts ? `<i class="fl ${it._alt ? "on" : ""}">${ICON.swap}</i>` : "") + (curs.length ? `<i class="fl ${curs.every(c => S.scenes[c.id]) ? "on" : ""}">${ICON.clap}</i>` : "");
+  const swappable = raw.alts || meal(raw.id);
+  const flags = (swappable ? `<i class="fl ${it._alt ? "on" : ""}">${ICON.swap}</i>` : "") + (curs.length ? `<i class="fl ${curs.every(c => S.scenes[c.id]) ? "on" : ""}">${ICON.clap}</i>` : "");
   let more = "";
   if (it.note) more += `<p class="note">${esc(it.note)}</p>`;
-  if (it._alt) more += `<p class="was">Trocado. Original: ${esc(raw.title)} <button type="button" data-unswap="${raw.id}">desfazer</button></p>`;
+  if (it._meal) {
+    if (it._meal.allergy) more += `<p class="allergy">${ICON.warn}<span>${esc(it._meal.allergy)}</span></p>`;
+    if (it._meal.hours) more += `<p class="note sm">${esc(it._meal.hours)}</p>`;
+  }
+  if (it._alt) more += `<p class="was">Trocado. ${it._rec ? "Recomendado" : "Original"}: ${esc(it._rec ? it._rec.name : raw.title)} <button type="button" data-unswap="${raw.id}">desfazer</button></p>`;
   if (raw.list) {
     const L = LISTS.find(x => x.id === raw.list);
     const rows = ordered(L).filter(x => !raw.area || x.area === raw.area);
@@ -187,7 +207,7 @@ function itemHTML(day, raw, i, idx) {
   let chips = "";
   if (it.q) chips += `<a class="chip" href="${mapsQ(it.q)}" target="_blank" rel="noopener">${ICON.pin}Maps</a>`;
   (it.extra || []).forEach(x => chips += `<a class="chip" href="${mapsQ(x.q)}" target="_blank" rel="noopener">${ICON.pin}${esc(x.l)}</a>`);
-  if (raw.alts) chips += `<button type="button" class="chip gold" data-swap="${raw.id}">${ICON.swap}Trocar</button>`;
+  if (swappable) chips += `<button type="button" class="chip gold" data-swap="${raw.id}">${ICON.swap}Trocar</button>`;
   curs.forEach(c => { chips += `<a class="chip film ${S.scenes[c.id] ? "on" : ""}" href="#cenas" data-scene-link="${c.id}">${ICON.clap}${esc(c.title)}</a>`; });
   if (chips) more += `<div class="chips">${chips}</div>`;
   return `<li class="it k-${raw.k} ${ok ? "ok" : ""} ${isNow ? "now" : ""} ${cut ? "cut" : ""} ${open ? "open" : ""}" id="it-${raw.id}" style="--i:${idx}">
@@ -675,7 +695,84 @@ document.addEventListener("keydown", e => { if (e.key === "Escape" && overlay.in
 
 function findItem(id) { for (const d of DAYS) for (const it of d.items) if (it.id === id) return it; return null; }
 
+/* restaurant comparator */
+const SORTS = [
+  ["rec", "Recomendado"], ["near", "Mais perto"], ["cheap", "Mais barato"], ["health", "Mais saudável"], ["rating", "Melhor avaliado"], ["amb", "Melhor ambiente"]
+];
+const num = v => typeof v === "number" && isFinite(v) ? v : null;
+function sortOpts(m, key) {
+  const idx = new Map(m.M.options.map((o, i) => [o.id, i]));
+  const by = (f, dir = 1) => (a, b) => { const x = f(a), y = f(b); if (x == null && y == null) return idx.get(a.id) - idx.get(b.id); if (x == null) return 1; if (y == null) return -1; return (x - y) * dir || idx.get(a.id) - idx.get(b.id); };
+  const list = m.M.options.slice();
+  if (key === "near") return list.sort(by(o => num(o.minutes)));
+  if (key === "cheap") return list.sort(by(o => num(o.price)));
+  if (key === "health") return list.sort(by(o => num(o.health), -1));
+  if (key === "rating") return list.sort((a, b) => by(o => num(o.rating), -1)(a, b) || (num(b.reviews) || 0) - (num(a.reviews) || 0));
+  if (key === "amb") return list.sort(by(o => num(o.ambiance), -1));
+  return list.sort((a, b) => (b.id === m.rec.id) - (a.id === m.rec.id) || idx.get(a.id) - idx.get(b.id));
+}
+function starsHTML(r) {
+  const w = Math.max(0, Math.min(5, r)) / 5 * 100;
+  return `<span class="stars" aria-hidden="true"><span>★★★★★</span><span style="width:${w.toFixed(0)}%">★★★★★</span></span>`;
+}
+const kfmt = n => n >= 1000 ? (n / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + " mil" : String(n);
+function dots(v, icon, label) { const n = num(v) || 0; return `<span class="lvl" aria-label="${label}: ${n} de 3" title="${label}">${[1, 2, 3].map(i => `<i class="${i <= n ? "on" : ""}">${icon}</i>`).join("")}</span>`; }
+function compareHTML(id, key) {
+  const m = meal(id), raw = findItem(id);
+  const c = S.swaps[id] && S.swaps[id].choice;
+  const cur = (c && m.M.options.find(o => o.id === c)) ? c : m.rec.id;
+  const hi = { near: "near", cheap: "price", health: "health", rating: "rating", amb: "amb" }[key] || "";
+  const card = (o, i) => {
+    const on = o.id === cur, r = num(o.rating), p = num(o.price) || 0, mi = num(o.minutes);
+    return `<article class="rc ${on ? "on" : ""}" data-key="rc-${esc(o.id)}" style="--i:${i}">
+      <header class="rc-h"><div class="rc-n"><b>${esc(o.name)}</b>${o.cuisine ? `<small>${esc(o.cuisine)}</small>` : ""}</div>
+        ${o.id === m.rec.id ? `<span class="o-tag">Recomendado</span>` : ""}</header>
+      <div class="rc-m">
+        <span class="rc-r ${hi === "rating" ? "hi" : ""}">${r != null ? `${starsHTML(r)}<b>${r.toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</b>` : `<span class="muted">Sem nota</span>`}${num(o.reviews) ? `<small>${kfmt(o.reviews)} avaliações</small>` : ""}${o.ratingSource ? `<small>${esc(o.ratingSource)}</small>` : ""}</span>
+      </div>
+      <div class="rc-g">
+        <span class="${hi === "price" ? "hi" : ""}" title="Preço"><span class="price" aria-label="Preço ${p} de 4">${[1, 2, 3, 4].map(i => `<i class="${i <= p ? "on" : ""}">$</i>`).join("")}</span></span>
+        <span class="${hi === "health" ? "hi" : ""}">${dots(o.health, ICON.leaf, "Saudável")}</span>
+        <span class="${hi === "amb" ? "hi" : ""}">${dots(o.ambiance, ICON.spark, "Ambiente")}</span>
+        <span class="rc-d ${hi === "near" ? "hi" : ""}">${o.mode === "a pé" ? ICON.walk : ICON.move}${mi != null ? `${mi} min` : ""}</span>
+      </div>
+      ${o.why ? `<p class="rc-w">${esc(o.why)}</p>` : ""}
+      ${o.allergy ? `<p class="allergy">${ICON.warn}<span>${esc(o.allergy)}</span></p>` : ""}
+      ${o.hours ? `<p class="rc-hr">${esc(o.hours)}</p>` : ""}
+      <div class="rc-b">
+        ${on ? `<span class="rc-on">${ICON.check}Em cartaz</span>` : `<button type="button" class="btn sm" data-pick-meal="${esc(o.id)}">Escolher</button>`}
+        <a class="chip" href="${mapsQ(o.q || o.address || o.name)}" target="_blank" rel="noopener">${ICON.pin}Maps</a>
+        <a class="chip" href="${mapsDir(o.q || o.address || o.name)}" target="_blank" rel="noopener">${ICON.nav}Rota</a>
+      </div>
+    </article>`;
+  };
+  return `<div class="cmp-top"><div class="grab"></div>
+      <p class="kicker">${esc(raw ? effective(raw).t || raw.t : "")} · Rolo ${DAYS.find(d => d.items.includes(raw)).n}</p>
+      <h3 class="gold sh-t cmp-t">${esc(m.M.label || "Trocar")}</h3>
+      ${m.M.from ? `<p class="cmp-f">${ICON.pin}Distância a partir de ${esc(m.M.from)}</p>` : ""}
+      <div class="sorts" role="tablist">${SORTS.map(([k, l]) => `<button type="button" role="tab" class="pill" data-sort-meal="${k}" aria-selected="${k === key}" aria-pressed="${k === key}">${l}</button>`).join("")}</div>
+    </div>
+    <div class="rcs">${sortOpts(m, key).map(card).join("")}</div>
+    <button type="button" class="btn wide" id="toWheel">${ICON.dice}Deixar a roleta decidir</button>`;
+}
+function openCompare(id) {
+  const m = meal(id); ui.mealSort = ui.mealSort || "rec";
+  sheet(compareHTML(id, ui.mealSort), "tall cmp");
+  const sh = overlay.querySelector(".sheet");
+  sh.addEventListener("click", e => {
+    const s = e.target.closest("[data-sort-meal]");
+    if (s) { ui.mealSort = s.dataset.sortMeal; morph(sh, compareHTML(id, ui.mealSort)); bindWheel(); sh.scrollTo({ top: 0, behavior: reduce() ? "auto" : "smooth" });
+      const sel = sh.querySelector(".sorts [aria-pressed=\"true\"]"), row = sh.querySelector(".sorts");
+      if (sel && row) row.scrollTo({ left: sel.offsetLeft - row.clientWidth / 2 + sel.clientWidth / 2, behavior: reduce() ? "auto" : "smooth" });
+      return; }
+    const pk = e.target.closest("[data-pick-meal]");
+    if (pk) { setSwap(id, pk.dataset.pickMeal); closeSheet(); toast(`Em cartaz: ${(m.M.options.find(o => o.id === pk.dataset.pickMeal) || {}).name || ""}`); }
+  });
+  const bindWheel = () => { const w = $("#toWheel", overlay); if (w) w.onclick = () => openWheel(id, m.M.options.map(o => ({ id: o.id, title: o.name, short: o.name.replace(/\s*\(.*\)/, "") }))); };
+  bindWheel();
+}
 function openSwap(id) {
+  if (meal(id)) return openCompare(id);
   const raw = findItem(id); if (!raw) return;
   const cur = (S.swaps[id] && S.swaps[id].choice) || null;
   const opts = [{ id: null, title: raw.title, short: raw.short, note: raw.note, q: raw.q }].concat(raw.alts);
@@ -686,7 +783,7 @@ function openSwap(id) {
   $$("[data-pick]", overlay).forEach(b => b.onclick = () => { setSwap(id, b.dataset.pick || null); closeSheet(); });
   $("#toWheel", overlay).onclick = () => openWheel(id, opts);
 }
-function setSwap(id, alt) { put("swaps", id, alt ? { choice: alt } : null); }
+function setSwap(id, alt) { const m = meal(id); if (m && alt === m.rec.id) alt = null; put("swaps", id, alt ? { choice: alt } : null); }
 
 function openWheel(id, opts) {
   sheet(`<div class="grab"></div><div class="wheel-stage">${wheelHTML(opts)}<p class="w-res" id="wres" aria-live="polite">&nbsp;</p>
