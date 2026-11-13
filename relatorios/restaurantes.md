@@ -20,11 +20,11 @@ Parada anterior: Loews Hollywood Hotel. Critério: padrão.
 
 | Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
 |---|---|---|---|---|---|---|---|
-| **Starbucks Hollywood Blvd** | Café e padaria rápida | 4 (Google (via agregador), 718) | 5 min a pé | $ | intermediário | simples | baixo |
-| IHOP Sunset Blvd | Panquecas e ovos (rede americana) | 4.2 (Google (via agregador pos.do), 4.411) | 5 min carro | $ | menos saudável | simples | Fritadeira compartilhada com fish and chips. Evitar frituras. |
+| **Starbucks Hollywood Blvd** | Café e padaria rápida | 4,0 (Google (via agregador), 718) | 5 min a pé | $ | intermediário | simples | baixo |
+| IHOP Sunset Blvd | Panquecas e ovos (rede americana) | 4,2 (Google (via agregador pos.do), 4.411) | 5 min carro | $ | menos saudável | simples | Fritadeira compartilhada com fish and chips. Evitar frituras. |
 | Winchell's Donut House | Donuts e café | não encontrada (Nota da unidade não encontrada) | 7 min carro | $ | menos saudável | simples | baixo |
-| Groundwork Coffee Hollywood | Café orgânico com cozinha | 4 (Yelp (via MapQuest), 711) | 4 min carro | $$ | mais saudável | intermediário | baixo |
-| Go Get Em Tiger Los Feliz | Café de especialidade com café da manhã | 4 (Yelp (via MapQuest), 339) | 13 min carro | $$ | mais saudável | intermediário | baixo |
+| Groundwork Coffee Hollywood | Café orgânico com cozinha | 4,0 (Yelp (via MapQuest), 711) | 4 min carro | $$ | mais saudável | intermediário | baixo |
+| Go Get Em Tiger Los Feliz | Café de especialidade com café da manhã | 4,0 (Yelp (via MapQuest), 339) | 13 min carro | $$ | mais saudável | intermediário | baixo |
 | Stereoscope Coffee | Café de especialidade | não encontrada (Nota não encontrada. Listado pela Time Out) | 8 min carro | $$ | intermediário | intermediário | baixo |
 | Blue Bottle Coffee Los Feliz | Café de especialidade | não encontrada (Nota não encontrada) | 14 min carro | $$ | intermediário | intermediário | baixo |
 
@@ -46,12 +46,12 @@ Parada anterior: Citadel Outlets. Critério: padrão.
 
 | Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
 |---|---|---|---|---|---|---|---|
-| **Chipotle Mexican Grill** | Mexicana rápida (bowls) | 4.2 (Google (via spinach.guide), 681) | 3 min a pé | $ | mais saudável | simples | baixo |
-| Ruby's Diner | Diner americano | 4.4 (Google (via agregador pos.do), 3.433) | 2 min a pé | $$ | menos saudável | intermediário | Pode haver fish and chips. Evitar frituras ou confirmar fritadeira separada. |
+| **Chipotle Mexican Grill** | Mexicana rápida (bowls) | 4,2 (Google (via spinach.guide), 681) | 3 min a pé | $ | mais saudável | simples | baixo |
+| Ruby's Diner | Diner americano | 4,4 (Google (via agregador pos.do), 3.433) | 2 min a pé | $$ | menos saudável | intermediário | Pode haver fish and chips. Evitar frituras ou confirmar fritadeira separada. |
 | Guisados Boyle Heights | Tacos de ensopados mexicanos | não encontrada (Nota da unidade não encontrada. Listado no Guia Michelin) | 13 min carro | $ | intermediário | intermediário | Perguntar se algum ensopado do dia leva peixe ou camarão. |
-| Manuel's Original El Tepeyac Café | Mexicana clássica (burritos gigantes) | 4.5 (Google (via agregador), 4.784) | 15 min carro | $ | menos saudável | intermediário | Sem risco conhecido. Confirmar a fritadeira. |
-| Tamales Liliana's | Tamales e comida mexicana caseira | 7.5 (Atly (nota de 0 a 10). Google e Yelp não encontrados, 862) | 12 min carro | $ | intermediário | simples | baixo |
-| Nibi Pho Bistro | Vietnamita (pho) | 2.2 (Google (via spinach.guide), 246) | 3 min a pé | $ | mais saudável | simples | Risco alto. Caldo e molhos vietnamitas usam molho de peixe. Evitar. |
+| Manuel's Original El Tepeyac Café | Mexicana clássica (burritos gigantes) | 4,5 (Google (via agregador), 4.784) | 15 min carro | $ | menos saudável | intermediário | Sem risco conhecido. Confirmar a fritadeira. |
+| Tamales Liliana's | Tamales e comida mexicana caseira | 7,5 (Atly (nota de 0 a 10). Google e Yelp não encontrados, 862) | 12 min carro | $ | intermediário | simples | baixo |
+| Nibi Pho Bistro | Vietnamita (pho) | 2,2 (Google (via spinach.guide), 246) | 3 min a pé | $ | mais saudável | simples | Risco alto. Caldo e molhos vietnamitas usam molho de peixe. Evitar. |
 
 - **Chipotle Mexican Grill**: Bowl de proteína com legumes, rápido, sem tirar o carro e sem peixe no cardápio. Horário: Sex 10:00 às 21:00.
 - **Ruby's Diner**: Único restaurante com garçom dentro do outlet, com hambúrguer, salada e milkshake. Horário: Sex 09:00 às 21:00.
@@ -72,13 +72,13 @@ Parada anterior: Citadel Outlets (volta a Hollywood). Critério: padrão.
 
 | Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
 |---|---|---|---|---|---|---|---|
-| **Joe's Pizza Hollywood** | Pizza estilo Nova York (fatia) | 4.2 (Birdeye (Google e Yelp não encontrados), 1.358) | 13 min a pé | $ | menos saudável | simples | Evitar fatias com anchova no balcão. |
-| Musso & Frank Grill | Grill clássico de Hollywood (1919) | 4.6 (Google (via agregador), 3.728) | 7 min a pé | $$$$ | intermediário | especial | Caesar com anchova, molhos com Worcestershire e vários peixes no cardápio. Avisar o garçom. |
-| Pizzeria Mozza | Pizza italiana de autor | 4.5 (Google (via agregador Pearl), 1.872) | 12 min carro | $$ | menos saudável | intermediário | Algumas pizzas e antepastos levam anchova. Confirmar com o garçom. |
-| Grandmaster Recorders | Ítalo-australiana com rooftop | 4.7 (OpenTable (Google e Yelp não encontrados), 57) | 6 min carro | $$$ | intermediário | especial | Há peixe cru e massas que podem levar anchova. Avisar o garçom. |
-| Gwen | Carnes na brasa, alta gastronomia | 4.7 (OpenTable (Google e Yelp não encontrados), 1.549) | 5 min carro | $$$$ | intermediário | especial | O menu degustação pode ter peixe. Informar a alergia na reserva. |
-| Mírate | Mexicana contemporânea e coquetéis | 4.4 (Google (via agregador pos.do), 708) | 14 min carro | $$$ | intermediário | especial | Cardápio com ceviches e aguachiles. Avisar a alergia e evitar frutos do mar. |
-| Tender Greens Hollywood | Saladas e grelhados | 4.1 (Birdeye (Google e Yelp não encontrados), 685) | 7 min carro | $ | mais saudável | simples | Há salmão e atum no cardápio. Risco de contaminação na grelha. |
+| **Joe's Pizza Hollywood** | Pizza estilo Nova York (fatia) | 4,2 (Birdeye (Google e Yelp não encontrados), 1.358) | 13 min a pé | $ | menos saudável | simples | Evitar fatias com anchova no balcão. |
+| Musso & Frank Grill | Grill clássico de Hollywood (1919) | 4,6 (Google (via agregador), 3.728) | 7 min a pé | $$$$ | intermediário | especial | Caesar com anchova, molhos com Worcestershire e vários peixes no cardápio. Avisar o garçom. |
+| Pizzeria Mozza | Pizza italiana de autor | 4,5 (Google (via agregador Pearl), 1.872) | 12 min carro | $$ | menos saudável | intermediário | Algumas pizzas e antepastos levam anchova. Confirmar com o garçom. |
+| Grandmaster Recorders | Ítalo-australiana com rooftop | 4,7 (OpenTable (Google e Yelp não encontrados), 57) | 6 min carro | $$$ | intermediário | especial | Há peixe cru e massas que podem levar anchova. Avisar o garçom. |
+| Gwen | Carnes na brasa, alta gastronomia | 4,7 (OpenTable (Google e Yelp não encontrados), 1.549) | 5 min carro | $$$$ | intermediário | especial | O menu degustação pode ter peixe. Informar a alergia na reserva. |
+| Mírate | Mexicana contemporânea e coquetéis | 4,4 (Google (via agregador pos.do), 708) | 14 min carro | $$$ | intermediário | especial | Cardápio com ceviches e aguachiles. Avisar a alergia e evitar frutos do mar. |
+| Tender Greens Hollywood | Saladas e grelhados | 4,1 (Birdeye (Google e Yelp não encontrados), 685) | 7 min carro | $ | mais saudável | simples | Há salmão e atum no cardápio. Risco de contaminação na grelha. |
 | Shake Shack Hollywood | Hambúrguer | não encontrada (Nota da unidade não encontrada) | 6 min carro | $ | menos saudável | simples | baixo |
 
 - **Joe's Pizza Hollywood**: Fatia rápida e barata, sem reserva, adequada a um dia longo de compras. Horário: Sex 11:00 às 03:00.
@@ -100,12 +100,12 @@ Parada anterior: Loews Hollywood Hotel. Critério: padrão.
 
 | Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
 |---|---|---|---|---|---|---|---|
-| **Hugo's Studio City** | Café da manhã californiano | 4.5 (OpenTable, 584) | 18 min carro | $$ | mais saudável | intermediário | Cardápio tem salmão e molho tipo Caesar. Avisar a alergia e evitar esses itens. |
-| IHOP Sunset Blvd | Panquecas (rede americana) | 4.2 (Google (via agregador pos.do), 4.411) | 6 min carro | $ | menos saudável | simples | Fritadeira compartilhada com fish and chips. Evitar frituras. |
-| The Griddle Cafe | Panquecas gigantes | 4.4 (Google (via agregador), 3.433) | 12 min carro | $$ | menos saudável | intermediário | baixo |
-| Mel's Drive-In Hollywood | Diner retrô anos 50 | 4.2 (Google (via agregador naboo.app), 4.207) | 2 min a pé | $$ | menos saudável | intermediário | Fritadeira provavelmente compartilhada com peixe. Evitar fritos. |
-| Clark Street Diner | Diner com padaria artesanal | 4.5 (Google (via spinach.guide), 883) | 5 min carro | $$ | intermediário | intermediário | Conferir se há salmão defumado no cardápio e evitar. |
-| Kings Road Cafe | Café de bairro e brunch | 8.5 (Foursquare (nota de 0 a 10), 329) | 15 min carro | $$ | intermediário | intermediário | Cardápio tem salmão defumado. Avisar a cozinha. |
+| **Hugo's Studio City** | Café da manhã californiano | 4,5 (OpenTable, 584) | 18 min carro | $$ | mais saudável | intermediário | Cardápio tem salmão e molho tipo Caesar. Avisar a alergia e evitar esses itens. |
+| IHOP Sunset Blvd | Panquecas (rede americana) | 4,2 (Google (via agregador pos.do), 4.411) | 6 min carro | $ | menos saudável | simples | Fritadeira compartilhada com fish and chips. Evitar frituras. |
+| The Griddle Cafe | Panquecas gigantes | 4,4 (Google (via agregador), 3.433) | 12 min carro | $$ | menos saudável | intermediário | baixo |
+| Mel's Drive-In Hollywood | Diner retrô anos 50 | 4,2 (Google (via agregador naboo.app), 4.207) | 2 min a pé | $$ | menos saudável | intermediário | Fritadeira provavelmente compartilhada com peixe. Evitar fritos. |
+| Clark Street Diner | Diner com padaria artesanal | 4,5 (Google (via spinach.guide), 883) | 5 min carro | $$ | intermediário | intermediário | Conferir se há salmão defumado no cardápio e evitar. |
+| Kings Road Cafe | Café de bairro e brunch | 8,5 (Foursquare (nota de 0 a 10), 329) | 15 min carro | $$ | intermediário | intermediário | Cardápio tem salmão defumado. Avisar a cozinha. |
 | République | Padaria e café franceses | não encontrada (Nota não encontrada. Listado no Guia Michelin) | 15 min carro | $$$ | intermediário | especial | Cozinha mediterrânea usa anchova e peixe com frequência. Perguntar prato a prato. |
 
 - **Hugo's Studio City**: Fica no caminho do Warner, a cerca de 10 minutos do tour, aceita reserva e tem cardápio leve. Horário: Sáb 08:00 às 21:00.
@@ -126,12 +126,12 @@ Parada anterior: Warner Bros. Studio Tour. Critério: padrão.
 
 | Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
 |---|---|---|---|---|---|---|---|
-| **Porto's Bakery & Cafe** | Padaria cubana | 4.8 (Birdeye (nota do Google não encontrada), 1.125) | 6 min carro | $ | menos saudável | simples | Risco baixo. Confirmar se algum sanduíche ou croquete leva atum ou bacalhau. |
-| Smoke House Restaurant | Steakhouse clássica (1946) | 4 (TripAdvisor, 713) | 5 min carro | $$$ | menos saudável | especial | Tem frutos do mar, Caesar com anchova e molhos de carne com Worcestershire. |
-| Granville | Americana contemporânea | 4 (Yelp, 3.418) | 10 min carro | $$ | intermediário | intermediário | Cardápio tem salmão e a fritadeira pode ser compartilhada. |
-| Mendocino Farms | Sanduíches e saladas | 3.9 (Spinach.guide (nota do Google não encontrada), 213) | 4 min carro | $ | mais saudável | simples | Molhos tipo Caesar podem ter anchova. Confirmar. |
-| Monte Carlo Deli & Pinocchio | Italiana e delicatessen | 4.5 (Google (via agregador pos.do), 2.738) | 7 min carro | $ | menos saudável | intermediário | Molhos italianos podem levar anchova. Perguntar. |
-| Yuca's | Tacos de Yucatán | 4 (Yelp, 889) | 20 min carro | $ | intermediário | simples | Risco baixo. Confirmar se algum molho leva peixe. |
+| **Porto's Bakery & Cafe** | Padaria cubana | 4,8 (Birdeye (nota do Google não encontrada), 1.125) | 6 min carro | $ | menos saudável | simples | Risco baixo. Confirmar se algum sanduíche ou croquete leva atum ou bacalhau. |
+| Smoke House Restaurant | Steakhouse clássica (1946) | 4,0 (TripAdvisor, 713) | 5 min carro | $$$ | menos saudável | especial | Tem frutos do mar, Caesar com anchova e molhos de carne com Worcestershire. |
+| Granville | Americana contemporânea | 4,0 (Yelp, 3.418) | 10 min carro | $$ | intermediário | intermediário | Cardápio tem salmão e a fritadeira pode ser compartilhada. |
+| Mendocino Farms | Sanduíches e saladas | 3,9 (Spinach.guide (nota do Google não encontrada), 213) | 4 min carro | $ | mais saudável | simples | Molhos tipo Caesar podem ter anchova. Confirmar. |
+| Monte Carlo Deli & Pinocchio | Italiana e delicatessen | 4,5 (Google (via agregador pos.do), 2.738) | 7 min carro | $ | menos saudável | intermediário | Molhos italianos podem levar anchova. Perguntar. |
+| Yuca's | Tacos de Yucatán | 4,0 (Yelp, 889) | 20 min carro | $ | intermediário | simples | Risco baixo. Confirmar se algum molho leva peixe. |
 
 - **Porto's Bakery & Cafe**: Barato e icônico, a 6 minutos do Warner, com fila de andamento rápido às 14:15. Horário: Sáb 06:30 às 19:00 ou 20:00.
 - **Smoke House Restaurant**: Restaurante histórico frequentado por atores dos estúdios, famoso pelo pão de alho com queijo. Horário: Sáb 11:30 às 23:00.
@@ -150,13 +150,13 @@ Parada anterior: Griffith Observatory. Critério: padrão.
 
 | Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
 |---|---|---|---|---|---|---|---|
-| **Musso & Frank Grill** | Grill clássico de Hollywood (1919) | 4.6 (Google (via agregador), 3.728) | 18 min carro | $$$$ | menos saudável | especial | Cardápio tem vários peixes, Caesar com anchova e molhos com Worcestershire. Avisar o garçom. |
-| Bob's Big Boy | Diner clássico anos 50 | 3.5 (Yelp, 2.266) | 22 min carro | $ | menos saudável | intermediário | Tem fish and chips e Caesar. Fritadeira provavelmente compartilhada. |
-| Little Dom's | Ítalo-americana | 4 (OpenTable (nota do Google não encontrada), 555) | 10 min carro | $$$ | intermediário | especial | Massas e saladas italianas podem levar anchova. Perguntar prato a prato. |
-| Home Restaurant | Americana caseira com pátio | 4.5 (Birdeye (nota do Google não encontrada), 3.302) | 10 min carro | $$ | intermediário | intermediário | Fritadeira pode ser compartilhada com peixe. Saladas tipo Caesar podem ter anchova. |
-| Messhall Kitchen | Americana com coquetéis | 4.6 (OpenTable (nota do Google não encontrada)) | 8 min carro | $$$ | intermediário | especial | Tem frutos do mar e provavelmente peixe frito na mesma fritadeira. |
-| Tam O'Shanter | Escocesa com prime rib (1922) | 4 (Yelp, 2.409) | 13 min carro | $$$ | menos saudável | especial | Caesar e molhos de carne podem ter anchova ou Worcestershire. |
-| House of Pies | Diner e tortas | 3.5 (Yelp, 2.246) | 10 min carro | $ | menos saudável | simples | Fritadeira possivelmente compartilhada com peixe. |
+| **Musso & Frank Grill** | Grill clássico de Hollywood (1919) | 4,6 (Google (via agregador), 3.728) | 18 min carro | $$$$ | menos saudável | especial | Cardápio tem vários peixes, Caesar com anchova e molhos com Worcestershire. Avisar o garçom. |
+| Bob's Big Boy | Diner clássico anos 50 | 3,5 (Yelp, 2.266) | 22 min carro | $ | menos saudável | intermediário | Tem fish and chips e Caesar. Fritadeira provavelmente compartilhada. |
+| Little Dom's | Ítalo-americana | 4,0 (OpenTable (nota do Google não encontrada), 555) | 10 min carro | $$$ | intermediário | especial | Massas e saladas italianas podem levar anchova. Perguntar prato a prato. |
+| Home Restaurant | Americana caseira com pátio | 4,5 (Birdeye (nota do Google não encontrada), 3.302) | 10 min carro | $$ | intermediário | intermediário | Fritadeira pode ser compartilhada com peixe. Saladas tipo Caesar podem ter anchova. |
+| Messhall Kitchen | Americana com coquetéis | 4,6 (OpenTable (nota do Google não encontrada)) | 8 min carro | $$$ | intermediário | especial | Tem frutos do mar e provavelmente peixe frito na mesma fritadeira. |
+| Tam O'Shanter | Escocesa com prime rib (1922) | 4,0 (Yelp, 2.409) | 13 min carro | $$$ | menos saudável | especial | Caesar e molhos de carne podem ter anchova ou Worcestershire. |
+| House of Pies | Diner e tortas | 3,5 (Yelp, 2.246) | 10 min carro | $ | menos saudável | simples | Fritadeira possivelmente compartilhada com peixe. |
 
 - **Musso & Frank Grill**: Restaurante mais antigo de Hollywood, a 10 minutos a pé do hotel, no caminho de volta. Horário: Sáb jantar 17:00 às 23:00. Reservar no OpenTable.
 - **Bob's Big Boy**: Diner histórico com serviço no carro no sábado à noite, mas fora do caminho de volta. Horário: Sáb 06:00 às 03:00. O encontro de carros antigos é na sexta.
@@ -176,12 +176,12 @@ Parada anterior: Saída de Hollywood às 05:00 (região de Barstow e Yermo). Cri
 
 | Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
 |---|---|---|---|---|---|---|---|
-| **Peggy Sue's 50's Diner** | Diner retrô anos 50 | 3.5 (Yelp (via MapQuest), 2.264) | 150 min carro | $$ | menos saudável | especial | Cardápio de diner pode ter peixe frito. Confirmar fritadeira antes de pedir batata. |
-| Black Bear Diner Barstow | Diner americano com café da manhã farto | 4.4 (Google (via Birdeye), 6.512) | 135 min carro | $$ | menos saudável | intermediário | Pode haver peixe frito no cardápio. Confirmar fritadeira. |
-| Los Domingos | Café da manhã mexicano | 4.5 (Yelp, 937) | 140 min carro | $$ | intermediário | intermediário | Há pratos de camarão. Pedir para evitar peixe e confirmar a chapa. |
+| **Peggy Sue's 50's Diner** | Diner retrô anos 50 | 3,5 (Yelp (via MapQuest), 2.264) | 150 min carro | $$ | menos saudável | especial | Cardápio de diner pode ter peixe frito. Confirmar fritadeira antes de pedir batata. |
+| Black Bear Diner Barstow | Diner americano com café da manhã farto | 4,4 (Google (via Birdeye), 6.512) | 135 min carro | $$ | menos saudável | intermediário | Pode haver peixe frito no cardápio. Confirmar fritadeira. |
+| Los Domingos | Café da manhã mexicano | 4,5 (Yelp, 937) | 140 min carro | $$ | intermediário | intermediário | Há pratos de camarão. Pedir para evitar peixe e confirmar a chapa. |
 | EddieWorld (Fresh Takes) | Lanchonete de posto (sanduíches e saladas) | não encontrada (Nota não encontrada) | 150 min carro | $$ | intermediário | intermediário | Há sushi no balcão. Risco de contaminação cruzada. |
 | Barstow Station | Fast food em vagões de trem | não encontrada (Nota não encontrada) | 140 min carro | $ | menos saudável | simples | Redes de fast food podem fritar sanduíche de peixe no mesmo óleo. Evitar empanados. |
-| The Mad Greek Cafe | Grega de estrada (gyros e milkshake) | 4.2 (Google (via agregador pos.do), 6.943) | 195 min carro | $$ | intermediário | intermediário | Confirmar se há peixe frito e fritadeira compartilhada. |
+| The Mad Greek Cafe | Grega de estrada (gyros e milkshake) | 4,2 (Google (via agregador pos.do), 6.943) | 195 min carro | $$ | intermediário | intermediário | Confirmar se há peixe frito e fritadeira compartilhada. |
 
 - **Peggy Sue's 50's Diner**: Parada mais fotogênica da rota, com parque de dinossauros e o EddieWorld ao lado para abastecer. Horário: Dom 07:00 às 21:00 segundo a maioria das fontes. Uma fonte diz fechado. Confirmar em (760) 254-3370.
 - **Black Bear Diner Barstow**: Melhor nota da região, abre às 06:00 e fica 15 minutos antes de Yermo. Plano B se o Peggy Sue's estiver fechado. Horário: Dom 06:00 às 22:00.
@@ -202,13 +202,13 @@ Parada anterior: Mandalay Bay (indo ao Bellagio). Critério: padrão.
 
 | Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
 |---|---|---|---|---|---|---|---|
-| **Mon Ami Gabi** | Bistrô francês | 4 (Yelp (via MapQuest), 12.932) | 12 min carro | $$$ | intermediário | especial | Bistrô com frutos do mar. Avisar a alergia e evitar Caesar, molhos com Worcestershire e fritas de fritadeira compartilhada. |
-| Earl of Sandwich | Sanduíches quentes | 3 (Yelp (via MapQuest, contagem baixa), 112) | 12 min carro | $ | intermediário | simples | Tem sanduíche de atum e salada Caesar com anchova. Pedir troca de luva e faca. |
-| Shake Shack New York-New York | Hambúrguer | 4.2 (Uber Eats (Google e Yelp não encontrados), 5.000) | 8 min carro | $$ | menos saudável | simples | baixo |
-| Eataly Las Vegas | Mercado italiano com balcões | 4.4 (OpenTable (Google e Yelp não encontrados), 750) | 8 min carro | $$$ | intermediário | intermediário | Anchova comum em pizzas, molhos e Caesar, e há balcão de peixe. Avisar sempre. |
-| Spago by Wolfgang Puck | Californiana contemporânea | 4.7 (OpenTable (Google e Yelp não encontrados), 1.074) | 12 min carro | $$$$ | mais saudável | especial | A pizza de salmão defumado é clássica da casa e há Caesar. Avisar a alergia com ênfase. |
-| Wicked Spoon | Buffet de brunch | 4.2 (OpenTable (Google e Yelp não encontrados), 40) | 12 min carro | $$$ | menos saudável | intermediário | Estações de frutos do mar e utensílios compartilhados. Risco alto. |
-| Tacos El Gordo | Tacos de Tijuana | 4 (Yelp, 6.545) | 18 min carro | $ | intermediário | simples | Cardápio de carnes. Risco baixo. Confirmar a chapa. |
+| **Mon Ami Gabi** | Bistrô francês | 4,0 (Yelp (via MapQuest), 12.932) | 12 min carro | $$$ | intermediário | especial | Bistrô com frutos do mar. Avisar a alergia e evitar Caesar, molhos com Worcestershire e fritas de fritadeira compartilhada. |
+| Earl of Sandwich | Sanduíches quentes | 3,0 (Yelp (via MapQuest, contagem baixa), 112) | 12 min carro | $ | intermediário | simples | Tem sanduíche de atum e salada Caesar com anchova. Pedir troca de luva e faca. |
+| Shake Shack New York-New York | Hambúrguer | 4,2 (Uber Eats (Google e Yelp não encontrados), 5.000) | 8 min carro | $$ | menos saudável | simples | baixo |
+| Eataly Las Vegas | Mercado italiano com balcões | 4,4 (OpenTable (Google e Yelp não encontrados), 750) | 8 min carro | $$$ | intermediário | intermediário | Anchova comum em pizzas, molhos e Caesar, e há balcão de peixe. Avisar sempre. |
+| Spago by Wolfgang Puck | Californiana contemporânea | 4,7 (OpenTable (Google e Yelp não encontrados), 1.074) | 12 min carro | $$$$ | mais saudável | especial | A pizza de salmão defumado é clássica da casa e há Caesar. Avisar a alergia com ênfase. |
+| Wicked Spoon | Buffet de brunch | 4,2 (OpenTable (Google e Yelp não encontrados), 40) | 12 min carro | $$$ | menos saudável | intermediário | Estações de frutos do mar e utensílios compartilhados. Risco alto. |
+| Tacos El Gordo | Tacos de Tijuana | 4,0 (Yelp, 6.545) | 18 min carro | $ | intermediário | simples | Cardápio de carnes. Risco baixo. Confirmar a chapa. |
 
 - **Mon Ami Gabi**: Terraço na calçada da Strip de frente para as fontes do Bellagio, com pratos leves possíveis. Horário: Dom 07:00 às 22:00. Reserva no OpenTable.
 - **Earl of Sandwich**: Rápido e barato, premiado pelo TripAdvisor como lanche rápido, a poucos passos do Bellagio. Horário: 24 horas.
@@ -230,12 +230,12 @@ Parada anterior: Bellagio e Caesars Palace. Critério: padrão.
 
 | Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
 |---|---|---|---|---|---|---|---|
-| **Secret Pizza** | Pizza estilo Nova York (fatia) | 4 (Yelp (via MapQuest), 6.408) | 10 min a pé | $ | menos saudável | intermediário | Anchova pode ser cobertura e aparecer em molho de salada. Pedir fatias sem anchova e evitar Caesar. |
+| **Secret Pizza** | Pizza estilo Nova York (fatia) | 4,0 (Yelp (via MapQuest), 6.408) | 10 min a pé | $ | menos saudável | intermediário | Anchova pode ser cobertura e aparecer em molho de salada. Pedir fatias sem anchova e evitar Caesar. |
 | Din Tai Fung | Taiwanesa (dumplings) | não encontrada (Nota da unidade não encontrada) | 15 min a pé | $$$ | mais saudável | intermediário | Cozinha asiática. Perguntar sobre molho de peixe e dumplings de frutos do mar no mesmo vapor. |
 | Block 16 Urban Food Hall | Praça de alimentação variada | não encontrada (Nota não encontrada) | 8 min a pé | $$ | intermediário | simples | Evitar balcões asiáticos e de sushi. Confirmar fritadeiras. |
-| Javier's | Mexicana sofisticada | 4 (Yelp (via MapQuest), 2.762) | 15 min a pé | $$$ | intermediário | especial | Casa forte em frutos do mar e ceviche. Pedir carnes e confirmar chapa e fritadeira. |
-| Gordon Ramsay Hell's Kitchen | Americana contemporânea | 4.6 (OpenTable (Google e Yelp não encontrados), 55.000) | 12 min a pé | $$$$ | menos saudável | especial | Peixe e frutos do mar no cardápio, possível Caesar e Worcestershire. Avisar a alergia. |
-| LAGO by Julian Serrano | Italiana em pequenas porções | 4.2 (Google (via agregador), 3.559) | 2 min a pé | $$$$ | intermediário | especial | Cozinha italiana usa anchova e peixe cru em vários pratos. Avisar a alergia. |
+| Javier's | Mexicana sofisticada | 4,0 (Yelp (via MapQuest), 2.762) | 15 min a pé | $$$ | intermediário | especial | Casa forte em frutos do mar e ceviche. Pedir carnes e confirmar chapa e fritadeira. |
+| Gordon Ramsay Hell's Kitchen | Americana contemporânea | 4,6 (OpenTable (Google e Yelp não encontrados), 55.000) | 12 min a pé | $$$$ | menos saudável | especial | Peixe e frutos do mar no cardápio, possível Caesar e Worcestershire. Avisar a alergia. |
+| LAGO by Julian Serrano | Italiana em pequenas porções | 4,2 (Google (via agregador), 3.559) | 2 min a pé | $$$$ | intermediário | especial | Cozinha italiana usa anchova e peixe cru em vários pratos. Avisar a alergia. |
 | The Buffet at Bellagio | Buffet | não encontrada (Nota não encontrada) | 5 min a pé | $$$ | menos saudável | intermediário | Estações de frutos do mar e utensílios compartilhados. Risco alto. |
 
 - **Secret Pizza**: Rápido, barato e aprovado pelo The Infatuation. Duas fatias não pesam para 4h30 de estrada. Horário: Dom a partir das 11:00 até 02:00 ou 04:00.
@@ -258,13 +258,13 @@ Parada anterior: Lower Lot (Super Nintendo World). Critério: experiência.
 
 | Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
 |---|---|---|---|---|---|---|---|
-| **Toadstool Cafe** | Temática Nintendo (americana e italiana) | 3.2 (Google (via agregador pos.do), 1.193) | 3 min a pé | $$$ | intermediário | especial | Nenhum peixe encontrado no cardápio e sem Caesar. Confirmar com o atendente. |
+| **Toadstool Cafe** | Temática Nintendo (americana e italiana) | 3,2 (Google (via agregador pos.do), 1.193) | 3 min a pé | $$$ | intermediário | especial | Nenhum peixe encontrado no cardápio e sem Caesar. Confirmar com o atendente. |
 | Krusty Burger | Hambúrguer temático dos Simpsons | não encontrada (Nota não encontrada) | 15 min a pé | $$ | menos saudável | intermediário | Confirmar se a fritadeira é compartilhada com itens de peixe de Springfield. |
 | Moe's Tavern e Lard Lad Donuts | Bar temático (Duff e Flaming Moe) e donuts | não encontrada (Nota da unidade de Hollywood não encontrada) | 15 min a pé | $$ | menos saudável | especial | baixo |
-| Jurassic Cafe | Costa-riquenha e americana | 3 (Google (via agregador pos.do), 295) | 3 min a pé | $$ | intermediário | intermediário | Cardápio atual não verificado. Perguntar sobre peixe e fritadeira. |
+| Jurassic Cafe | Costa-riquenha e americana | 3,0 (Google (via agregador pos.do), 295) | 3 min a pé | $$ | intermediário | intermediário | Cardápio atual não verificado. Perguntar sobre peixe e fritadeira. |
 | Cletus' Chicken Shack | Frango frito temático | não encontrada (Nota não encontrada) | 15 min a pé | $$ | menos saudável | intermediário | Fritura. Confirmar se o óleo é compartilhado com peixe. |
 | Bumblebee Man's Taco Truck | Tacos mexicanos | não encontrada (Nota não encontrada) | 15 min a pé | $ | intermediário | intermediário | Perguntar se há taco de peixe no dia. |
-| Three Broomsticks | Pub britânico de Hogsmeade | 4.2 (Google (via agregador pos.do), 688) | 20 min a pé | $$$ | intermediário | especial | Fish and chips no cardápio. Evitar fritos e preferir frango assado ou costela. |
+| Three Broomsticks | Pub britânico de Hogsmeade | 4,2 (Google (via agregador pos.do), 688) | 20 min a pé | $$$ | intermediário | especial | Fish and chips no cardápio. Evitar fritos e preferir frango assado ou costela. |
 
 - **Toadstool Cafe**: Refeição mais imersiva do parque segundo os guias, no Lower Lot onde terminam a manhã. Horário: Horário do parque. Entrada por fila virtual ou QR code no app no próprio dia.
 - **Krusty Burger**: Clássico de Springfield no Upper Lot, combinável com Duff no Moe's e donut do Lard Lad. Horário: Horário do parque.
@@ -286,14 +286,14 @@ Parada anterior: Estação Hollywood/Highland (B Line). Critério: padrão.
 
 | Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
 |---|---|---|---|---|---|---|---|
-| **In-N-Out Burger Sunset** | Hambúrguer californiano | 4.5 (Google (via agregador Sluurpy), 17.118) | 13 min a pé | $ | menos saudável | simples | baixo |
-| Mel's Drive-In Hollywood | Diner retrô anos 50 | 4.2 (Google (via agregador naboo.app), 4.207) | 2 min a pé | $$ | menos saudável | intermediário | Confirmar se há peixe na fritadeira. |
-| Joe's Pizza Hollywood | Pizza estilo Nova York (fatia) | 4.2 (Birdeye (Google e Yelp não encontrados), 1.358) | 10 min a pé | $ | menos saudável | simples | Evitar fatias com anchova. |
-| Mother Wolf | Italiana romana (massa fresca) | 4 (Yelp, 1.310) | 13 min a pé | $$$$ | intermediário | especial | Cozinha romana usa anchova e colatura em molhos e saladas. Avisar o garçom. |
-| Stout Burgers & Beers | Hambúrguer artesanal e cerveja | 4.4 (Spinach.guide (Google não encontrado)) | 15 min a pé | $$ | menos saudável | intermediário | Confirmar se a fritadeira é compartilhada com peixe. |
-| Pink's Hot Dogs | Cachorro-quente | 4.5 (Google (via agregador Pearl), 13.016) | 10 min carro | $ | menos saudável | intermediário | baixo |
+| **In-N-Out Burger Sunset** | Hambúrguer californiano | 4,5 (Google (via agregador Sluurpy), 17.118) | 13 min a pé | $ | menos saudável | simples | baixo |
+| Mel's Drive-In Hollywood | Diner retrô anos 50 | 4,2 (Google (via agregador naboo.app), 4.207) | 2 min a pé | $$ | menos saudável | intermediário | Confirmar se há peixe na fritadeira. |
+| Joe's Pizza Hollywood | Pizza estilo Nova York (fatia) | 4,2 (Birdeye (Google e Yelp não encontrados), 1.358) | 10 min a pé | $ | menos saudável | simples | Evitar fatias com anchova. |
+| Mother Wolf | Italiana romana (massa fresca) | 4,0 (Yelp, 1.310) | 13 min a pé | $$$$ | intermediário | especial | Cozinha romana usa anchova e colatura em molhos e saladas. Avisar o garçom. |
+| Stout Burgers & Beers | Hambúrguer artesanal e cerveja | 4,4 (Spinach.guide (Google não encontrado)) | 15 min a pé | $$ | menos saudável | intermediário | Confirmar se a fritadeira é compartilhada com peixe. |
+| Pink's Hot Dogs | Cachorro-quente | 4,5 (Google (via agregador Pearl), 13.016) | 10 min carro | $ | menos saudável | intermediário | baixo |
 | Shake Shack Hollywood | Hambúrguer | não encontrada (Nota da unidade não encontrada) | 20 min a pé | $ | menos saudável | simples | baixo |
-| Mírate | Mexicana contemporânea e coquetéis | 4.4 (Google (via agregador pos.do), 708) | 15 min carro | $$$ | intermediário | especial | Ceviches e frutos do mar no cardápio. Avisar a alergia. |
+| Mírate | Mexicana contemporânea e coquetéis | 4,4 (Google (via agregador pos.do), 708) | 15 min carro | $$$ | intermediário | especial | Ceviches e frutos do mar no cardápio. Avisar a alergia. |
 
 - **In-N-Out Burger Sunset**: Maior volume de avaliações da lista, barato, aberto até 01:00 e sem peixe no cardápio. Horário: Seg 10:30 às 01:00.
 - **Mel's Drive-In Hollywood**: Praticamente em frente ao hotel, para quando o cansaço pesar. Horário: Seg 07:00 às 23:00.
@@ -316,12 +316,12 @@ Parada anterior: Wizarding World of Harry Potter. Critério: experiência.
 
 | Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
 |---|---|---|---|---|---|---|---|
-| **Three Broomsticks** | Pub britânico de Hogsmeade | 4.2 (Google (via agregador pos.do), 688) | 3 min a pé | $$$ | intermediário | especial | Fish and chips no cardápio, com risco de fritadeira compartilhada. Evitar fritos, preferir frango assado ou costela e falar com o chef. |
-| Hog's Head e Butterbeer | Pub britânico e bebidas | 4.2 (Yelp (contagem não encontrada)) | 2 min a pé | $$ | menos saudável | especial | baixo |
-| Minion Cafe | Temática Minions (americana e italiana) | 3.6 (Google (via agregador pos.do), 104) | 10 min a pé | $$ | intermediário | intermediário | Confirmar o caldo do ramen, que pode ter peixe ou dashi. |
+| **Three Broomsticks** | Pub britânico de Hogsmeade | 4,2 (Google (via agregador pos.do), 688) | 3 min a pé | $$$ | intermediário | especial | Fish and chips no cardápio, com risco de fritadeira compartilhada. Evitar fritos, preferir frango assado ou costela e falar com o chef. |
+| Hog's Head e Butterbeer | Pub britânico e bebidas | 4,2 (Yelp (contagem não encontrada)) | 2 min a pé | $$ | menos saudável | especial | baixo |
+| Minion Cafe | Temática Minions (americana e italiana) | 3,6 (Google (via agregador pos.do), 104) | 10 min a pé | $$ | intermediário | intermediário | Confirmar o caldo do ramen, que pode ter peixe ou dashi. |
 | Krusty Burger | Hambúrguer temático dos Simpsons | não encontrada (Nota não encontrada) | 8 min a pé | $$ | menos saudável | intermediário | Confirmar se a fritadeira é compartilhada com peixe. |
-| Mel's Diner (no parque) | Diner retrô anos 50 | 3.1 (Google (via agregador pos.do), 500) | 8 min a pé | $$ | menos saudável | intermediário | Confirmar ausência de peixe na fritadeira. |
-| Luigi's Pizza | Pizza | 3.2 (Google (via agregador pos.do), 88) | 10 min a pé | $$ | menos saudável | intermediário | Evitar pizza com anchova. |
+| Mel's Diner (no parque) | Diner retrô anos 50 | 3,1 (Google (via agregador pos.do), 500) | 8 min a pé | $$ | menos saudável | intermediário | Confirmar ausência de peixe na fritadeira. |
+| Luigi's Pizza | Pizza | 3,2 (Google (via agregador pos.do), 88) | 10 min a pé | $$ | menos saudável | intermediário | Evitar pizza com anchova. |
 
 - **Three Broomsticks**: Restaurante mais bem avaliado do parque, em salão de Hogsmeade, logo depois de Hogwarts. Horário: Horário do parque.
 - **Hog's Head e Butterbeer**: Butterbeer gelada ou frozen e cerveja britânica, complemento do almoço. Horário: Horário do parque.
@@ -342,14 +342,14 @@ Parada anterior: Estação Pershing Square (B Line). Critério: padrão.
 
 | Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
 |---|---|---|---|---|---|---|---|
-| **Grand Central Market** | Mercado gastronômico variado | 4 (Yelp, 3.223) | 5 min a pé | $ | intermediário | intermediário | Evitar Sticky Rice (molho de peixe), Oyster Gourmet e bancas de frutos do mar. Perguntar sobre fritadeira em cada banca. |
-| Sonoratown | Tacos de Sonora | 4.5 (Google (via agregador pos.do), 3.222) | 15 min a pé | $ | intermediário | simples | baixo |
-| Philippe the Original | Sanduíche French dip (1908) | 4.6 (Google (via agregador), 11.967) | 30 min a pé | $ | menos saudável | intermediário | baixo |
-| Perch | Francesa em rooftop | 4.5 (OpenTable (Google e Yelp não encontrados), 12.458) | 2 min a pé | $$$ | intermediário | especial | Cozinha francesa pode usar anchova (niçoise, molhos). Perguntar. |
-| Bottega Louie | Italiana e confeitaria | 4.5 (Birdeye (Google e Yelp não encontrados), 8.497) | 10 min a pé | $$ | intermediário | especial | Possível anchova em Caesar e molhos. Confirmar com o garçom. |
-| Badmaash | Indiana moderna | 4 (Yelp (via MapQuest), 2.151) | 10 min a pé | $$ | intermediário | intermediário | Pode haver prato de peixe e fritadeira compartilhada. Avisar a alergia. |
-| Redbird | Americana contemporânea | 4.7 (OpenTable (Google e Yelp não encontrados), 3.000) | 13 min a pé | $$$$ | intermediário | especial | Pratos de peixe e frutos do mar e molhos com anchova. Avisar a alergia na reserva. |
-| Bavel | Oriente Médio | 4.8 (OpenTable (Google e Yelp não encontrados)) | 10 min carro | $$$$ | mais saudável | especial | Há pratos de peixe. Avisar a alergia. |
+| **Grand Central Market** | Mercado gastronômico variado | 4,0 (Yelp, 3.223) | 5 min a pé | $ | intermediário | intermediário | Evitar Sticky Rice (molho de peixe), Oyster Gourmet e bancas de frutos do mar. Perguntar sobre fritadeira em cada banca. |
+| Sonoratown | Tacos de Sonora | 4,5 (Google (via agregador pos.do), 3.222) | 15 min a pé | $ | intermediário | simples | baixo |
+| Philippe the Original | Sanduíche French dip (1908) | 4,6 (Google (via agregador), 11.967) | 30 min a pé | $ | menos saudável | intermediário | baixo |
+| Perch | Francesa em rooftop | 4,5 (OpenTable (Google e Yelp não encontrados), 12.458) | 2 min a pé | $$$ | intermediário | especial | Cozinha francesa pode usar anchova (niçoise, molhos). Perguntar. |
+| Bottega Louie | Italiana e confeitaria | 4,5 (Birdeye (Google e Yelp não encontrados), 8.497) | 10 min a pé | $$ | intermediário | especial | Possível anchova em Caesar e molhos. Confirmar com o garçom. |
+| Badmaash | Indiana moderna | 4,0 (Yelp (via MapQuest), 2.151) | 10 min a pé | $$ | intermediário | intermediário | Pode haver prato de peixe e fritadeira compartilhada. Avisar a alergia. |
+| Redbird | Americana contemporânea | 4,7 (OpenTable (Google e Yelp não encontrados), 3.000) | 13 min a pé | $$$$ | intermediário | especial | Pratos de peixe e frutos do mar e molhos com anchova. Avisar a alergia na reserva. |
+| Bavel | Oriente Médio | 4,8 (OpenTable (Google e Yelp não encontrados)) | 10 min carro | $$$$ | mais saudável | especial | Há pratos de peixe. Avisar a alergia. |
 
 - **Grand Central Market**: Mercado de 1917 com muitas opções, a 5 minutos do metrô e em frente ao Bradbury Building. Horário: Mercado 08:00 às 21:00, com horário próprio por banca. Eggslut fecha às 14:00.
 - **Sonoratown**: Tortilla de farinha artesanal e carne na brasa, com Bib Gourmand do Michelin. Horário: Ter 11:00 às 21:00 ou 22:00.
@@ -372,13 +372,13 @@ Parada anterior: Loews Hollywood Hotel. Critério: padrão.
 
 | Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
 |---|---|---|---|---|---|---|---|
-| **République** | Padaria e bistrô franceses | 4 (Yelp, 7.810) | 15 min carro | $$$ | intermediário | especial | Alguns pratos levam salmão defumado ou anchova. Confirmar no balcão. |
-| IHOP Sunset Blvd | Panquecas (rede americana) | 4.2 (Google (via agregador pos.do), 4.411) | 3 min carro | $ | menos saudável | simples | Fritadeira compartilhada com fish and chips. Evitar frituras. |
-| The Griddle Cafe | Panquecas gigantes | 4.4 (Google (via agregador), 3.433) | 10 min carro | $$ | menos saudável | intermediário | baixo |
-| Mel's Drive-In Hollywood | Diner retrô anos 50 | 4.2 (Google (via agregador naboo.app), 4.207) | 2 min a pé | $ | menos saudável | intermediário | Confirmar se há peixe na fritadeira. |
-| Clark Street Diner | Diner com padaria artesanal | 4.5 (Google (via spinach.guide), 883) | 5 min carro | $$ | intermediário | intermediário | Conferir se há salmão defumado e evitar. |
+| **République** | Padaria e bistrô franceses | 4,0 (Yelp, 7.810) | 15 min carro | $$$ | intermediário | especial | Alguns pratos levam salmão defumado ou anchova. Confirmar no balcão. |
+| IHOP Sunset Blvd | Panquecas (rede americana) | 4,2 (Google (via agregador pos.do), 4.411) | 3 min carro | $ | menos saudável | simples | Fritadeira compartilhada com fish and chips. Evitar frituras. |
+| The Griddle Cafe | Panquecas gigantes | 4,4 (Google (via agregador), 3.433) | 10 min carro | $$ | menos saudável | intermediário | baixo |
+| Mel's Drive-In Hollywood | Diner retrô anos 50 | 4,2 (Google (via agregador naboo.app), 4.207) | 2 min a pé | $ | menos saudável | intermediário | Confirmar se há peixe na fritadeira. |
+| Clark Street Diner | Diner com padaria artesanal | 4,5 (Google (via spinach.guide), 883) | 5 min carro | $$ | intermediário | intermediário | Conferir se há salmão defumado e evitar. |
 | Du-par's Farmers Market | Coffee shop clássico (hotcakes desde 1938) | não encontrada (Nota não encontrada) | 15 min carro | $ | menos saudável | intermediário | baixo |
-| Blu Jam Cafe | Brunch americano | 4 (Yelp, 6.027) | 12 min carro | $$ | intermediário | intermediário | baixo |
+| Blu Jam Cafe | Brunch americano | 4,0 (Yelp, 6.027) | 12 min carro | $$ | intermediário | intermediário | baixo |
 
 - **République**: Café da manhã mais emblemático de LA, em prédio histórico, na La Brea, rota direta para o sul. Horário: Qua 08:00 às 14:00.
 - **IHOP Sunset Blvd**: Aberto 24 horas, útil se o voo exigir saída antes das 08:00. Horário: 24 horas.
@@ -400,12 +400,12 @@ Parada anterior: Randy's Donuts (Inglewood). Critério: padrão.
 
 | Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
 |---|---|---|---|---|---|---|---|
-| **In-N-Out Burger LAX** | Hambúrguer californiano | 4 (Yelp (via MapQuest), 2.096) | 8 min carro | $ | menos saudável | intermediário | baixo |
-| Randy's Donuts | Donuts | 4 (Yelp, 3.639) | 0 min a pé | $ | menos saudável | intermediário | baixo |
-| Pann's | Diner Googie (frango com waffle) | 4.6 (Google (via agregador pos.do), 3.674) | 6 min carro | $$ | menos saudável | especial | Fritadeira pode ser compartilhada se houver peixe frito. Perguntar. |
-| The Serving Spoon | Soul food | 4.5 (Yelp (via MapQuest, contagem aproximada), 3.000) | 8 min carro | $ | menos saudável | simples | Soul food costuma ter catfish frito na mesma fritadeira. Evitar frituras. |
+| **In-N-Out Burger LAX** | Hambúrguer californiano | 4,0 (Yelp (via MapQuest), 2.096) | 8 min carro | $ | menos saudável | intermediário | baixo |
+| Randy's Donuts | Donuts | 4,0 (Yelp, 3.639) | 0 min a pé | $ | menos saudável | intermediário | baixo |
+| Pann's | Diner Googie (frango com waffle) | 4,6 (Google (via agregador pos.do), 3.674) | 6 min carro | $$ | menos saudável | especial | Fritadeira pode ser compartilhada se houver peixe frito. Perguntar. |
+| The Serving Spoon | Soul food | 4,5 (Yelp (via MapQuest, contagem aproximada), 3.000) | 8 min carro | $ | menos saudável | simples | Soul food costuma ter catfish frito na mesma fritadeira. Evitar frituras. |
 | Truxton's American Bistro | Bistrô americano | não encontrada (Nota não encontrada) | 8 min carro | $$ | mais saudável | intermediário | Há peixe no cardápio. Avisar a alergia. |
-| Ayara Thai | Tailandesa caseira | 4.9 (OpenTable (Google e Yelp não encontrados)) | 8 min carro | $$ | mais saudável | intermediário | Risco alto. A cozinha tailandesa usa molho de peixe em quase tudo. Só pedir com garantia de preparo sem molho de peixe. |
+| Ayara Thai | Tailandesa caseira | 4,9 (OpenTable (Google e Yelp não encontrados)) | 8 min carro | $$ | mais saudável | intermediário | Risco alto. A cozinha tailandesa usa molho de peixe em quase tudo. Só pedir com garantia de preparo sem molho de peixe. |
 
 - **In-N-Out Burger LAX**: Aviões pousando bem acima do estacionamento, perto da devolução do carro e sem peixe no cardápio. Horário: Qua 10:30 às 01:00.
 - **Randy's Donuts**: A rosquinha gigante já está no roteiro das 10:00. Serve como lanche, não como almoço. Horário: 24 horas.
