@@ -167,3 +167,85 @@ Parada anterior: Griffith Observatory. Critério: padrão.
 - **House of Pies**: Jantar simples e barato com torta americana de sobremesa. Horário: Sáb 07:00 às 02:00.
 
 Fontes: [1](https://www.opentable.com/single.aspx?rid=203986) [2](https://www.enprimeurclub.com/restaurants/musso-frank-grill-los-angeles-restaurant) [3](https://joe.coffee/locations/ca/burbank/bob-s-big-boy-burbank-93f1569c-d7cc-41b0-baf2-cc9d7edc571f/) [4](https://visitburbank.com/events/bobs-big-boy-classic-car-show/) [5](https://www.littledoms.com/home) [6](https://theinfatuation.com/los-angeles/reviews/little-doms) [7](https://opentable.co.uk/r/home-restaurant-los-feliz-los-angeles) [8](https://reviews.birdeye.com/home-restaurant-149404647604791?page=2) [9](https://www.opentable.com/messhall-kitchen?ref=16825) [10](https://www.opentable.com/tam-o-shanter) [11](https://www.timeout.com/los-angeles/restaurants/tam-oshanter) [12](https://theinfatuation.com/los-angeles/reviews/the-tam-oshanter) [13](https://theinfatuation.com/los-angeles/reviews/house-of-pies)
+
+## Domingo 15/11, 07:30: café na I-15 rumo a Las Vegas
+
+Parada anterior: Saída de Hollywood às 05:00 (região de Barstow e Yermo). Critério: padrão.
+
+**Recomendação: Peggy Sue's 50's Diner.** Mantida a escolha atual. Abre às 07:00 no domingo segundo a maioria das fontes, fica na rota e é a parada mais fotogênica, com o EddieWorld ao lado para abastecer. Como uma fonte indica fechamento no fim de semana, o plano B é o Black Bear Diner em Barstow, que abre às 06:00 e tem nota 4,4 no Google.
+
+| Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
+|---|---|---|---|---|---|---|---|
+| **Peggy Sue's 50's Diner** | Diner retrô anos 50 | 3.5 (Yelp (via MapQuest), 2.264) | 150 min carro | $$ | menos saudável | especial | Cardápio de diner pode ter peixe frito. Confirmar fritadeira antes de pedir batata. |
+| Black Bear Diner Barstow | Diner americano com café da manhã farto | 4.4 (Google (via Birdeye), 6.512) | 135 min carro | $$ | menos saudável | intermediário | Pode haver peixe frito no cardápio. Confirmar fritadeira. |
+| Los Domingos | Café da manhã mexicano | 4.5 (Yelp, 937) | 140 min carro | $$ | intermediário | intermediário | Há pratos de camarão. Pedir para evitar peixe e confirmar a chapa. |
+| EddieWorld (Fresh Takes) | Lanchonete de posto (sanduíches e saladas) | não encontrada (Nota não encontrada) | 150 min carro | $$ | intermediário | intermediário | Há sushi no balcão. Risco de contaminação cruzada. |
+| Barstow Station | Fast food em vagões de trem | não encontrada (Nota não encontrada) | 140 min carro | $ | menos saudável | simples | Redes de fast food podem fritar sanduíche de peixe no mesmo óleo. Evitar empanados. |
+| The Mad Greek Cafe | Grega de estrada (gyros e milkshake) | 4.2 (Google (via agregador pos.do), 6.943) | 195 min carro | $$ | intermediário | intermediário | Confirmar se há peixe frito e fritadeira compartilhada. |
+
+- **Peggy Sue's 50's Diner**: Parada mais fotogênica da rota, com parque de dinossauros e o EddieWorld ao lado para abastecer. Horário: Dom 07:00 às 21:00 segundo a maioria das fontes. Uma fonte diz fechado. Confirmar em (760) 254-3370.
+- **Black Bear Diner Barstow**: Melhor nota da região, abre às 06:00 e fica 15 minutos antes de Yermo. Plano B se o Peggy Sue's estiver fechado. Horário: Dom 06:00 às 22:00.
+- **Los Domingos**: Café da manhã mexicano caseiro, com burrito de chorizo e ovo elogiado. Horário: Dom 06:00 às 23:00 (fontes divergem). Confirmar em 760-256-1381.
+- **EddieWorld (Fresh Takes)**: Maior posto da Califórnia, limpo, para abastecer e pegar algo rápido e mais leve. Horário: Todos os dias 06:00 às 00:00.
+- **Barstow Station**: Parada rápida e barata em vagões antigos, com avaliações divididas. Horário: Dom 06:00 às 21:00.
+- **The Mad Greek Cafe**: Clássico da estrada em Baker, útil só se adiarem a parada para depois das 08:00. Horário: Abertura às 08:00 (uma fonte diz 10:00).
+
+Distâncias contadas a partir de Hollywood, com saída às 05:00.
+
+Fontes: [1](https://frankiapp.com/business/peggy-sues-diner-101207) [2](https://atlasobscura.com/places/peggy-sues-50s-diner) [3](https://fueledbylolz.com/2025/12/27/peggy-sues-diner-review-yermo-ca/) [4](https://blackbeardiner.com/?p=274) [5](https://birdeye.com/black-bear-diner-barstow-149170139399808?page=4) [6](https://frankiapp.com/business/los-domingos-restaurant-barstow-172770.md) [7](https://spinach.guide/venues/los-domingos-121962/) [8](https://eddieworld.com) [9](https://www.islands.com/stories/why-tourists-should-visit-californias-largest-gas-station) [10](https://www.theinfatuation.com/los-angeles/reviews/barstow-station) [11](https://wanderlog.com/place/details/1661533) [12](https://roadtrippers.com/us/baker-ca/food-drink/mad-greek--3) [13](https://neon.reviewjournal.com/?p=810767)
+
+## Domingo 15/11, 12:00: almoço na Strip
+
+Parada anterior: Mandalay Bay (indo ao Bellagio). Critério: padrão.
+
+**Recomendação: Mon Ami Gabi.** Troca da escolha atual (Earl of Sandwich). Sem teto de preço, o Mon Ami Gabi é a opção mais especial do trajeto: terraço de frente para o Bellagio, quase 13 mil avaliações no Yelp e 4,7 no OpenTable, e depois basta atravessar a rua até o Bellagio. Reservar e avisar a alergia. O Earl of Sandwich continua como opção rápida e barata.
+
+| Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
+|---|---|---|---|---|---|---|---|
+| **Mon Ami Gabi** | Bistrô francês | 4 (Yelp (via MapQuest), 12.932) | 12 min carro | $$$ | intermediário | especial | Bistrô com frutos do mar. Avisar a alergia e evitar Caesar, molhos com Worcestershire e fritas de fritadeira compartilhada. |
+| Earl of Sandwich | Sanduíches quentes | 3 (Yelp (via MapQuest, contagem baixa), 112) | 12 min carro | $ | intermediário | simples | Tem sanduíche de atum e salada Caesar com anchova. Pedir troca de luva e faca. |
+| Shake Shack New York-New York | Hambúrguer | 4.2 (Uber Eats (Google e Yelp não encontrados), 5.000) | 8 min carro | $$ | menos saudável | simples | baixo |
+| Eataly Las Vegas | Mercado italiano com balcões | 4.4 (OpenTable (Google e Yelp não encontrados), 750) | 8 min carro | $$$ | intermediário | intermediário | Anchova comum em pizzas, molhos e Caesar, e há balcão de peixe. Avisar sempre. |
+| Spago by Wolfgang Puck | Californiana contemporânea | 4.7 (OpenTable (Google e Yelp não encontrados), 1.074) | 12 min carro | $$$$ | mais saudável | especial | A pizza de salmão defumado é clássica da casa e há Caesar. Avisar a alergia com ênfase. |
+| Wicked Spoon | Buffet de brunch | 4.2 (OpenTable (Google e Yelp não encontrados), 40) | 12 min carro | $$$ | menos saudável | intermediário | Estações de frutos do mar e utensílios compartilhados. Risco alto. |
+| Tacos El Gordo | Tacos de Tijuana | 4 (Yelp, 6.545) | 18 min carro | $ | intermediário | simples | Cardápio de carnes. Risco baixo. Confirmar a chapa. |
+
+- **Mon Ami Gabi**: Terraço na calçada da Strip de frente para as fontes do Bellagio, com pratos leves possíveis. Horário: Dom 07:00 às 22:00. Reserva no OpenTable.
+- **Earl of Sandwich**: Rápido e barato, premiado pelo TripAdvisor como lanche rápido, a poucos passos do Bellagio. Horário: 24 horas.
+- **Shake Shack New York-New York**: Hambúrguer confiável no meio do trajeto entre Mandalay Bay e Bellagio. Horário: Dom a partir das 10:30 ou 11:00.
+- **Eataly Las Vegas**: Massa ou pizza de qualidade, com saladas e balcões variados. Horário: Mercado 07:00 às 23:00. Restaurante 11:00 às 22:00.
+- **Spago by Wolfgang Puck**: Almoço sofisticado com vista das fontes, já dentro do Bellagio. Horário: Dom almoço 11:00 às 14:30.
+- **Wicked Spoon**: Buffet típico de Vegas em porções individuais, com espera de até 2 horas. Horário: Sáb e dom brunch 09:00 às 16:00. Cerca de US$ 54 a 62 por adulto.
+- **Tacos El Gordo**: Tacos autênticos e baratos com estacionamento fácil, depois do Bellagio. Horário: Dom 10:00 às 02:00.
+
+Estacionamento: todos os cassinos da Strip cobram. A única tarifa encontrada foi a do Aria, de US$ 15 por 1 a 4 horas, que pode estar desatualizada.
+
+Fontes: [1](https://www.opentable.com/r/mon-ami-gabi-las-vegas-reservations-las-vegas?rid=2028) [2](https://www.timeout.com/las-vegas/restaurants/mon-ami-gabi) [3](https://www.casino.org/vitalvegas/five-vegas-restaurants-among-most-reviewed-on-yelp/) [4](https://earlofsandwichusa.com/locations/planet-hollywood-resort-casino/) [5](https://www.tastingtable.com/2061673/earl-of-sandwich-chain-las-vegas-strip) [6](https://www.timeout.com/las-vegas/restaurants/shake-shack) [7](https://www.lasvegasadvisor.com/restaurants/shake-shack/) [8](https://lasvegasadvisor.com/restaurants/eataly/) [9](https://opentable.ca/r/la-pizza-e-la-pasta-eataly-park-mgm-las-vegas) [10](https://www.smartervegas.com/dining/restaurant/spago.aspx) [11](https://tripexpert.com/las-vegas/restaurants/spago) [12](https://www.cosmopolitanlasvegas.com/restaurants/wicked-spoon) [13](https://www.timeout.com/las-vegas/restaurants/wicked-spoon) [14](https://www.theinfatuation.com/las-vegas/reviews/tacos-el-gordo) [15](https://www.cheapovegas.com/node/4496)
+
+## Domingo 15/11, 17:00: jantar antes da estrada de volta
+
+Parada anterior: Bellagio e Caesars Palace. Critério: padrão.
+
+**Recomendação: Secret Pizza.** Mantida a escolha atual. Fica a 10 minutos a pé do Bellagio, é rápido, recomendado pelo The Infatuation e leve o suficiente para 4h30 de estrada. Para uma refeição leve e mais especial, o Din Tai Fung no Aria, avisando a alergia por causa do molho de peixe.
+
+| Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
+|---|---|---|---|---|---|---|---|
+| **Secret Pizza** | Pizza estilo Nova York (fatia) | 4 (Yelp (via MapQuest), 6.408) | 10 min a pé | $ | menos saudável | intermediário | Anchova pode ser cobertura e aparecer em molho de salada. Pedir fatias sem anchova e evitar Caesar. |
+| Din Tai Fung | Taiwanesa (dumplings) | não encontrada (Nota da unidade não encontrada) | 15 min a pé | $$$ | mais saudável | intermediário | Cozinha asiática. Perguntar sobre molho de peixe e dumplings de frutos do mar no mesmo vapor. |
+| Block 16 Urban Food Hall | Praça de alimentação variada | não encontrada (Nota não encontrada) | 8 min a pé | $$ | intermediário | simples | Evitar balcões asiáticos e de sushi. Confirmar fritadeiras. |
+| Javier's | Mexicana sofisticada | 4 (Yelp (via MapQuest), 2.762) | 15 min a pé | $$$ | intermediário | especial | Casa forte em frutos do mar e ceviche. Pedir carnes e confirmar chapa e fritadeira. |
+| Gordon Ramsay Hell's Kitchen | Americana contemporânea | 4.6 (OpenTable (Google e Yelp não encontrados), 55.000) | 12 min a pé | $$$$ | menos saudável | especial | Peixe e frutos do mar no cardápio, possível Caesar e Worcestershire. Avisar a alergia. |
+| LAGO by Julian Serrano | Italiana em pequenas porções | 4.2 (Google (via agregador), 3.559) | 2 min a pé | $$$$ | intermediário | especial | Cozinha italiana usa anchova e peixe cru em vários pratos. Avisar a alergia. |
+| The Buffet at Bellagio | Buffet | não encontrada (Nota não encontrada) | 5 min a pé | $$$ | menos saudável | intermediário | Estações de frutos do mar e utensílios compartilhados. Risco alto. |
+
+- **Secret Pizza**: Rápido, barato e aprovado pelo The Infatuation. Duas fatias não pesam para 4h30 de estrada. Horário: Dom a partir das 11:00 até 02:00 ou 04:00.
+- **Din Tai Fung**: Dumplings no vapor, refeição leve e precisa antes de dirigir. Horário: Dom 11:00 às 23:00.
+- **Block 16 Urban Food Hall**: Cada um escolhe o que quer, com Hattie B's e opções leves no mesmo lugar. Horário: Dom 07:00 às 22:00, cada balcão com horário próprio.
+- **Javier's**: Salão bonito e cozinha mexicana de alto nível para fechar Vegas. Horário: Todos os dias 11:30 às 00:00.
+- **Gordon Ramsay Hell's Kitchen**: Experiência divertida para fãs do programa, mas é refeição pesada antes da estrada. Horário: Todos os dias 11:00 às 23:30. Reservar.
+- **LAGO by Julian Serrano**: Pratos pequenos para dividir na beira do lago das fontes, permite comer leve. Horário: Domingo incerto. Confirmar em 702-693-7111.
+- **The Buffet at Bellagio**: Buffet clássico de Vegas, mas convida a exagerar antes de dirigir. Horário: Dom jantar a partir das 14:00 ou 17:00, cerca de US$ 60 a 75.
+
+Descartados: Eggslut do Cosmopolitan (fecha às 15:00 no domingo) e In-N-Out da Linq (mais de 20 minutos a pé).
+
+Fontes: [1](https://theinfatuation.com/las-vegas/reviews/secret-pizza) [2](https://www.lasvegasadvisor.com/restaurants/secret-pizza/) [3](https://happycow.net/reviews/din-tai-fung-las-vegas-235292) [4](https://www.smartervegas.com/dining/restaurant/din_tai_fung.aspx) [5](https://www.cosmopolitanlasvegas.com/block16) [6](https://www.frommers.com/destinations/las-vegas/restaurants/block-16-urban-food-hall) [7](https://www.smartervegas.com/dining/restaurant/javiers.aspx) [8](https://neon.reviewjournal.com/?p=494942) [9](https://www.gordonramsayrestaurants.com/hells-kitchen-las-vegas/) [10](https://www.opentable.com/r/hells-kitchen-caesars-palace-las-vegas?lang=en) [11](https://www.timeout.com/las-vegas/restaurants/lago-bellagio) [12](https://www.theinfatuation.com/las-vegas/reviews/lago-by-julian-serrano) [13](https://www.lasvegasadvisor.com/blog/buffet-update-april-2026/)
