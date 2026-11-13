@@ -363,3 +363,57 @@ Parada anterior: Estação Pershing Square (B Line). Critério: padrão.
 Descartados: Cole's French Dip (fechado em março de 2026), Woodspoon (fechado), Original Pantry (reabre em 19/11/2026) e Langer's (fecha às 16:00).
 
 Fontes: [1](https://grandcentralmarket.com/?p=14) [2](https://www.tripexpert.com/los-angeles/attractions/grand-central-market) [3](https://eggslut.com/) [4](https://www.theinfatuation.com/los-angeles/reviews/tacos-tumbras-a-tomas) [5](https://downtownla.com/go/sonoratown-1) [6](https://www.enprimeurclub.com/restaurants/sonoratown-los-angeles) [7](https://www.enprimeurclub.com/restaurants/philippe-the-original-los-angeles-restaurant) [8](https://www.timeout.com/los-angeles/restaurants/philippe-the-original) [9](https://www.opentable.com/perch-la?ref=16825) [10](https://www.timeout.com/los-angeles/restaurants/perch-la) [11](https://reviews.birdeye.com/bottega-louie-146752677308985?page=6) [12](https://www.opentable.com/r/badmaash-dt-la?lang=it) [13](https://guide.michelin.com/kr/ko/california/us-los-angeles/restaurant/badmaash) [14](https://opentable.ca/redbird) [15](https://guide.michelin.com/ca/fr/california/us-los-angeles/restaurant/redbird) [16](https://opentable.com/r/bavel-los-angeles) [17](https://guide.michelin.com/kr/ko/california/us-los-angeles/restaurant/bavel)
+
+## Quarta 18/11, manhã: café no dia do voo
+
+Parada anterior: Loews Hollywood Hotel. Critério: padrão.
+
+**Recomendação: République.** Troca da escolha atual (IHOP). O République abre às 08:00 na quarta, é o café da manhã mais emblemático de LA, com endosso do The Infatuation e do Guia Michelin, e fica na La Brea, caminho direto para o sul rumo ao Randy's Donuts e ao LAX. O IHOP continua como alternativa se o voo exigir sair antes das 08:00.
+
+| Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
+|---|---|---|---|---|---|---|---|
+| **République** | Padaria e bistrô franceses | 4 (Yelp, 7.810) | 15 min carro | $$$ | intermediário | especial | Alguns pratos levam salmão defumado ou anchova. Confirmar no balcão. |
+| IHOP Sunset Blvd | Panquecas (rede americana) | 4.2 (Google (via agregador pos.do), 4.411) | 3 min carro | $ | menos saudável | simples | Fritadeira compartilhada com fish and chips. Evitar frituras. |
+| The Griddle Cafe | Panquecas gigantes | 4.4 (Google (via agregador), 3.433) | 10 min carro | $$ | menos saudável | intermediário | baixo |
+| Mel's Drive-In Hollywood | Diner retrô anos 50 | 4.2 (Google (via agregador naboo.app), 4.207) | 2 min a pé | $ | menos saudável | intermediário | Confirmar se há peixe na fritadeira. |
+| Clark Street Diner | Diner com padaria artesanal | 4.5 (Google (via spinach.guide), 883) | 5 min carro | $$ | intermediário | intermediário | Conferir se há salmão defumado e evitar. |
+| Du-par's Farmers Market | Coffee shop clássico (hotcakes desde 1938) | não encontrada (Nota não encontrada) | 15 min carro | $ | menos saudável | intermediário | baixo |
+| Blu Jam Cafe | Brunch americano | 4 (Yelp, 6.027) | 12 min carro | $$ | intermediário | intermediário | baixo |
+
+- **République**: Café da manhã mais emblemático de LA, em prédio histórico, na La Brea, rota direta para o sul. Horário: Qua 08:00 às 14:00.
+- **IHOP Sunset Blvd**: Aberto 24 horas, útil se o voo exigir saída antes das 08:00. Horário: 24 horas.
+- **The Griddle Cafe**: Panquecas enormes e clássicas de Hollywood, com fila menor em dia de semana. Horário: Qua 08:00 às 15:00, sem reserva.
+- **Mel's Drive-In Hollywood**: Ao lado do hotel, rápido para dia de check-out. Horário: Qua 07:00 às 23:00.
+- **Clark Street Diner**: Diner do filme Swingers com pão da Clark Street, caso não tenham ido no sábado. Horário: Qua a partir das 07:00.
+- **Du-par's Farmers Market**: Hotcakes históricos no Original Farmers Market, abre cedo e fica no caminho para o sul. Horário: Dom a qui 06:00 às 21:00.
+- **Blu Jam Cafe**: Brunch caprichado, famoso pela crunchy French toast, mas só abre entre 08:30 e 09:00. Horário: Abre entre 08:30 e 09:00.
+
+Horário considerado: cerca de 08:00, antes do Randy's Donuts às 10:00. Descartado: Salt's Cure, que abre por volta das 09:00.
+
+Fontes: [1](https://www.theinfatuation.com/los-angeles/reviews/republique) [2](https://www.timeout.com/los-angeles/restaurants/republique) [3](https://www.opentable.com/republique?cta_type=reserve) [4](https://restaurants.ihop.com/en-us/ca/hollywood/breakfast-7006-w-sunset-blvd-005) [5](https://www.enprimeurclub.com/restaurants/the-griddle-cafe-los-angeles-restaurant) [6](https://www.discoverlosangeles.com/eat-drink/mels-drive-in-hollywood) [7](https://theinfatuation.com/los-angeles/reviews/clark-street-diner) [8](https://www.timeout.com/los-angeles/restaurants/clark-street-diner) [9](https://farmersmarketla.com/merchants/90) [10](https://www.discoverlosangeles.com/eat-drink/du-pars-the-original-farmers-market) [11](https://www.mapquest.com/us/california/blu-jam-cafe-23869537) [12](https://timeout.com/los-angeles/restaurants/blu-jam-cafe-1)
+
+## Quarta 18/11, cerca de 11:00: almoço perto do LAX
+
+Parada anterior: Randy's Donuts (Inglewood). Critério: padrão.
+
+**Recomendação: In-N-Out Burger LAX.** Mantida a escolha atual. Comer com os aviões pousando logo acima é uma experiência própria do lugar, fica a poucos minutos da devolução do carro e o cardápio não tem peixe. Para comer sentado num lugar com mais personalidade, o Pann's (diner Googie de 1958) fica a 6 minutos.
+
+| Opção | Cozinha | Nota (fonte, avaliações) | Distância (estimativa) | Preço | Saúde | Ambiente | Risco para alergia a peixe |
+|---|---|---|---|---|---|---|---|
+| **In-N-Out Burger LAX** | Hambúrguer californiano | 4 (Yelp (via MapQuest), 2.096) | 8 min carro | $ | menos saudável | intermediário | baixo |
+| Randy's Donuts | Donuts | 4 (Yelp, 3.639) | 0 min a pé | $ | menos saudável | intermediário | baixo |
+| Pann's | Diner Googie (frango com waffle) | 4.6 (Google (via agregador pos.do), 3.674) | 6 min carro | $$ | menos saudável | especial | Fritadeira pode ser compartilhada se houver peixe frito. Perguntar. |
+| The Serving Spoon | Soul food | 4.5 (Yelp (via MapQuest, contagem aproximada), 3.000) | 8 min carro | $ | menos saudável | simples | Soul food costuma ter catfish frito na mesma fritadeira. Evitar frituras. |
+| Truxton's American Bistro | Bistrô americano | não encontrada (Nota não encontrada) | 8 min carro | $$ | mais saudável | intermediário | Há peixe no cardápio. Avisar a alergia. |
+| Ayara Thai | Tailandesa caseira | 4.9 (OpenTable (Google e Yelp não encontrados)) | 8 min carro | $$ | mais saudável | intermediário | Risco alto. A cozinha tailandesa usa molho de peixe em quase tudo. Só pedir com garantia de preparo sem molho de peixe. |
+
+- **In-N-Out Burger LAX**: Aviões pousando bem acima do estacionamento, perto da devolução do carro e sem peixe no cardápio. Horário: Qua 10:30 às 01:00.
+- **Randy's Donuts**: A rosquinha gigante já está no roteiro das 10:00. Serve como lanche, não como almoço. Horário: 24 horas.
+- **Pann's**: Diner Googie de 1958 intacto, com frango e waffle elogiados pelo The Infatuation (7,7). Horário: Qua 07:00 às 21:00.
+- **The Serving Spoon**: Soul food caseiro típico de Inglewood, mas fecha às 14:00. Horário: Qua 08:00 às 14:00.
+- **Truxton's American Bistro**: Opção mais leve, com saladas e bowls, para comer sentado com calma antes do voo. Horário: Qua 09:00 às 21:00.
+- **Ayara Thai**: Tailandês familiar bem avaliado perto do aeroporto, listado só para variar o estilo. Horário: Qua 11:00 às 22:00.
+
+A localização da devolução do carro e o tempo do shuttle da locadora até o terminal não foram verificados. Reservar folga para esse trecho. O Dinah's da Sepulveda fechou em 2024.
+
+Fontes: [1](https://locations.in-n-out.com/166) [2](https://www.timeout.com/los-angeles/things-to-do/hour-to-kill-in-n-out-and-plane-spotting-by-lax) [3](https://thepointsguy.com/news/lax-in-n-out-planespotting/) [4](https://www.timeout.com/los-angeles/restaurants/randys-donuts) [5](https://www.thedonutwhole.com/randys-donuts/) [6](https://www.theinfatuation.com/los-angeles/reviews/panns-restaurant-coffee-shop) [7](https://pos.do/en/los-angeles/restaurant/panns-coffee-shop) [8](https://www.panns.com/) [9](https://startpage.mapquest.com/us/california/the-serving-spoon-10903809) [10](https://www.eatokra.com/businesses/the-serving-spoon) [11](https://joinpearl.co/restaurants/los-angeles-united-states-california/truxton-s-american-bistro) [12](https://www.gayot.com/restaurants/truxtons-american-bistro-los-angeles-ca-90045_2la111109.html) [13](https://opentable.com/r/ayara-thai-los-angeles) [14](https://www.opentable.ca/features/hot-spots-lax-ca)
