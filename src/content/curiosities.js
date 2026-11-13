@@ -717,8 +717,50 @@ export const CURIOSITIES = [
     "tag": "Filme",
     "title": "Homem de Ferro 2",
     "year": 2010,
-    "text": "Tony Stark toma café sentado dentro do donut gigante do telhado.",
+    "text": "Tony Stark, de armadura, toma café sentado dentro do donut gigante até Nick Fury aparecer. O interior da cena foi filmado em outra loja, porque o Randy's só vende para viagem.",
+    "gen": true,
+    "source": "https://movie-locations.com/movies/i/Iron-Man-2.php"
+  },
+  {
+    "id": "randys-1953",
+    "place": "Randy's Donuts",
+    "day": 7,
+    "itemIds": [
+      "d7-randys"
+    ],
+    "tag": "História",
+    "title": "Big Donut Drive-In",
+    "year": 1953,
+    "text": "O donut gigante é de 1953, quando a loja era a segunda da rede Big Donut Drive-In. Ele também aparece em 2012, Dope e Get Shorty.",
     "gen": false,
-    "source": ""
+    "source": "https://en.wikipedia.org/wiki/Randy%27s_Donuts"
+  },
+  {
+    "id": "innout-1948",
+    "place": "In-N-Out",
+    "day": 7,
+    "itemIds": [
+      "d7-innout"
+    ],
+    "tag": "História",
+    "title": "In-N-Out",
+    "year": 1948,
+    "text": "A rede nasceu em 1948 em Baldwin Park, numa barraca de cerca de 9 m², tida como o primeiro drive-thru da Califórnia com pedido por alto-falante.",
+    "gen": false,
+    "source": "https://en.wikipedia.org/wiki/In-N-Out_Burger"
+  },
+  {
+    "id": "innout-lax",
+    "place": "In-N-Out e LAX",
+    "day": 7,
+    "itemIds": [
+      "d7-innout"
+    ],
+    "tag": "Bizarro",
+    "title": "Mines Field",
+    "year": 1928,
+    "text": "A unidade da Sepulveda fica na cabeceira da pista 24R. O LAX abriu em 1928 como Mines Field, num terreno de trigo, cevada e feijão.",
+    "gen": false,
+    "source": "https://en.wikipedia.org/wiki/History_of_Los_Angeles_International_Airport"
   }
 ];
