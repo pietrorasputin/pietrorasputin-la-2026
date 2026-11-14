@@ -14,6 +14,10 @@ service cloud.firestore {
       allow read: if signedIn();
       allow write: if director();
     }
+    // Gastos individuais do Pedro (pagina Meus gastos): so o diretor le e escreve.
+    match /mine/{id} {
+      allow read, write: if director();
+    }
     // Texto da carta: o servidor so entrega depois do horario marcado.
     match /letterBody/{id} {
       allow read: if director() || (signedIn() && request.time >= resource.data.unlockAt);

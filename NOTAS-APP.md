@@ -39,3 +39,8 @@
 - T6-UI: ordenações empatadas mantêm a ordem do arquivo. Opções sem nota ficam por último em "Melhor avaliado". O critério escolhido fica destacado em cada card.
 - Ciclo de conteúdo: o build usa o `src/content` do momento. Cada ciclo faz pull, rebuild e teste de fumaça só quando houve commit novo em `src/content`. Fim do ciclo após 2 horas sem mudança.
 - Ciclo de conteúdo encerrado em 13/11, 03h30 de LA: nenhum commit novo em `src/content` desde 01h09 de LA (verificações às 02h28 e 03h30). O app publicado já contém esse conteúdo. Se as sessões de conteúdo voltarem a publicar, basta pull, `node build.mjs docs` e push.
+
+## Meus gastos (14/11)
+- Pagina `#meus`, acessada pelo seletor "Do casal | Meus gastos" no topo de Contas. O seletor so aparece no modo diretor.
+- Dados na colecao `mine` (exp-<id> e `settings` {limit, base}). Regra nova em `firestore.rules`: so o diretor le e escreve. Nada vai para o localStorage no modo nuvem e o estado e limpo ao sair do modo diretor.
+- Numeros: total gasto = individual + compartilhado desembolsado (gastos que o Pedro pagou + acertos que ele pagou - acertos que recebeu). Saldo do compartilhado = mesmo calculo da aba Contas. Limite pode descontar o desembolsado (padrao) ou o custo real (individual + parte do Pedro).

@@ -128,7 +128,7 @@ function shell() {
   const sd = $("#syncDot");
   sd.dataset.s = S.mode === "local" ? "local" : S.sync;
   sd.setAttribute("aria-label", { ok: "Sincronizado", syncing: "Sincronizando", offline: "Offline: as mudanças sobem quando a conexão voltar", local: "Modo local" }[sd.dataset.s]);
-  $$("#tabs a").forEach(a => a.setAttribute("aria-current", a.dataset.v === ui.view ? "page" : "false"));
+  $$("#tabs a").forEach(a => a.setAttribute("aria-current", a.dataset.v === (ui.view === "meus" ? "contas" : ui.view) ? "page" : "false"));
   $("#installBtn").hidden = !canInstall();
   document.body.classList.toggle("director", S.director);
 }
@@ -454,7 +454,7 @@ function renderContas() {
     return `<li class="ex" data-key="${x.id}"><button type="button" class="ex-b" data-exp="${x.id}"><span class="ex-i">${c ? ICON[c[2]] : ICON.coin}</span>
       <span class="ex-t"><b>${esc(x.desc || (c ? c[1] : "Gasto"))}</b><small>${WHO[x.payer]} pagou · ${split}</small></span><span class="ex-v">${usd(x.total)}</span></button></li>`;
   };
-  return `<section class="hero marquee bill" id="hero">
+  return `${contasSwitch("contas")}<section class="hero marquee bill" id="hero">
       <div class="bulbs" aria-hidden="true" data-own="1"></div>
       ${debtor ? `<p class="kicker">Próximo a pagar</p><h1 class="title gold bill-n">${WHO[debtor]}</h1>
         <p class="sub bill-s">${WHO[debtor]} deve ${usd(owe)} ${TO[other(debtor)]}</p>`
@@ -575,6 +575,121 @@ overlay.addEventListener("click", e => {
   put("listitems", f.dataset.id, null); closeSheet(); toast("Excluído");
 });
 
+/* ============ MEUS GASTOS (privado, só o diretor) ============ */
+// Firestore "mine": exp-<id> {type:"expense", desc, total, date, cat, at} and settings {limit, base}.
+// Rules: only the director reads or writes. Lorena never subscribes and never sees the page.
+const contasSwitch = cur => S.director ? `<nav class="pills money-sw" aria-label="Contas">
+    <a class="pill" href="#contas" aria-pressed="${cur === "contas"}">Do casal</a><a class="pill" href="#meus" aria-pressed="${cur === "meus"}">Meus gastos</a></nav>` : "";
+function myNumbers() {
+  const shared = expenses(), { b } = balances(shared);
+  let paidShared = 0, myShare = 0;
+  for (const x of shared) {
+    if (x.type === "expense") { if (x.payer === "pedro") paidShared += cents(x.total); myShare += cents((x.shares || {}).pedro || 0); }
+    else if (x.type === "settle") paidShared += x.payer === "pedro" ? cents(x.total) : -cents(x.total);
+  }
+  const mine = Object.entries(S.mine).filter(([id, v]) => id.startsWith("exp-") && v && v.type === "expense").map(([id, v]) => ({ id, ...v }));
+  const indiv = mine.reduce((a, x) => a + cents(x.total), 0);
+  const set = S.mine.settings || {};
+  const limit = set.limit > 0 ? cents(set.limit) : 0, base = set.base === "cost" ? "cost" : "paid";
+  const total = indiv + paidShared, used = base === "cost" ? indiv + myShare : total;
+  return { shared, mine, indiv, paidShared, myShare, total, saldo: b.pedro, limit, base, used, left: limit - used };
+}
+function renderMeus() {
+  if (!S.director) return `<header class="pagehead"><p class="kicker">Privado</p><h1 class="gold">Meus gastos</h1></header>
+    <div class="empty">${ICON.coin}<p>Esta página é privada. Entre no modo diretor para ver.</p><button type="button" class="btn" data-act="login">Entrar</button></div>`;
+  const n = myNumbers();
+  const pct = n.limit ? Math.min(100, Math.max(0, n.used / n.limit * 100)) : 0;
+  const over = n.limit && n.left < 0;
+  const saldoTxt = n.saldo > 0 ? "A receber" : n.saldo < 0 ? "Você deve" : "Zerado";
+  const rows = [];
+  for (const x of n.mine) rows.push({ date: x.date, at: x.at || 0, v: cents(x.total), h: (() => { const c = catOf(x.cat);
+    return `<li class="ex mine" data-key="m-${x.id}"><button type="button" class="ex-b" data-mine="${x.id}"><span class="ex-i">${c ? ICON[c[2]] : ICON.coin}</span>
+      <span class="ex-t"><b>${esc(x.desc || (c ? c[1] : "Gasto"))}</b><small><i class="tag ind">Individual</i>${c ? c[1] : ""}</small></span><span class="ex-v">${usd(x.total)}</span></button></li>`; })() });
+  for (const x of n.shared) {
+    let v = 0, sub = "";
+    if (x.type === "expense" && x.payer === "pedro") { v = cents(x.total); sub = `sua parte ${usd((x.shares || {}).pedro || 0)}`; }
+    else if (x.type === "settle") { v = x.payer === "pedro" ? cents(x.total) : -cents(x.total); sub = x.payer === "pedro" ? "você pagou à Lorena" : "a Lorena te pagou"; }
+    else continue;
+    rows.push({ date: x.date, at: x.at || 0, v, h: `<li class="ex shared" data-key="s-${x.id}"><button type="button" class="ex-b" data-exp="${x.id}"><span class="ex-i">${x.type === "settle" ? ICON.swap : ICON.coin}</span>
+      <span class="ex-t"><b>${esc(x.type === "settle" ? "Acerto" : x.desc || "Gasto do casal")}</b><small><i class="tag sh">Compartilhado</i>${sub}</small></span><span class="ex-v">${v < 0 ? "−" : ""}${usd(Math.abs(v) / 100)}</span></button></li>` });
+  }
+  rows.sort((a, b) => b.date.localeCompare(a.date) || b.at - a.at);
+  const groups = [];
+  for (const r of rows) { let g = groups[groups.length - 1]; if (!g || g.date !== r.date) groups.push(g = { date: r.date, items: [], tot: 0 }); g.items.push(r.h); g.tot += r.v; }
+  return `${contasSwitch("meus")}
+    ${S.mineErr ? `<div class="planb">${ICON.late}<p>O Firebase ainda não libera a área privada. Atualize as regras no console (instruções na conversa) e reabra o app. Até lá, o que você lançar aqui não fica salvo.</p></div>` : ""}
+    <section class="hero marquee bill my-hero ${over ? "over" : ""}" id="hero">
+      <div class="bulbs" aria-hidden="true" data-own="1"></div>
+      ${n.limit ? `<p class="kicker">${over ? "Passou do limite" : "Restante do limite"}</p>
+        <h1 class="title gold bill-n">${over ? "−" : ""}${usd(Math.abs(n.left) / 100)}</h1>
+        <div class="lim-bar" role="img" aria-label="${Math.round(pct)}% do limite usado"><i style="width:${pct}%"></i></div>
+        <p class="sub bill-s">${usd(n.used / 100)} de ${usd(n.limit / 100)} · ${n.base === "cost" ? "custo real" : "desembolsado"}</p>
+        <button type="button" class="lim-edit" data-act="limit" aria-label="Editar limite">${ICON.edit}Editar limite</button>`
+      : `<p class="kicker">Meus gastos</p><h1 class="title gold bill-n">${usd(n.total / 100)}</h1><p class="sub bill-s">Total gasto na viagem</p>
+        <button type="button" class="lim-edit" data-act="limit">${ICON.plus}Definir limite</button>`}
+    </section>
+    <div class="my-grid">
+      <div class="my-t big"><small>Total gasto</small><b>${usd(n.total / 100)}</b><span>individual + compartilhado</span></div>
+      <div class="my-t ind"><small><i class="dotc"></i>Individual</small><b>${usd(n.indiv / 100)}</b><span>${n.mine.length} lançamento${n.mine.length === 1 ? "" : "s"}</span></div>
+      <div class="my-t sh"><small><i class="dotc"></i>Compartilhado</small><b>${usd(n.paidShared / 100)}</b><span>sua parte ${usd(n.myShare / 100)}</span></div>
+      <a class="my-t bal ${n.saldo < 0 ? "neg" : n.saldo > 0 ? "pos" : ""}${n.limit ? "" : " solo"}" href="#contas"><small>Saldo do compartilhado</small><b>${usd(Math.abs(n.saldo) / 100)}</b><span>${saldoTxt}</span></a>
+      ${n.limit ? `<button type="button" class="my-t lim ${over ? "neg" : ""}" data-act="limit"><small>Saldo do limite</small><b>${over ? "−" : ""}${usd(Math.abs(n.left) / 100)}</b><span>limite ${usd(n.limit / 100)}</span></button>` : ""}
+    </div>
+    <div class="bill-act one"><button type="button" class="btn" data-act="mine-new">${ICON.plus}Lançar gasto individual</button></div>
+    ${groups.length ? groups.map(g => `<section class="ex-day" data-key="myd-${g.date}"><header><span>${wd(g.date)}, ${dnum(g.date)} ${MON}</span><span>${usd(g.tot / 100)}</span></header><ul>${g.items.join("")}</ul></section>`).join("")
+      : `<div class="empty">${ICON.coin}<p>Seus gastos individuais e o que você pagou no compartilhado aparecem aqui, por dia.</p></div>`}`;
+}
+function mineForm(x) {
+  const e = x || { desc: "", total: 0, date: todayTrip(), cat: "" };
+  sheet(`<div class="grab"></div><h3 class="gold sh-t">${x ? "Editar gasto individual" : "Gasto individual"}</h3>
+    <form id="mineF" class="form" data-id="${x ? x.id : ""}" novalidate>
+      <label class="fld"><span>Descrição</span><input id="mi-desc" maxlength="60" value="${esc(e.desc)}" placeholder="Boné na Universal" autocomplete="off"></label>
+      <div class="row2">
+        <label class="fld"><span>Valor (US$)</span><input id="mi-total" inputmode="decimal" value="${moneyIn(cents(e.total))}" placeholder="0,00" autocomplete="off"></label>
+        <label class="fld"><span>Data</span><input id="mi-date" type="date" min="${TRIP.start}" max="2026-11-30" value="${e.date}"></label>
+      </div>
+      <div class="fld"><span>Categoria</span><div class="pills wrap" data-group="cat">${CATS.map(c => `<button type="button" class="pill" data-pv="${c[0]}" aria-pressed="${e.cat === c[0]}">${ICON[c[2]]}${c[1]}</button>`).join("")}</div></div>
+      <p class="hint">Só você vê este gasto.</p>
+      <p class="err" id="mi-err" hidden></p>
+      <button class="btn wide" type="submit">${x ? "Salvar" : "Lançar"}</button>
+      ${x ? `<button type="button" class="btn ghost wide danger" id="mi-del">Excluir gasto</button>` : ""}
+    </form>`, "tall");
+}
+function saveMine(f) {
+  const tot = parseMoney($("#mi-total", overlay).value);
+  if (!(tot > 0)) { const el = $("#mi-err", overlay); el.hidden = false; el.textContent = "Informe um valor maior que zero."; return; }
+  const date = $("#mi-date", overlay).value || todayTrip();
+  const id = f.dataset.id || "exp-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+  const prev = S.mine[id];
+  put("mine", id, { type: "expense", desc: $("#mi-desc", overlay).value.trim(), total: tot / 100, date, cat: pillVal("cat"), at: prev && prev.at || Date.now() });
+  closeSheet(); toast(f.dataset.id ? "Gasto atualizado" : `Lançado: ${usd(tot / 100)}`);
+}
+function limitForm() {
+  const set = S.mine.settings || {}, base = set.base === "cost" ? "cost" : "paid";
+  sheet(`<div class="grab"></div><h3 class="gold sh-t">Limite de gastos</h3>
+    <form id="limF" class="form" novalidate>
+      <label class="fld"><span>Limite da viagem (US$)</span><input id="li-val" inputmode="decimal" value="${moneyIn(set.limit > 0 ? cents(set.limit) : 0)}" placeholder="0,00" autocomplete="off"></label>
+      <div class="fld"><span>Descontar do limite</span><div class="pills col" data-group="base">
+        <button type="button" class="pill" data-pv="paid" aria-pressed="${base === "paid"}">Tudo que eu desembolsei</button>
+        <button type="button" class="pill" data-pv="cost" aria-pressed="${base === "cost"}">Meu custo real (individual + minha parte)</button></div></div>
+      <p class="err" id="li-err" hidden></p>
+      <button class="btn wide" type="submit">Salvar limite</button>
+      ${set.limit > 0 ? `<button type="button" class="btn ghost wide" id="li-off">Remover limite</button>` : ""}
+    </form>`);
+}
+function saveLimit() {
+  const v = parseMoney($("#li-val", overlay).value);
+  if (!(v > 0)) { const el = $("#li-err", overlay); el.hidden = false; el.textContent = "Informe um limite maior que zero."; return; }
+  put("mine", "settings", { limit: v / 100, base: pillVal("base") || "paid", at: Date.now() });
+  closeSheet(); toast(`Limite: ${usd(v / 100)}`);
+}
+overlay.addEventListener("click", e => {
+  if (e.target.closest("#li-off")) { put("mine", "settings", null); closeSheet(); toast("Limite removido"); return; }
+  const del = e.target.closest("#mi-del"); if (!del) return;
+  if (del.dataset.armed !== "1") { del.dataset.armed = "1"; del.classList.add("armed"); del.textContent = "Toque de novo para excluir"; return; }
+  put("mine", del.closest("form").dataset.id, null); closeSheet(); toast("Excluído");
+});
+
 /* ============ render loop ============ */
 // fresh: navigation (new view, day or list). Rebuilds the page and plays the entrance.
 // Otherwise the page is patched in place, and only when the markup actually changed.
@@ -584,6 +699,7 @@ function viewHTML() {
   if (ui.view === "cenas") return renderCenas();
   if (ui.view === "listas") return renderListas();
   if (ui.view === "contas") return renderContas();
+  if (ui.view === "meus") return renderMeus();
   return renderHoje();
 }
 function render(fresh, vt = fresh) {
@@ -617,7 +733,7 @@ function route() {
   const h = location.hash.slice(1), m = h.match(/^dia-(\d)$/);
   const prev = ui.view + ui.day;
   if (m) { ui.view = "hoje"; ui.day = Math.min(6, Math.max(0, Number(m[1]) - 1)); }
-  else if (["roteiro", "cenas", "listas", "contas", "hoje"].includes(h)) ui.view = h;
+  else if (["roteiro", "cenas", "listas", "contas", "meus", "hoje"].includes(h)) ui.view = h;
   else ui.view = "hoje";
   const changed = prev !== ui.view + ui.day;
   const first = !main.firstChild;
@@ -912,6 +1028,10 @@ document.addEventListener("click", e => {
   if (d.act === "titles") return playTitles();
   if (d.act === "exp-new") return expenseForm(null);
   if (d.act === "settle") return settleForm(null);
+  if (d.act === "mine-new") return mineForm(null);
+  if (d.act === "limit") return limitForm();
+  if (d.act === "login") return openLogin();
+  if (d.mine) { const x = S.mine[d.mine]; if (x) mineForm({ id: d.mine, ...x }); return; }
   if (d.exp) { const x = S.listitems[d.exp]; if (!x) return; const v = { id: d.exp, ...x }; return x.type === "settle" ? settleForm(v) : expenseForm(v); }
   if (t.id === "mailBtn") return openMail();
   if (t.id === "installBtn") return install();
@@ -952,6 +1072,8 @@ document.addEventListener("submit", async e => {
   e.preventDefault(); const f = e.target;
   if (f.id === "expF") return saveExpense(f);
   if (f.id === "setF") return saveSettle(f);
+  if (f.id === "mineF") return saveMine(f);
+  if (f.id === "limF") return saveLimit();
   if (f.dataset.add) { const inp = f.querySelector("input"), txt = inp.value.trim(); if (!txt) return; put("listitems", "c" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), { list: f.dataset.add, text: txt, at: Date.now() }); inp.value = ""; setTimeout(() => { const i2 = document.getElementById("add-" + f.dataset.add); if (i2) i2.focus(); }, 30); return; }
   if (f.id === "loginF") {
     try { await directorLogin(S.mode === "cloud" ? $("#lg-e").value : "", S.mode === "cloud" ? $("#lg-p").value : ""); closeSheet(); toast("Ação! Modo diretor ativo"); }

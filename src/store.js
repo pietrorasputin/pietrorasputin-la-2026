@@ -15,13 +15,15 @@ export const S = {
   mode: firebaseConfig ? "cloud" : "local",
   director: !!saved.localDirector && !firebaseConfig,
   sync: navigator.onLine ? "ok" : "offline",
-  user: null
+  user: null,
+  // Private to the director: never persisted to localStorage, read only after login.
+  mine: (!firebaseConfig && saved.mine) || {}, mineErr: null
 };
 
 let fb = null; // firebase handles once loaded
 let listeners = [];
 let changeCb = () => { };
-const persist = () => lsSet(LS, { swaps: S.swaps, flags: S.flags, checks: S.checks, scenes: S.scenes, listitems: S.listitems, letterMeta: S.letterMeta, letterBody: S.letterBody, localDirector: S.mode === "local" && S.director });
+const persist = () => lsSet(LS, { swaps: S.swaps, flags: S.flags, checks: S.checks, scenes: S.scenes, listitems: S.listitems, letterMeta: S.letterMeta, letterBody: S.letterBody, localDirector: S.mode === "local" && S.director, mine: S.mode === "local" ? S.mine : undefined });
 const changed = () => { persist(); changeCb(); };
 
 export function onChange(cb) { changeCb = cb; }
@@ -97,6 +99,7 @@ export async function start() {
     S.user = user;
     if (!user) { A.signInAnonymously(auth).catch(() => setSync("offline")); return; }
     S.director = !user.isAnonymous;
+    if (!S.director) { S.mine = {}; S.mineErr = null; }
     if (!S.director) { // keep only bodies already unlocked
       for (const id of Object.keys(S.letterBody)) if (!S.letterMeta[id] || Date.now() < S.letterMeta[id].at) delete S.letterBody[id];
     }
@@ -107,7 +110,7 @@ export async function start() {
 
 function subscribe() {
   listeners.forEach(u => u()); listeners = [];
-  const cols = S.director ? COLS.concat("letterBody") : COLS;
+  const cols = S.director ? COLS.concat("letterBody", "mine") : COLS;
   let pendingAny = false;
   for (const col of cols) {
     const u = fb.onSnapshot(fb.collection(fb.db, col), { includeMetadataChanges: true }, snap => {
@@ -119,10 +122,11 @@ function subscribe() {
         else m[d.id] = x;
       });
       S[col] = m;
+      if (col === "mine") S.mineErr = null;
       pendingAny = snap.metadata.hasPendingWrites;
       setSync(!navigator.onLine ? "offline" : (snap.metadata.fromCache || pendingAny ? "syncing" : "ok"));
       changed();
-    }, err => { console.warn(col, err && err.code); });
+    }, err => { console.warn(col, err && err.code); if (col === "mine") { S.mineErr = (err && err.code) || "erro"; changed(); } });
     listeners.push(u);
   }
 }

@@ -173,6 +173,7 @@ export const ICON = {
   x: I('<path d="M6 6l12 12M18 6L6 18"/>'),
   down: I('<path d="M12 4v12M6 11l6 6 6-6M5 20h14"/>'),
   more: I('<path d="M6 9l6 6 6-6"/>'),
+  edit: I('<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>'),
   coin: I('<path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6M9 16h3"/>'),
   bag: I('<path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>'),
   bed: I('<path d="M3 18V7M3 14h18v4M21 14v-3a3 3 0 0 0-3-3h-7v6"/><circle cx="7" cy="11" r="2"/>'),

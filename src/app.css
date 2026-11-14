@@ -626,3 +626,36 @@ body.locked #toast{bottom:auto;top:calc(env(safe-area-inset-top,0px) + 14px)}
 .btn.sm{height:34px;padding:0 16px;font-size:14px}
 .rc-on{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;font-size:14px;color:var(--gold-hi)}
 .rc-on svg{width:16px;height:16px}
+
+/* ===== Meus gastos (privado) ===== */
+.money-sw{margin:2px 0 14px;padding:4px;border-radius:999px;background:var(--ink-2);box-shadow:0 0 0 1px var(--line) inset}
+.money-sw .pill{border:0;min-height:36px;font-size:14px}
+.my-hero.over{background:radial-gradient(130% 120% at 50% 0%,#8a2f24 0%,#5c1a20 45%,var(--wine) 100%)}
+.lim-bar{position:relative;height:8px;border-radius:8px;background:rgba(0,0,0,.4);box-shadow:0 0 0 1px rgba(246,227,180,.25) inset;overflow:hidden;margin:4px auto 12px;max-width:320px}
+.lim-bar i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,var(--gold-lo),var(--gold-hi));box-shadow:0 0 12px var(--gold);transition:width .6s var(--ease)}
+.my-hero.over .lim-bar i{background:linear-gradient(90deg,#c4454c,#f7b9b2);box-shadow:0 0 12px var(--rec)}
+.lim-edit{position:relative;display:inline-flex;align-items:center;gap:6px;margin-top:14px;height:34px;padding:0 14px;border-radius:999px;border:1px solid rgba(246,227,180,.45);color:var(--paper);font-size:13px;background:rgba(0,0,0,.25)}
+.lim-edit svg{width:15px;height:15px}
+.my-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.my-t{display:grid;gap:4px;align-content:start;text-align:left;padding:14px;border-radius:14px;background:var(--stage);box-shadow:0 0 0 1px var(--line) inset;min-width:0}
+.my-t small{display:flex;align-items:center;gap:6px;font:400 10px/1.2 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.my-t b{font:600 clamp(19px,5.4vw,24px)/1.1 var(--f-body);color:var(--gold-hi);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.my-t span{font-size:12px;color:var(--muted)}
+.my-t.big{grid-column:1/-1;background:linear-gradient(160deg,var(--stage-2),var(--stage));box-shadow:0 0 0 1px var(--line-2) inset}
+.my-t.big b{font:400 clamp(30px,9vw,40px)/1 var(--f-display)}
+.my-t.solo{grid-column:1/-1}
+.dotc{width:8px;height:8px;border-radius:50%;flex:none}
+.my-t.ind .dotc,.tag.ind{background:var(--gold)}
+.my-t.sh .dotc,.tag.sh{background:#c4454c}
+.my-t.ind{box-shadow:0 0 0 1px rgba(216,178,108,.35) inset}
+.my-t.sh{box-shadow:0 0 0 1px rgba(196,69,76,.45) inset}
+.my-t.bal.pos b{color:var(--ok)}
+.my-t.bal.neg b,.my-t.lim.neg b{color:#ef8a80}
+.my-t:active{transform:scale(.98)}
+.tag{display:inline-block;font:700 9px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);padding:3px 5px;border-radius:4px;margin-right:6px;vertical-align:1px;font-style:normal}
+.tag.sh{color:#fff}
+.ex.mine .ex-i{color:var(--gold);border-color:rgba(216,178,108,.5)}
+.ex.shared .ex-i{color:#e07a80;border-color:rgba(196,69,76,.5)}
+.bill-act.one{grid-template-columns:1fr;margin-top:0}
+.pills.col{flex-direction:column}
+.pills.col .pill{justify-content:flex-start;padding:0 16px;text-align:left}
