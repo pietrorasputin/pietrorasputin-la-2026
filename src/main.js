@@ -655,7 +655,7 @@ function renderMeus() {
         <button type="button" class="lim-edit" data-act="limit">${ICON.plus}Definir limite</button>`}
     </section>
     <div class="my-grid">
-      <div class="my-t big"><small>Total gasto</small><b>${usd(n.cost / 100)}</b><span>individual + sua parte do compartilhado · do seu bolso saíram ${usd(n.pocket / 100)}</span></div>
+      <div class="my-t big"><small>Total pago</small><b>${usd(n.pocket / 100)}</b><span>o que saiu do seu bolso: individual + o que você pagou no compartilhado · seu custo ${usd(n.cost / 100)}</span></div>
       <div class="my-t ind"><small><i class="dotc"></i>Individual</small><b>${usd(n.indiv / 100)}</b><span>${n.mine.length} lançamento${n.mine.length === 1 ? "" : "s"}</span></div>
       <div class="my-t sh"><small><i class="dotc"></i>Compartilhado</small><b>${usd(n.myShare / 100)}</b><span>sua parte · você pagou ${usd(n.paidShared / 100)}</span></div>
       <a class="my-t bal ${n.saldo < 0 ? "neg" : n.saldo > 0 ? "pos" : ""}${n.limit ? "" : " solo"}" href="#contas"><small>Saldo do compartilhado</small><b>${usd(Math.abs(n.saldo) / 100)}</b><span>${saldoTxt}</span></a>
