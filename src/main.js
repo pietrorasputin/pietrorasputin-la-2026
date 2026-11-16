@@ -6,6 +6,7 @@ import { S, onChange, put, saveLetter, deleteLetter, refreshBodies, directorLogi
 import { wheelHTML, spinWheel } from "./wheel.js";
 
 /* ============ helpers ============ */
+const APP_V = (() => { try { return new URL(import.meta.url).searchParams.get("v") || "dev"; } catch (e) { return "dev"; } })();
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -1110,7 +1111,7 @@ document.addEventListener("click", e => {
   if (t.id === "mailBtn") { if (location.hash !== "#cartas") location.hash = "cartas"; return; }
   if (d.act === "write") return openDirector();
   if (t.id === "installBtn") return install();
-  if (t.id === "syncDot") return toast({ ok: "Tudo sincronizado", syncing: "Sincronizando", offline: "Sem sinal. As mudanças sobem quando a conexão voltar.", local: "Modo local: ainda sem banco de dados configurado." }[t.dataset.s] || "");
+  if (t.id === "syncDot") return toast(({ ok: "Tudo sincronizado", syncing: "Sincronizando", offline: "Sem sinal. As mudanças sobem quando a conexão voltar.", local: "Modo local: ainda sem banco de dados configurado." }[t.dataset.s] || "") + " · versão " + APP_V);
   if (d.toggle) { const id = d.toggle; ui.open.has(id) ? ui.open.delete(id) : ui.open.add(id); const li = t.closest(".it"); li.classList.toggle("open"); t.setAttribute("aria-expanded", li.classList.contains("open")); return; }
   if (d.done) { const k = "item-" + d.done, v = !done(k), li = t.closest(".it"); if (v && li) { li.classList.add("just"); setTimeout(() => li.classList.remove("just"), 800); } put("checks", k, v ? { done: true, at: Date.now() } : null); return; }
   if (d.check) { const k = d.check; put("checks", k, done(k) ? null : { done: true, at: Date.now() }); return; }
@@ -1174,11 +1175,19 @@ document.addEventListener("submit", async e => {
 
 /* ============ service worker ============ */
 if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
+  // A version waiting to take over gets a toast that stays until tapped. The app also looks
+  // for a new version whenever it comes back to the foreground and every 10 minutes, so an
+  // app left open in the background does not keep running an old build.
+  const offer = w => { if (w && navigator.serviceWorker.controller) toast("Nova versão do app", "Atualizar", () => { askedUpdate = true; w.postMessage("skip"); }, 24 * 3600e3); };
   navigator.serviceWorker.register("./sw.js").then(reg => {
+    if (reg.waiting) offer(reg.waiting);
     reg.addEventListener("updatefound", () => {
       const w = reg.installing; if (!w) return;
-      w.addEventListener("statechange", () => { if (w.state === "installed" && navigator.serviceWorker.controller) toast("Nova versão do app", "Atualizar", () => { askedUpdate = true; w.postMessage("skip"); }, 30000); });
+      w.addEventListener("statechange", () => { if (w.state === "installed") offer(w); });
     });
+    const check = () => reg.update().then(() => { if (reg.waiting) offer(reg.waiting); }).catch(() => { });
+    document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") check(); });
+    setInterval(check, 10 * 60e3);
   }).catch(() => { });
   // Reload only when this tab asked for the update. The first install (clients.claim)
   // and updates accepted in another tab must not reload the page by surprise.
