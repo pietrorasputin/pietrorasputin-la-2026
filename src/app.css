@@ -691,3 +691,7 @@ body.locked #toast{bottom:auto;top:calc(env(safe-area-inset-top,0px) + 14px)}
 @media (prefers-reduced-motion:no-preference){.mc.new .mc-w{animation:waxpulse 1.8s ease-in-out infinite}}
 @keyframes waxpulse{50%{box-shadow:0 0 0 6px rgba(229,87,77,.18),0 2px 6px rgba(0,0,0,.5)}}
 .it.k-letter.unread .head{border-color:rgba(229,87,77,.6)}
+.ex.shared.zero .ex-t b,.ex.shared.zero .ex-v{color:var(--muted)}
+.ex-v.muted{font:400 11px/1.2 var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.ex-sum{margin:0;font-size:13px;line-height:1.45;color:var(--gold-hi);padding:10px 12px;border-radius:12px;background:rgba(216,178,108,.07);box-shadow:0 0 0 1px var(--line) inset}
+.ex-sum:empty{display:none}

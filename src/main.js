@@ -478,8 +478,10 @@ function renderContas() {
     }).join("") : `<div class="empty">${ICON.coin}<p>Os gastos lançados aparecem aqui, agrupados por dia.</p></div>`}`;
 }
 
+// Who is using this device: the director is Pedro, any other device is Lorena's.
+const me = () => S.director ? "pedro" : "lorena";
 function expenseForm(x) {
-  const e = x || { type: "expense", desc: "", total: 0, payer: "pedro", shares: null, date: todayTrip(), cat: "" };
+  const e = x || { type: "expense", desc: "", total: 0, payer: me(), shares: null, date: todayTrip(), cat: "" };
   const tc = cents(e.total);
   const sh = e.shares || {};
   const custom = !!x && cents(sh.pedro || 0) !== cents(sh.lorena || 0);
@@ -488,15 +490,19 @@ function expenseForm(x) {
       <label class="fld"><span>Descrição</span><input id="ex-desc" maxlength="60" value="${esc(e.desc)}" placeholder="Almoço no Citadel" autocomplete="off"></label>
       <div class="row2">
         <label class="fld"><span>Valor total (US$)</span><input id="ex-total" inputmode="decimal" value="${moneyIn(tc)}" placeholder="0,00" autocomplete="off"></label>
-        <label class="fld"><span>Data</span><input id="ex-date" type="date" min="${TRIP.start}" max="2026-11-30" value="${e.date}" required></label>
+        <label class="fld"><span>Data da compra</span><input id="ex-date" type="date" min="${TRIP.start}" max="2026-11-30" value="${e.date}" required></label>
       </div>
       <div class="fld"><span>Quem pagou</span><div class="pills" data-group="payer">${["pedro", "lorena"].map(w => `<button type="button" class="pill" data-pv="${w}" aria-pressed="${e.payer === w}">${WHO[w]}</button>`).join("")}</div></div>
       <div class="fld"><span>Categoria</span><div class="pills wrap" data-group="cat">${CATS.map(c => `<button type="button" class="pill" data-pv="${c[0]}" aria-pressed="${e.cat === c[0]}">${ICON[c[2]]}${c[1]}</button>`).join("")}</div></div>
       <div class="fld"><span>Divisão</span><div class="pills" data-group="split"><button type="button" class="pill" data-pv="half" aria-pressed="${!custom}">50/50</button><button type="button" class="pill" data-pv="custom" aria-pressed="${custom}">Divisão diferente</button></div></div>
       <div class="split" id="ex-split" ${custom ? "" : "hidden"}>
-        <div class="pills sm" data-group="who">${["pedro", "lorena"].map(w => `<button type="button" class="pill" data-pv="${w}" aria-pressed="${w === "pedro"}">Parte de ${WHO[w]}</button>`).join("")}</div>
-        <div class="split-row"><input id="ex-part" inputmode="decimal" value="${custom ? moneyIn(cents(sh.pedro || 0)) : ""}" placeholder="0,00" autocomplete="off" aria-label="Valor da parte"><p class="split-o" id="ex-other" aria-live="polite"></p></div>
+        <div class="row2">
+          <label class="fld"><span>Parte do Pedro</span><input id="ex-pp" inputmode="decimal" value="${custom ? moneyIn(cents(sh.pedro || 0)) : ""}" placeholder="0,00" autocomplete="off"></label>
+          <label class="fld"><span>Parte da Lorena</span><input id="ex-pl" inputmode="decimal" value="${custom ? moneyIn(cents(sh.lorena || 0)) : ""}" placeholder="0,00" autocomplete="off"></label>
+        </div>
+        <p class="split-o" id="ex-other" aria-live="polite">Digite a parte de um. A do outro é calculada.</p>
       </div>
+      <p class="ex-sum" id="ex-sum" aria-live="polite"></p>
       <p class="err" id="ex-err" hidden></p>
       <button class="btn wide" type="submit">${x ? "Salvar" : "Lançar"}</button>
       ${x ? `<button type="button" class="btn ghost wide danger" id="ex-del">Excluir gasto</button>` : ""}
@@ -504,35 +510,45 @@ function expenseForm(x) {
   splitPreview();
 }
 function pillVal(g) { const b = overlay.querySelector(`[data-group="${g}"] [aria-pressed="true"]`); return b ? b.dataset.pv : ""; }
-function splitPreview() {
-  const o = $("#ex-other", overlay); if (!o) return;
-  const tot = parseMoney($("#ex-total", overlay).value), part = parseMoney($("#ex-part", overlay).value), who = pillVal("who");
-  if (!(tot > 0) || isNaN(part)) { o.textContent = `${WHO[other(who)]}: digite o total e a parte`; o.classList.remove("bad"); return; }
-  const rest = tot - part;
-  o.textContent = rest < 0 ? "A parte passa do total" : `${WHO[other(who)]} fica com ${usd(rest / 100)}`;
-  o.classList.toggle("bad", rest < 0);
+let splitLast = "ex-pp";
+// Returns {pedro, lorena} in cents, or a string with what is wrong.
+function splitShares() {
+  const tot = parseMoney($("#ex-total", overlay).value);
+  if (!(tot > 0)) return "Informe um valor maior que zero.";
+  if (pillVal("split") !== "custom") { const payer = pillVal("payer") || me(), lo = Math.floor(tot / 2); return { [other(payer)]: lo, [payer]: tot - lo }; }
+  const pp = parseMoney($("#ex-pp", overlay).value), pl = parseMoney($("#ex-pl", overlay).value);
+  if (isNaN(pp) || isNaN(pl)) return "Informe as duas partes.";
+  if (pp < 0 || pl < 0) return "As partes não podem ser negativas.";
+  if (pp + pl !== tot) return `As partes somam ${usd((pp + pl) / 100)}, mas o total é ${usd(tot / 100)}.`;
+  return { pedro: pp, lorena: pl };
+}
+function splitPreview(changed) {
+  const o = $("#ex-other", overlay), sum = $("#ex-sum", overlay); if (!o) return;
+  if (changed === "ex-pp" || changed === "ex-pl") splitLast = changed;
+  const tot = parseMoney($("#ex-total", overlay).value);
+  if (pillVal("split") === "custom" && tot > 0) {
+    const src = $("#" + splitLast, overlay), dst = $("#" + (splitLast === "ex-pp" ? "ex-pl" : "ex-pp"), overlay);
+    const v = parseMoney(src.value);
+    if (!isNaN(v) && changed !== (dst.id)) {
+      const rest = tot - v;
+      if (rest >= 0) { dst.value = moneyIn(rest) || "0,00"; o.textContent = "A outra parte foi calculada pelo total."; o.classList.remove("bad"); }
+      else { o.textContent = "A parte passa do total"; o.classList.add("bad"); }
+    }
+  }
+  const r = splitShares(), payer = pillVal("payer") || me();
+  sum.textContent = typeof r === "string" ? "" : `${WHO[payer]} pagou ${usd(tot / 100)}. Parte do Pedro ${usd(r.pedro / 100)}, parte da Lorena ${usd(r.lorena / 100)}.`;
 }
 function saveExpense(f) {
   const err = m => { const el = $("#ex-err", overlay); el.hidden = false; el.textContent = m; };
-  const tot = parseMoney($("#ex-total", overlay).value);
-  if (!(tot > 0)) return err("Informe um valor maior que zero.");
+  const r = splitShares(); if (typeof r === "string") return err(r);
+  const tot = r.pedro + r.lorena;
   const date = $("#ex-date", overlay).value || todayTrip();
   if (date < TRIP.start) return err("A data começa em 12/11.");
-  const payer = pillVal("payer") || "pedro";
-  let shares;
-  if (pillVal("split") === "custom") {
-    const part = parseMoney($("#ex-part", overlay).value), who = pillVal("who");
-    if (isNaN(part) || part < 0) return err("Informe o valor da parte.");
-    if (part > tot) return err("A parte não pode passar do total.");
-    shares = { [who]: part / 100, [other(who)]: (tot - part) / 100 };
-  } else {
-    // odd cent goes to whoever paid
-    const lo = Math.floor(tot / 2);
-    shares = { [other(payer)]: lo / 100, [payer]: (tot - lo) / 100 };
-  }
+  const payer = pillVal("payer") || me();
   const id = f.dataset.id || "exp-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
   const prev = S.listitems[id];
-  put("listitems", id, { type: "expense", desc: $("#ex-desc", overlay).value.trim(), total: tot / 100, payer, shares: { pedro: shares.pedro, lorena: shares.lorena }, date, cat: pillVal("cat"), at: prev && prev.at || Date.now() });
+  // "by" records which device wrote it (audit). Existing records keep theirs.
+  put("listitems", id, { type: "expense", desc: $("#ex-desc", overlay).value.trim(), total: tot / 100, payer, shares: { pedro: r.pedro / 100, lorena: r.lorena / 100 }, date, cat: pillVal("cat"), at: prev && prev.at || Date.now(), by: prev && prev.by || me() });
   closeSheet(); toast(f.dataset.id ? "Gasto atualizado" : `Lançado: ${usd(tot / 100)}`);
 }
 function settleForm(x) {
@@ -566,11 +582,11 @@ overlay.addEventListener("click", e => {
   const wasOn = p.getAttribute("aria-pressed") === "true";
   g.querySelectorAll(".pill").forEach(x => x.setAttribute("aria-pressed", "false"));
   if (!(grp === "cat" && wasOn)) p.setAttribute("aria-pressed", "true"); // category can be cleared
-  if (grp === "split") { $("#ex-split", overlay).hidden = p.dataset.pv !== "custom"; if (p.dataset.pv === "custom") setTimeout(() => $("#ex-part", overlay).focus(), 50); }
-  if (grp === "who" || grp === "split") splitPreview();
+  if (grp === "split") { $("#ex-split", overlay).hidden = p.dataset.pv !== "custom"; if (p.dataset.pv === "custom") setTimeout(() => $("#ex-pp", overlay).focus(), 50); }
+  if (grp === "split" || grp === "payer") splitPreview();
   const del = $("#ex-del", overlay); if (del && del.dataset.armed) { del.dataset.armed = ""; del.classList.remove("armed"); }
 });
-overlay.addEventListener("input", e => { overlay.querySelectorAll(".err").forEach(x => x.hidden = true); if (e.target.id === "ex-total" || e.target.id === "ex-part") splitPreview(); });
+overlay.addEventListener("input", e => { overlay.querySelectorAll(".err").forEach(x => x.hidden = true); if (["ex-total", "ex-pp", "ex-pl"].includes(e.target.id)) splitPreview(e.target.id); });
 overlay.addEventListener("click", e => {
   const del = e.target.closest("#ex-del"); if (!del) return;
   const f = del.closest("form");
@@ -583,6 +599,9 @@ overlay.addEventListener("click", e => {
 // Rules: only the director reads or writes. Lorena never subscribes and never sees the page.
 const contasSwitch = cur => S.director ? `<nav class="pills money-sw" aria-label="Contas">
     <a class="pill" href="#contas" aria-pressed="${cur === "contas"}">Do casal</a><a class="pill" href="#meus" aria-pressed="${cur === "meus"}">Meus gastos</a></nav>` : "";
+// Pedro's view of the money. "Custo" = what is really his: individual + his share of every
+// shared expense, whoever paid. "Do bolso" = what left his pocket (individual + shared he paid,
+// net of settlements). The difference is the shared balance (a receber / a pagar).
 function myNumbers() {
   const shared = expenses(), { b } = balances(shared);
   let paidShared = 0, myShare = 0;
@@ -593,9 +612,9 @@ function myNumbers() {
   const mine = Object.entries(S.mine).filter(([id, v]) => id.startsWith("exp-") && v && v.type === "expense").map(([id, v]) => ({ id, ...v }));
   const indiv = mine.reduce((a, x) => a + cents(x.total), 0);
   const set = S.mine.settings || {};
-  const limit = set.limit > 0 ? cents(set.limit) : 0, base = set.base === "cost" ? "cost" : "paid";
-  const total = indiv + paidShared, used = base === "cost" ? indiv + myShare : total;
-  return { shared, mine, indiv, paidShared, myShare, total, saldo: b.pedro, limit, base, used, left: limit - used };
+  const limit = set.limit > 0 ? cents(set.limit) : 0, base = set.base === "paid" ? "paid" : "cost";
+  const cost = indiv + myShare, pocket = indiv + paidShared, used = base === "paid" ? pocket : cost;
+  return { shared, mine, indiv, paidShared, myShare, cost, pocket, saldo: b.pedro, limit, base, used, left: limit - used };
 }
 function renderMeus() {
   if (!S.director) return `<header class="pagehead"><p class="kicker">Privado</p><h1 class="gold">Meus gastos</h1></header>
@@ -603,18 +622,22 @@ function renderMeus() {
   const n = myNumbers();
   const pct = n.limit ? Math.min(100, Math.max(0, n.used / n.limit * 100)) : 0;
   const over = n.limit && n.left < 0;
-  const saldoTxt = n.saldo > 0 ? "A receber" : n.saldo < 0 ? "Você deve" : "Zerado";
+  const saldoTxt = n.saldo > 0 ? "A Lorena te deve" : n.saldo < 0 ? "Você deve à Lorena" : "Zerado";
   const rows = [];
   for (const x of n.mine) rows.push({ date: x.date, at: x.at || 0, v: cents(x.total), h: (() => { const c = catOf(x.cat);
     return `<li class="ex mine" data-key="m-${x.id}"><button type="button" class="ex-b" data-mine="${x.id}"><span class="ex-i">${c ? ICON[c[2]] : ICON.coin}</span>
       <span class="ex-t"><b>${esc(x.desc || (c ? c[1] : "Gasto"))}</b><small><i class="tag ind">Individual</i>${c ? c[1] : ""}</small></span><span class="ex-v">${usd(x.total)}</span></button></li>`; })() });
   for (const x of n.shared) {
-    let v = 0, sub = "";
-    if (x.type === "expense" && x.payer === "pedro") { v = cents(x.total); sub = `sua parte ${usd((x.shares || {}).pedro || 0)}`; }
-    else if (x.type === "settle") { v = x.payer === "pedro" ? cents(x.total) : -cents(x.total); sub = x.payer === "pedro" ? "você pagou à Lorena" : "a Lorena te pagou"; }
-    else continue;
-    rows.push({ date: x.date, at: x.at || 0, v, h: `<li class="ex shared" data-key="s-${x.id}"><button type="button" class="ex-b" data-exp="${x.id}"><span class="ex-i">${x.type === "settle" ? ICON.swap : ICON.coin}</span>
-      <span class="ex-t"><b>${esc(x.type === "settle" ? "Acerto" : x.desc || "Gasto do casal")}</b><small><i class="tag sh">Compartilhado</i>${sub}</small></span><span class="ex-v">${v < 0 ? "−" : ""}${usd(Math.abs(v) / 100)}</span></button></li>` });
+    if (x.type === "settle") {
+      rows.push({ date: x.date, at: x.at || 0, v: 0, h: `<li class="ex shared settle" data-key="s-${x.id}"><button type="button" class="ex-b" data-exp="${x.id}"><span class="ex-i">${ICON.swap}</span>
+        <span class="ex-t"><b>Acerto</b><small><i class="tag sh">Compartilhado</i>${x.payer === "pedro" ? "você pagou à Lorena" : "a Lorena te pagou"} ${usd(x.total)}</small></span><span class="ex-v muted">fora do custo</span></button></li>` });
+      continue;
+    }
+    const part = cents((x.shares || {}).pedro || 0);
+    if (!part && x.payer !== "pedro") continue; // nada seu nesse gasto
+    const who = x.payer === "pedro" ? "você pagou" : "Lorena pagou";
+    rows.push({ date: x.date, at: x.at || 0, v: part, h: `<li class="ex shared ${part ? "" : "zero"}" data-key="s-${x.id}"><button type="button" class="ex-b" data-exp="${x.id}"><span class="ex-i">${ICON.coin}</span>
+      <span class="ex-t"><b>${esc(x.desc || "Gasto do casal")}</b><small><i class="tag sh">Compartilhado</i>${who} ${usd(x.total)}${part ? "" : ", nada é seu"}</small></span><span class="ex-v">${usd(part / 100)}</span></button></li>` });
   }
   rows.sort((a, b) => b.date.localeCompare(a.date) || b.at - a.at);
   const groups = [];
@@ -626,21 +649,21 @@ function renderMeus() {
       ${n.limit ? `<p class="kicker">${over ? "Passou do limite" : "Restante do limite"}</p>
         <h1 class="title gold bill-n">${over ? "−" : ""}${usd(Math.abs(n.left) / 100)}</h1>
         <div class="lim-bar" role="img" aria-label="${Math.round(pct)}% do limite usado"><i style="width:${pct}%"></i></div>
-        <p class="sub bill-s">${usd(n.used / 100)} de ${usd(n.limit / 100)} · ${n.base === "cost" ? "custo real" : "desembolsado"}</p>
+        <p class="sub bill-s">${usd(n.used / 100)} de ${usd(n.limit / 100)} · ${n.base === "paid" ? "do seu bolso" : "seu custo"}</p>
         <button type="button" class="lim-edit" data-act="limit" aria-label="Editar limite">${ICON.edit}Editar limite</button>`
-      : `<p class="kicker">Meus gastos</p><h1 class="title gold bill-n">${usd(n.total / 100)}</h1><p class="sub bill-s">Total gasto na viagem</p>
+      : `<p class="kicker">Meus gastos</p><h1 class="title gold bill-n">${usd(n.cost / 100)}</h1><p class="sub bill-s">Seu custo na viagem</p>
         <button type="button" class="lim-edit" data-act="limit">${ICON.plus}Definir limite</button>`}
     </section>
     <div class="my-grid">
-      <div class="my-t big"><small>Total gasto</small><b>${usd(n.total / 100)}</b><span>individual + compartilhado</span></div>
+      <div class="my-t big"><small>Total gasto</small><b>${usd(n.cost / 100)}</b><span>individual + sua parte do compartilhado · do seu bolso saíram ${usd(n.pocket / 100)}</span></div>
       <div class="my-t ind"><small><i class="dotc"></i>Individual</small><b>${usd(n.indiv / 100)}</b><span>${n.mine.length} lançamento${n.mine.length === 1 ? "" : "s"}</span></div>
-      <div class="my-t sh"><small><i class="dotc"></i>Compartilhado</small><b>${usd(n.paidShared / 100)}</b><span>sua parte ${usd(n.myShare / 100)}</span></div>
+      <div class="my-t sh"><small><i class="dotc"></i>Compartilhado</small><b>${usd(n.myShare / 100)}</b><span>sua parte · você pagou ${usd(n.paidShared / 100)}</span></div>
       <a class="my-t bal ${n.saldo < 0 ? "neg" : n.saldo > 0 ? "pos" : ""}${n.limit ? "" : " solo"}" href="#contas"><small>Saldo do compartilhado</small><b>${usd(Math.abs(n.saldo) / 100)}</b><span>${saldoTxt}</span></a>
       ${n.limit ? `<button type="button" class="my-t lim ${over ? "neg" : ""}" data-act="limit"><small>Saldo do limite</small><b>${over ? "−" : ""}${usd(Math.abs(n.left) / 100)}</b><span>limite ${usd(n.limit / 100)}</span></button>` : ""}
     </div>
     <div class="bill-act one"><button type="button" class="btn" data-act="mine-new">${ICON.plus}Lançar gasto individual</button></div>
     ${groups.length ? groups.map(g => `<section class="ex-day" data-key="myd-${g.date}"><header><span>${wd(g.date)}, ${dnum(g.date)} ${MON}</span><span>${usd(g.tot / 100)}</span></header><ul>${g.items.join("")}</ul></section>`).join("")
-      : `<div class="empty">${ICON.coin}<p>Seus gastos individuais e o que você pagou no compartilhado aparecem aqui, por dia.</p></div>`}`;
+      : `<div class="empty">${ICON.coin}<p>Seus gastos individuais e a sua parte de cada gasto do casal aparecem aqui, por dia.</p></div>`}`;
 }
 function mineStatusHTML() {
   if (S.mineSync === "error") return `<div class="planb">${ICON.late}<p><b>A nuvem recusou a gravação</b> (${esc(S.mineErr)}). Seus gastos estão guardados neste celular e sobem sozinhos quando o Firebase liberar. Confira se as regras publicadas têm o bloco <code>match /mine/{id}</code>.</p></div>`;
@@ -673,13 +696,13 @@ function saveMine(f) {
   closeSheet(); toast(f.dataset.id ? "Gasto atualizado" : `Lançado: ${usd(tot / 100)}`);
 }
 function limitForm() {
-  const set = S.mine.settings || {}, base = set.base === "cost" ? "cost" : "paid";
+  const set = S.mine.settings || {}, base = set.base === "paid" ? "paid" : "cost";
   sheet(`<div class="grab"></div><h3 class="gold sh-t">Limite de gastos</h3>
     <form id="limF" class="form" novalidate>
       <label class="fld"><span>Limite da viagem (US$)</span><input id="li-val" inputmode="decimal" value="${moneyIn(set.limit > 0 ? cents(set.limit) : 0)}" placeholder="0,00" autocomplete="off"></label>
       <div class="fld"><span>Descontar do limite</span><div class="pills col" data-group="base">
-        <button type="button" class="pill" data-pv="paid" aria-pressed="${base === "paid"}">Tudo que eu desembolsei</button>
-        <button type="button" class="pill" data-pv="cost" aria-pressed="${base === "cost"}">Meu custo real (individual + minha parte)</button></div></div>
+        <button type="button" class="pill" data-pv="cost" aria-pressed="${base === "cost"}">Meu custo (individual + minha parte)</button>
+        <button type="button" class="pill" data-pv="paid" aria-pressed="${base === "paid"}">Tudo que saiu do meu bolso</button></div></div>
       <p class="err" id="li-err" hidden></p>
       <button class="btn wide" type="submit">Salvar limite</button>
       ${set.limit > 0 ? `<button type="button" class="btn ghost wide" id="li-off">Remover limite</button>` : ""}
@@ -688,7 +711,7 @@ function limitForm() {
 function saveLimit() {
   const v = parseMoney($("#li-val", overlay).value);
   if (!(v > 0)) { const el = $("#li-err", overlay); el.hidden = false; el.textContent = "Informe um limite maior que zero."; return; }
-  put("mine", "settings", { limit: v / 100, base: pillVal("base") || "paid", at: Date.now() });
+  put("mine", "settings", { limit: v / 100, base: pillVal("base") || "cost", at: Date.now() });
   closeSheet(); toast(`Limite: ${usd(v / 100)}`);
 }
 overlay.addEventListener("click", e => {
