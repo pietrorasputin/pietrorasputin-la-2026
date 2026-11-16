@@ -998,9 +998,7 @@ function syncReadFlags() { // letters opened before read flags existed live only
 function toastLetters() {
   if (!S.authReady || S.director) return;
   if (S.sync === "ok") syncReadFlags();
-  const l = letters().find(x => unreadFor(x) && !toasted.has(x.id));
-  if (!l) return; toasted.add(l.id);
-  toast("Chegou uma carta para você", "Abrir", () => openLetter(l.id), 20000);
+  // Aviso "Chegou uma carta" removido a pedido do Pedro (16/11). O ponto no envelope continua.
 }
 
 /* director */
