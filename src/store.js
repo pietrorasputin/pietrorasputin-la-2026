@@ -16,14 +16,16 @@ export const S = {
   director: !!saved.localDirector && !firebaseConfig,
   sync: navigator.onLine ? "ok" : "offline",
   user: null,
-  // Private to the director: never persisted to localStorage, read only after login.
-  mine: (!firebaseConfig && saved.mine) || {}, mineErr: null
+  authReady: !firebaseConfig,
+  // Private to the director. Shown only after a director login. A backup lives in this
+  // device's localStorage (la26-mine) so nothing is lost if the cloud refuses or is offline.
+  mine: {}, mineErr: null, mineSync: "ok", minePending: 0
 };
 
 let fb = null; // firebase handles once loaded
 let listeners = [];
 let changeCb = () => { };
-const persist = () => lsSet(LS, { swaps: S.swaps, flags: S.flags, checks: S.checks, scenes: S.scenes, listitems: S.listitems, letterMeta: S.letterMeta, letterBody: S.letterBody, localDirector: S.mode === "local" && S.director, mine: S.mode === "local" ? S.mine : undefined });
+const persist = () => lsSet(LS, { swaps: S.swaps, flags: S.flags, checks: S.checks, scenes: S.scenes, listitems: S.listitems, letterMeta: S.letterMeta, letterBody: S.letterBody, localDirector: S.mode === "local" && S.director });
 const changed = () => { persist(); changeCb(); };
 
 export function onChange(cb) { changeCb = cb; }
@@ -32,8 +34,46 @@ function setSync(v) { if (S.sync !== v) { S.sync = v; changeCb(); } }
 window.addEventListener("online", () => setSync(S.mode === "cloud" ? "syncing" : "ok"));
 window.addEventListener("offline", () => setSync("offline"));
 
+/* ---------- private expenses (director) ---------- */
+const MINE_LS = "la26-mine";
+const mineBox = lsGet(MINE_LS, { docs: {}, pending: {} });
+mineBox.docs = mineBox.docs || {}; mineBox.pending = mineBox.pending || {};
+const saveBox = () => lsSet(MINE_LS, mineBox);
+function mineView(server) {
+  const out = { ...server };
+  for (const [id, op] of Object.entries(mineBox.pending)) { if (op.del) delete out[id]; else out[id] = op.data; }
+  return out;
+}
+function mineStatus() {
+  S.minePending = Object.keys(mineBox.pending).length;
+  if (S.mineErr) S.mineSync = "error";
+  else S.mineSync = S.minePending ? "pending" : "ok";
+}
+function writeMine(id) {
+  const op = mineBox.pending[id]; if (!op || !fb) return;
+  const ref = fb.doc(fb.db, "mine", id);
+  (op.del ? fb.deleteDoc(ref) : fb.setDoc(ref, op.data)).then(() => {
+    if (mineBox.pending[id] === op) { delete mineBox.pending[id]; saveBox(); }
+    S.mineErr = null; mineStatus(); changeCb();
+  }).catch(e => {
+    console.warn("mine write refused", id, e && e.code);
+    S.mineErr = (e && e.code) || "erro"; mineStatus(); changeCb();
+  });
+}
+function loadMine() { S.mine = mineView(mineBox.docs); mineStatus(); }
+function putMine(id, data) {
+  mineBox.pending[id] = data == null ? { del: true, at: Date.now() } : { data, at: Date.now() };
+  if (data == null) delete mineBox.docs[id]; else mineBox.docs[id] = data;
+  if (S.mode === "local") delete mineBox.pending[id];
+  saveBox();
+  S.mine = mineView(mineBox.docs); mineStatus(); changed();
+  writeMine(id);
+}
+if (S.director) loadMine(); // local mode
+
 /* ---------- writes ---------- */
 export function put(col, id, data) {
+  if (col === "mine") return putMine(id, data);
   if (data == null) delete S[col][id]; else S[col][id] = data;
   changed();
   if (!fb) return;
@@ -78,11 +118,11 @@ export function refreshBodies(now) {
 
 /* ---------- director ---------- */
 export async function directorLogin(email, password) {
-  if (S.mode === "local") { S.director = true; changed(); return; }
+  if (S.mode === "local") { S.director = true; loadMine(); changed(); return; }
   await fb.signInWithEmailAndPassword(fb.auth, email, password);
 }
 export async function directorLogout() {
-  if (S.mode === "local") { S.director = false; changed(); return; }
+  if (S.mode === "local") { S.director = false; S.mine = {}; changed(); return; }
   await fb.signOut(fb.auth);
 }
 
@@ -99,7 +139,9 @@ export async function start() {
     S.user = user;
     if (!user) { A.signInAnonymously(auth).catch(() => setSync("offline")); return; }
     S.director = !user.isAnonymous;
-    if (!S.director) { S.mine = {}; S.mineErr = null; }
+    S.authReady = true;
+    if (!S.director) { S.mine = {}; S.mineErr = null; S.mineSync = "ok"; }
+    else { loadMine(); Object.keys(mineBox.pending).forEach(writeMine); }
     if (!S.director) { // keep only bodies already unlocked
       for (const id of Object.keys(S.letterBody)) if (!S.letterMeta[id] || Date.now() < S.letterMeta[id].at) delete S.letterBody[id];
     }
@@ -121,12 +163,19 @@ function subscribe() {
         else if (col === "letterBody") m[d.id] = { title: x.title, body: x.body, at: x.unlockAt.toMillis() };
         else m[d.id] = x;
       });
+      if (col === "mine") {
+        if (!snap.metadata.fromCache) {
+          // the server is the truth; local pending ops stay on top until confirmed
+          mineBox.docs = { ...m }; saveBox(); S.mineErr = null;
+        }
+        S.mine = mineView(snap.metadata.fromCache ? { ...mineBox.docs, ...m } : m); mineStatus();
+        changed(); return;
+      }
       S[col] = m;
-      if (col === "mine") S.mineErr = null;
       pendingAny = snap.metadata.hasPendingWrites;
       setSync(!navigator.onLine ? "offline" : (snap.metadata.fromCache || pendingAny ? "syncing" : "ok"));
       changed();
-    }, err => { console.warn(col, err && err.code); if (col === "mine") { S.mineErr = (err && err.code) || "erro"; changed(); } });
+    }, err => { console.warn(col, err && err.code); if (col === "mine") { S.mineErr = (err && err.code) || "erro"; mineStatus(); changed(); } });
     listeners.push(u);
   }
 }

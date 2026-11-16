@@ -659,3 +659,35 @@ body.locked #toast{bottom:auto;top:calc(env(safe-area-inset-top,0px) + 14px)}
 .bill-act.one{grid-template-columns:1fr;margin-top:0}
 .pills.col{flex-direction:column}
 .pills.col .pill{justify-content:flex-start;padding:0 16px;text-align:left}
+
+/* sync status (Meus gastos) */
+.sync-line{display:flex;align-items:center;gap:6px;margin:-6px 0 12px;font:400 11px/1.3 var(--f-mono);letter-spacing:.06em;color:var(--muted)}
+.sync-line svg{width:13px;height:13px;flex:none}
+.sync-line.ok svg{color:var(--ok)}
+.sync-line.wait{color:var(--warn)}
+.planb code{font-family:var(--f-mono);font-size:12px;color:var(--gold-hi)}
+
+/* ===== Cartas (página) ===== */
+.mc-chips{display:flex;gap:8px;flex-wrap:wrap;margin:-6px 0 16px}
+.mc-c{display:inline-flex;align-items:baseline;gap:6px;padding:7px 12px;border-radius:999px;background:var(--stage);box-shadow:0 0 0 1px var(--line) inset;font-size:13px;color:var(--muted)}
+.mc-c b{font:600 15px/1 var(--f-body);color:var(--text)}
+.mc-c.new b{color:#f08c8c}.mc-c.read b{color:var(--gold-hi)}
+.mc-list{list-style:none;margin:0;padding:0}
+.mc{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;border-bottom:1px solid var(--line)}
+.mc-b{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;align-items:center;text-align:left;padding:11px 4px;width:100%}
+.mc-b:disabled{cursor:default}
+.mc-w{width:40px;height:40px;font-size:17px}
+.mc-w svg{width:17px;height:17px}
+.mc-t b{display:block;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mc-t small{display:block;font:400 11px/1.4 var(--f-mono);color:var(--muted);letter-spacing:.04em}
+.mc-s{font:700 10px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:6px;white-space:nowrap;text-align:center;max-width:120px;white-space:normal}
+.mc.new .mc-s{background:var(--rec);color:#fff}
+.mc.new .mc-t b{color:var(--paper)}
+.mc.read .mc-s{color:var(--gold);box-shadow:0 0 0 1px var(--line-2) inset}
+.mc.read .mc-w{filter:saturate(.45) brightness(.85)}
+.mc.sealed .mc-s,.mc.waiting .mc-s{color:var(--muted);box-shadow:0 0 0 1px var(--line) inset}
+.mc.sealed .mc-w{background:var(--ink-2);box-shadow:0 0 0 1px var(--line-2) inset;color:var(--muted)}
+.mc.sealed .mc-t b{color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.mc.new .mc-w{animation:waxpulse 1.8s ease-in-out infinite}}
+@keyframes waxpulse{50%{box-shadow:0 0 0 6px rgba(229,87,77,.18),0 2px 6px rgba(0,0,0,.5)}}
+.it.k-letter.unread .head{border-color:rgba(229,87,77,.6)}

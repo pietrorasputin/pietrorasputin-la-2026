@@ -117,13 +117,16 @@ function letters() {
 }
 const unlocked = l => now() >= l.at;
 const visibleLetters = () => letters().filter(l => S.director || unlocked(l) || l.teaser);
+// Read = opened on this device, or read flag synced by Lorena's device (flags/read-<id>).
+const isRead = l => opened.has(l.id) || !!S.flags["read-" + l.id];
+const unreadFor = l => S.authReady && !S.director && unlocked(l) && l.hasBody && !isRead(l);
 
 /* ============ shell ============ */
 const main = $("#main");
 const overlay = $("#overlay");
 
 function shell() {
-  const unseen = !S.director && letters().some(l => unlocked(l) && l.hasBody && !opened.has(l.id));
+  const unseen = letters().some(unreadFor);
   $("#mailBtn").classList.toggle("has", unseen);
   const sd = $("#syncDot");
   sd.dataset.s = S.mode === "local" ? "local" : S.sync;
@@ -224,7 +227,7 @@ function itemHTML(day, raw, i, idx) {
 function letterItemHTML(l, idx) {
   const open = unlocked(l) && l.hasBody;
   const ttl = S.director ? (l.title || "Carta") : open ? (l.title || "Uma carta para você") : "Uma carta chega aqui";
-  return `<li class="it k-letter ${open ? "" : "sealed"}" id="lt-${l.id}" style="--i:${idx}">
+  return `<li class="it k-letter ${open ? "" : "sealed"} ${open && !isRead(l) && !S.director ? "unread" : ""}" id="lt-${l.id}" style="--i:${idx}">
     <span class="tm"><span>${esc(l.time)}</span></span>
     <span class="node wax">L</span>
     <div class="body"><button type="button" class="head" ${open || S.director ? `data-letter="${l.id}"` : "disabled"}><span class="ttl">${esc(ttl)}</span>${S.director && !open ? `<i class="fl">${l.teaser ? "visível" : "secreta"}</i>` : ""}</button></div><span></span>
@@ -617,7 +620,7 @@ function renderMeus() {
   const groups = [];
   for (const r of rows) { let g = groups[groups.length - 1]; if (!g || g.date !== r.date) groups.push(g = { date: r.date, items: [], tot: 0 }); g.items.push(r.h); g.tot += r.v; }
   return `${contasSwitch("meus")}
-    ${S.mineErr ? `<div class="planb">${ICON.late}<p>O Firebase ainda não libera a área privada. Atualize as regras no console (instruções na conversa) e reabra o app. Até lá, o que você lançar aqui não fica salvo.</p></div>` : ""}
+    ${mineStatusHTML()}
     <section class="hero marquee bill my-hero ${over ? "over" : ""}" id="hero">
       <div class="bulbs" aria-hidden="true" data-own="1"></div>
       ${n.limit ? `<p class="kicker">${over ? "Passou do limite" : "Restante do limite"}</p>
@@ -638,6 +641,11 @@ function renderMeus() {
     <div class="bill-act one"><button type="button" class="btn" data-act="mine-new">${ICON.plus}Lançar gasto individual</button></div>
     ${groups.length ? groups.map(g => `<section class="ex-day" data-key="myd-${g.date}"><header><span>${wd(g.date)}, ${dnum(g.date)} ${MON}</span><span>${usd(g.tot / 100)}</span></header><ul>${g.items.join("")}</ul></section>`).join("")
       : `<div class="empty">${ICON.coin}<p>Seus gastos individuais e o que você pagou no compartilhado aparecem aqui, por dia.</p></div>`}`;
+}
+function mineStatusHTML() {
+  if (S.mineSync === "error") return `<div class="planb">${ICON.late}<p><b>A nuvem recusou a gravação</b> (${esc(S.mineErr)}). Seus gastos estão guardados neste celular e sobem sozinhos quando o Firebase liberar. Confira se as regras publicadas têm o bloco <code>match /mine/{id}</code>.</p></div>`;
+  if (S.mineSync === "pending") return `<p class="sync-line wait">${ICON.late}${S.minePending} lançamento${S.minePending === 1 ? "" : "s"} guardado${S.minePending === 1 ? "" : "s"} neste celular, aguardando a nuvem</p>`;
+  return `<p class="sync-line ok">${ICON.check}Salvo na nuvem e neste celular</p>`;
 }
 function mineForm(x) {
   const e = x || { desc: "", total: 0, date: todayTrip(), cat: "" };
@@ -700,6 +708,7 @@ function viewHTML() {
   if (ui.view === "listas") return renderListas();
   if (ui.view === "contas") return renderContas();
   if (ui.view === "meus") return renderMeus();
+  if (ui.view === "cartas") return renderCartas();
   return renderHoje();
 }
 function render(fresh, vt = fresh) {
@@ -733,7 +742,7 @@ function route() {
   const h = location.hash.slice(1), m = h.match(/^dia-(\d)$/);
   const prev = ui.view + ui.day;
   if (m) { ui.view = "hoje"; ui.day = Math.min(6, Math.max(0, Number(m[1]) - 1)); }
-  else if (["roteiro", "cenas", "listas", "contas", "meus", "hoje"].includes(h)) ui.view = h;
+  else if (["roteiro", "cenas", "listas", "contas", "meus", "cartas", "hoje"].includes(h)) ui.view = h;
   else ui.view = "hoje";
   const changed = prev !== ui.view + ui.day;
   const first = !main.firstChild;
@@ -920,6 +929,43 @@ function openWheel(id, opts) {
   setTimeout(go, 350);
 }
 
+/* ============ CARTAS (página) ============ */
+function letterState(l) {
+  if (!unlocked(l)) return "sealed";
+  if (!S.director && !l.hasBody) return "waiting";
+  return isRead(l) ? "read" : "new";
+}
+function renderCartas() {
+  const list = S.director ? letters() : letters().filter(l => unlocked(l) || l.teaser);
+  const st = list.map(l => [l, letterState(l)]);
+  const count = k => st.filter(x => x[1] === k).length;
+  const LBL = S.director
+    ? { read: "Lida pela Lorena", new: "Liberada, não lida", sealed: "Não liberada", waiting: "Liberada" }
+    : { read: "Lida", new: "Nova", sealed: "Lacrada", waiting: "Liberada, aguardando sinal" };
+  const groups = [];
+  for (const [l, k] of st) { let g = groups[groups.length - 1]; if (!g || g.date !== l.date) groups.push(g = { date: l.date, items: [] }); g.items.push([l, k]); }
+  const row = ([l, k]) => {
+    const canOpen = S.director || k === "read" || k === "new";
+    const title = S.director || k !== "sealed" ? (l.title || "Para você") : "Carta lacrada";
+    const sub = k === "sealed" ? `abre em ${dur(l.at - now())}` : `${wd(l.date).slice(0, 3)} ${dnum(l.date)}, ${l.time}`;
+    return `<li class="mc ${k}" data-key="mc-${l.id}">
+      <button type="button" class="mc-b" ${canOpen ? `data-letter="${l.id}"` : "disabled"}>
+        <span class="wax mc-w">${k === "sealed" ? ICON.lock : "L"}</span>
+        <span class="mc-t"><b>${esc(title)}</b><small>${esc(sub)}${S.director && k === "sealed" ? ` · ${l.teaser ? "envelope visível" : "secreta"}` : ""}</small></span>
+        <span class="mc-s">${LBL[k]}</span>
+      </button>
+      ${S.director ? `<button type="button" class="ibtn sm" data-edit="${l.id}" aria-label="Editar">${ICON.edit}</button>` : ""}
+    </li>`;
+  };
+  const chips = [["new", S.director ? "não lidas" : "novas"], ["read", "lidas"], ["sealed", S.director ? "não liberadas" : "lacradas"]]
+    .map(([k, t]) => `<span class="mc-c ${k}"><b>${count(k)}</b>${t}</span>`).join("");
+  return `<header class="pagehead"><p class="kicker">Correio</p><h1 class="gold">Cartas</h1></header>
+    ${list.length ? `<div class="mc-chips">${chips}</div>` : ""}
+    ${S.director ? `<div class="bill-act one"><button type="button" class="btn" data-act="write">${ICON.edit}Escrever carta</button></div>` : ""}
+    ${groups.length ? groups.map(g => `<section class="ex-day" data-key="ltd-${g.date}"><header><span>${wd(g.date)}, ${dnum(g.date)} ${MON}</span><span>${g.items.length}</span></header><ul class="mc-list">${g.items.map(row).join("")}</ul></section>`).join("")
+      : `<div class="empty">${ICON.mail}<p>Algumas cenas só acontecem na hora certa.</p></div>`}`;
+}
+
 /* letters */
 function openMail() {
   if (S.director) return openDirector();
@@ -933,7 +979,8 @@ function openMail() {
 
 function openLetter(id) {
   const l = letters().find(x => x.id === id); if (!l || (!S.director && !(unlocked(l) && l.hasBody))) return;
-  if (!S.director) { opened.add(id); lsSet("la26-opened", [...opened]); }
+  opened.add(id); lsSet("la26-opened", [...opened]);
+  if (S.authReady && !S.director && unlocked(l) && !S.flags["read-" + id]) put("flags", "read-" + id, { at: Date.now() });
   const paper = `<article class="paper"><button type="button" class="px" data-close aria-label="Fechar">${ICON.x}</button>
     <p class="p-k">${wd(l.date)}, ${dnum(l.date)} de novembro · ${esc(l.time)}</p><h3>${esc(l.title || "Para você")}</h3><div class="p-body">${esc(l.body || "")}</div><p class="p-sign">Pedro</p></article>`;
   overlay.innerHTML = `<div class="scrim dark" data-close></div><div class="letter-stage">${reduce() ? paper : `<div class="env-anim"><span class="ea-back"></span><span class="ea-paper"></span><span class="ea-front"></span><span class="ea-flap"></span><span class="wax">L</span></div>`}</div>`;
@@ -943,9 +990,15 @@ function openLetter(id) {
 }
 
 let toasted = new Set();
+let readSynced = false;
+function syncReadFlags() { // letters opened before read flags existed live only in this device's localStorage
+  if (readSynced) return; readSynced = true;
+  for (const l of letters()) if (opened.has(l.id) && unlocked(l) && !S.flags["read-" + l.id]) put("flags", "read-" + l.id, { at: Date.now() });
+}
 function toastLetters() {
-  if (S.director) return;
-  const l = letters().find(x => unlocked(x) && x.hasBody && !opened.has(x.id) && !toasted.has(x.id));
+  if (!S.authReady || S.director) return;
+  if (S.sync === "ok") syncReadFlags();
+  const l = letters().find(x => unreadFor(x) && !toasted.has(x.id));
   if (!l) return; toasted.add(l.id);
   toast("Chegou uma carta para você", "Abrir", () => openLetter(l.id), 20000);
 }
@@ -1033,7 +1086,8 @@ document.addEventListener("click", e => {
   if (d.act === "login") return openLogin();
   if (d.mine) { const x = S.mine[d.mine]; if (x) mineForm({ id: d.mine, ...x }); return; }
   if (d.exp) { const x = S.listitems[d.exp]; if (!x) return; const v = { id: d.exp, ...x }; return x.type === "settle" ? settleForm(v) : expenseForm(v); }
-  if (t.id === "mailBtn") return openMail();
+  if (t.id === "mailBtn") { if (location.hash !== "#cartas") location.hash = "cartas"; return; }
+  if (d.act === "write") return openDirector();
   if (t.id === "installBtn") return install();
   if (t.id === "syncDot") return toast({ ok: "Tudo sincronizado", syncing: "Sincronizando", offline: "Sem sinal. As mudanças sobem quando a conexão voltar.", local: "Modo local: ainda sem banco de dados configurado." }[t.dataset.s] || "");
   if (d.toggle) { const id = d.toggle; ui.open.has(id) ? ui.open.delete(id) : ui.open.add(id); const li = t.closest(".it"); li.classList.toggle("open"); t.setAttribute("aria-expanded", li.classList.contains("open")); return; }
@@ -1082,7 +1136,7 @@ document.addEventListener("submit", async e => {
   }
   if (f.id === "letterF") {
     const body = $("#lf-b").value; if (!body.trim()) return;
-    const id = f.dataset.id || "l" + Date.now().toString(36);
+    const id = f.dataset.id || "l" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
     await saveLetter(id, { date: $("#lf-d").value, time: $("#lf-t").value, title: $("#lf-ti").value.trim(), body, teaser: $("#lf-te").checked });
     toast("Carta lacrada"); openDirector();
   }
